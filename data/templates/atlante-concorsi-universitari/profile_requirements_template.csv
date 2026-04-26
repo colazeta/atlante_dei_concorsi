@@ -1,0 +1,2 @@
+profile_requirement_id,procedure_id,number_of_profile_requirements,number_of_thematic_keywords,number_of_methodological_keywords,number_of_experience_requirements,number_of_project_lab_centre_references,number_of_language_requirements,has_highly_specific_topic_method_experience_combination,profile_excerpt_1,profile_excerpt_2,profile_specificity_score,profile_specificity_class,human_review_required,notes
+PR-0001,SYN-UNI-2026-001,4,6,3,2,1,1,true,"Synthetic excerpt A","Synthetic excerpt B",23.1,high,true,Synthetic row
