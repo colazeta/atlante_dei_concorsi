@@ -1,0 +1,2 @@
+committee_member_id,procedure_id,person_name,role_in_committee,affiliation,department,academic_field,source_document_id,source_url,confidence_level,notes
+CM-0001,SYN-UNI-2026-001,Prof. Elena Valli,chair,Universita Tirrena di Studi Avanzati,Dipartimento di Scienze Documentarie,Documentary Sciences,DOC-0002,https://example.edu/docs/DOC-0002.pdf,high,Synthetic person
