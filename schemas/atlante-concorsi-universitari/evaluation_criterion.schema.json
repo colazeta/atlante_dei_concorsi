@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evaluation_criterion.schema.json",
+  "title": "EvaluationCriterion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evaluation_criterion_id",
+    "procedure_id",
+    "criteria_available",
+    "number_of_criteria",
+    "number_of_subcriteria",
+    "has_weights",
+    "has_thresholds",
+    "has_eliminatory_criteria",
+    "number_of_criteria_linked_to_profile",
+    "share_non_quantified_discretionary_criteria",
+    "criteria_narrowness_score",
+    "criteria_narrowness_class",
+    "human_review_required"
+  ],
+  "properties": {
+    "evaluation_criterion_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "criteria_available": { "type": "boolean" },
+    "criteria_publication_date": { "type": ["string", "null"], "format": "date" },
+    "number_of_criteria": { "type": "integer", "minimum": 0 },
+    "number_of_subcriteria": { "type": "integer", "minimum": 0 },
+    "has_weights": { "type": "boolean" },
+    "has_thresholds": { "type": "boolean" },
+    "has_eliminatory_criteria": { "type": "boolean" },
+    "number_of_criteria_linked_to_profile": { "type": "integer", "minimum": 0 },
+    "share_non_quantified_discretionary_criteria": { "type": "number", "minimum": 0, "maximum": 1 },
+    "criteria_excerpt_1": { "type": ["string", "null"] },
+    "criteria_excerpt_2": { "type": ["string", "null"] },
+    "criteria_narrowness_score": { "type": ["number", "null"] },
+    "criteria_narrowness_class": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "very_high", "not_determinable"]
+    },
+    "human_review_required": { "type": "boolean" },
+    "notes": { "type": ["string", "null"] }
+  }
+}

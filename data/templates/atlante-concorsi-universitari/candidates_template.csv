@@ -1,0 +1,2 @@
+candidate_id,procedure_id,person_name,candidate_status,affiliation,source_document_id,source_url,confidence_level,notes
+CA-0001,SYN-UNI-2026-001,Dott. Marco Liri,evaluated,Universita Tirrena di Studi Avanzati,DOC-0004,https://example.edu/docs/DOC-0004.pdf,medium,Synthetic person
