@@ -28,6 +28,11 @@ EXPECTED_DOCS = [
     "11_quality_assurance_checklist.md",
     "12_pilot_university_selection.md",
     "13_publication_language_policy.md",
+    "14_golden_dataset_workspace.md",
+    "15_first_manual_pilot_protocol.md",
+    "16_first_pilot_execution_checklist.md",
+    "17_pilot_debrief_template.md",
+    "18_pilot_runbook.md",
 ]
 
 MAPPINGS = [
