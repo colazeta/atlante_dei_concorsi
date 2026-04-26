@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "candidate.schema.json",
+  "title": "Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id",
+    "procedure_id",
+    "person_name",
+    "candidate_status",
+    "source_document_id",
+    "source_url",
+    "confidence_level"
+  ],
+  "properties": {
+    "candidate_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "person_name": { "type": "string" },
+    "candidate_status": {
+      "type": "string",
+      "enum": [
+        "admitted",
+        "excluded",
+        "evaluated",
+        "withdrawn",
+        "winner",
+        "eligible",
+        "not_determinable"
+      ]
+    },
+    "affiliation": { "type": ["string", "null"] },
+    "source_document_id": { "type": ["string", "null"] },
+    "source_url": { "type": "string", "format": "uri" },
+    "confidence_level": { "type": "string", "enum": ["low", "medium", "high"] },
+    "notes": { "type": ["string", "null"] }
+  }
+}
