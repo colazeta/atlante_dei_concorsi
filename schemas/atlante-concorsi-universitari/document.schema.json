@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "document.schema.json",
+  "title": "Document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_id",
+    "procedure_id",
+    "document_type",
+    "title",
+    "source_url",
+    "retrieval_date",
+    "version",
+    "official_source_flag"
+  ],
+  "properties": {
+    "document_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "document_type": {
+      "type": "string",
+      "enum": [
+        "call_notice",
+        "correction",
+        "deadline_extension",
+        "committee_appointment",
+        "admission_list",
+        "exclusion_list",
+        "evaluation_criteria",
+        "minutes",
+        "final_ranking",
+        "winner_appointment",
+        "acts_approval",
+        "annulment",
+        "litigation_related_document",
+        "other"
+      ]
+    },
+    "title": { "type": "string" },
+    "source_url": { "type": "string", "format": "uri" },
+    "publication_date": { "type": ["string", "null"], "format": "date" },
+    "retrieval_date": { "type": "string", "format": "date" },
+    "file_hash": { "type": ["string", "null"] },
+    "text_hash": { "type": ["string", "null"] },
+    "version": { "type": "string" },
+    "official_source_flag": { "type": "boolean" },
+    "notes": { "type": ["string", "null"] }
+  }
+}
