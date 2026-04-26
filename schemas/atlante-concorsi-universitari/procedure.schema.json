@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "procedure.schema.json",
+  "title": "Procedure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "procedure_id",
+    "university",
+    "position_type",
+    "number_of_positions",
+    "academic_field",
+    "call_publication_date",
+    "status",
+    "source_url",
+    "documentary_completeness_status"
+  ],
+  "properties": {
+    "procedure_id": { "type": "string" },
+    "university": { "type": "string" },
+    "department": { "type": ["string", "null"] },
+    "procedure_code": { "type": ["string", "null"] },
+    "position_type": { "type": "string" },
+    "number_of_positions": { "type": "integer", "minimum": 1 },
+    "academic_field": { "type": "string" },
+    "ssd": { "type": ["string", "null"] },
+    "gsd_settore_concorsuale": { "type": ["string", "null"] },
+    "call_publication_date": { "type": ["string", "null"], "format": "date" },
+    "deadline_date": { "type": ["string", "null"], "format": "date" },
+    "committee_appointment_date": { "type": ["string", "null"], "format": "date" },
+    "criteria_publication_date": { "type": ["string", "null"], "format": "date" },
+    "outcome_publication_date": { "type": ["string", "null"], "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "announced",
+        "in_progress",
+        "outcome_published",
+        "acts_approved",
+        "updated_after_approval",
+        "annulled",
+        "not_determinable"
+      ]
+    },
+    "source_url": { "type": "string", "format": "uri" },
+    "documentary_completeness_status": {
+      "type": "string",
+      "enum": ["complete", "partial", "minimal", "not_determinable"]
+    },
+    "notes": { "type": ["string", "null"] }
+  }
+}
