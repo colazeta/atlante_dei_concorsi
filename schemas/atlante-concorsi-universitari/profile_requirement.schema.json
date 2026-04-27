@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "profile_requirement.schema.json",
+  "title": "ProfileRequirement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_requirement_id",
+    "procedure_id",
+    "number_of_profile_requirements",
+    "number_of_thematic_keywords",
+    "number_of_methodological_keywords",
+    "number_of_experience_requirements",
+    "number_of_project_lab_centre_references",
+    "number_of_language_requirements",
+    "has_highly_specific_topic_method_experience_combination",
+    "profile_specificity_score",
+    "profile_specificity_class",
+    "human_review_required"
+  ],
+  "properties": {
+    "profile_requirement_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "number_of_profile_requirements": { "type": "integer", "minimum": 0 },
+    "number_of_thematic_keywords": { "type": "integer", "minimum": 0 },
+    "number_of_methodological_keywords": { "type": "integer", "minimum": 0 },
+    "number_of_experience_requirements": { "type": "integer", "minimum": 0 },
+    "number_of_project_lab_centre_references": { "type": "integer", "minimum": 0 },
+    "number_of_language_requirements": { "type": "integer", "minimum": 0 },
+    "has_highly_specific_topic_method_experience_combination": { "type": "boolean" },
+    "profile_excerpt_1": { "type": ["string", "null"] },
+    "profile_excerpt_2": { "type": ["string", "null"] },
+    "profile_specificity_score": { "type": ["number", "null"] },
+    "profile_specificity_class": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "very_high", "not_determinable"]
+    },
+    "human_review_required": { "type": "boolean" },
+    "notes": { "type": ["string", "null"] }
+  }
+}
