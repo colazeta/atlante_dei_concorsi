@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "profile_requirement_item.schema.json",
+  "title": "ProfileRequirementItem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_requirement_item_id",
+    "procedure_id",
+    "profile_requirement_id",
+    "item_type",
+    "item_text",
+    "source_excerpt",
+    "source_document_id",
+    "confidence_level",
+    "notes"
+  ],
+  "properties": {
+    "profile_requirement_item_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "profile_requirement_id": { "type": "string" },
+    "item_type": {
+      "type": "string",
+      "enum": [
+        "thematic_keyword",
+        "methodological_keyword",
+        "experience_requirement",
+        "project_lab_centre_reference",
+        "language_requirement",
+        "specific_combination_term",
+        "other_profile_feature"
+      ]
+    },
+    "item_text": { "type": "string" },
+    "source_excerpt": { "type": "string" },
+    "source_document_id": { "type": "string" },
+    "confidence_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "notes": { "type": "string" }
+  }
+}

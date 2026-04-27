@@ -33,13 +33,18 @@ EXPECTED_DOCS = [
     "16_first_pilot_execution_checklist.md",
     "17_pilot_debrief_template.md",
     "18_pilot_runbook.md",
+    "19_pilot_document_level_audit_summary.md",
+    "20_profile_criteria_calibration_note.md",
+    "22_profile_criteria_item_level_coding.md",
 ]
 
 MAPPINGS = [
     ("procedure.schema.json", "procedures_template.csv"),
     ("document.schema.json", "documents_template.csv"),
     ("profile_requirement.schema.json", "profile_requirements_template.csv"),
+    ("profile_requirement_item.schema.json", "profile_requirement_items_template.csv"),
     ("evaluation_criterion.schema.json", "evaluation_criteria_template.csv"),
+    ("evaluation_criterion_item.schema.json", "evaluation_criterion_items_template.csv"),
     ("committee_member.schema.json", "committee_members_template.csv"),
     ("candidate.schema.json", "candidates_template.csv"),
     ("committee_candidate_relation.schema.json", "committee_candidate_relations_template.csv"),
