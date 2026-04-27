@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source_registry_entry.schema.json",
+  "title": "SourceRegistryEntry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_registry_entry_id",
+    "university_name",
+    "university_type",
+    "main_competitions_url",
+    "albo_online_url",
+    "amministrazione_trasparente_url",
+    "recruitment_page_url",
+    "archive_url",
+    "source_type",
+    "update_frequency_observed",
+    "scraping_difficulty",
+    "archive_depth",
+    "robots_or_access_notes",
+    "last_checked_at"
+  ],
+  "properties": {
+    "source_registry_entry_id": { "type": "string" },
+    "university_name": { "type": "string" },
+    "university_type": { "type": "string", "enum": ["public", "private", "other"] },
+    "main_competitions_url": { "type": "string", "format": "uri" },
+    "albo_online_url": { "type": ["string", "null"], "format": "uri" },
+    "amministrazione_trasparente_url": { "type": ["string", "null"], "format": "uri" },
+    "recruitment_page_url": { "type": ["string", "null"], "format": "uri" },
+    "archive_url": { "type": ["string", "null"], "format": "uri" },
+    "source_type": { "type": "string", "enum": ["static_html", "dynamic_html", "albo_portal", "pdf_list", "mixed", "unknown"] },
+    "update_frequency_observed": { "type": "string" },
+    "scraping_difficulty": { "type": "string", "enum": ["low", "medium", "high"] },
+    "archive_depth": { "type": "string" },
+    "robots_or_access_notes": { "type": ["string", "null"] },
+    "last_checked_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": ["string", "null"] }
+  }
+}

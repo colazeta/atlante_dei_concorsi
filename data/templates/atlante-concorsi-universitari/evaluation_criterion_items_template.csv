@@ -1,0 +1,2 @@
+evaluation_criterion_item_id,procedure_id,evaluation_criterion_id,criterion_type,criterion_label,criterion_text,weight_value,weight_unit,threshold_value,is_profile_linked,is_discretionary,source_excerpt,source_document_id,confidence_level,notes
+ECI-0001,SYN-UNI-2026-001,EC-0001,main_criterion,C1,synthetic criterion text,,,,false,false,"Synthetic excerpt for criterion item",DOC-0001,high,Synthetic row
