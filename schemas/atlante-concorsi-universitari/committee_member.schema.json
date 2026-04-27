@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "committee_member.schema.json",
+  "title": "CommitteeMember",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "committee_member_id",
+    "procedure_id",
+    "person_name",
+    "role_in_committee",
+    "affiliation",
+    "source_document_id",
+    "source_url",
+    "confidence_level"
+  ],
+  "properties": {
+    "committee_member_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "person_name": { "type": "string" },
+    "role_in_committee": { "type": "string" },
+    "affiliation": { "type": ["string", "null"] },
+    "department": { "type": ["string", "null"] },
+    "academic_field": { "type": ["string", "null"] },
+    "source_document_id": { "type": ["string", "null"] },
+    "source_url": { "type": "string", "format": "uri" },
+    "confidence_level": { "type": "string", "enum": ["low", "medium", "high"] },
+    "notes": { "type": ["string", "null"] }
+  }
+}
