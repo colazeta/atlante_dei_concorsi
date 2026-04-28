@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evaluation_criterion_item.schema.json",
+  "title": "EvaluationCriterionItem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evaluation_criterion_item_id",
+    "procedure_id",
+    "evaluation_criterion_id",
+    "criterion_type",
+    "criterion_label",
+    "criterion_text",
+    "weight_value",
+    "weight_unit",
+    "threshold_value",
+    "is_profile_linked",
+    "is_discretionary",
+    "source_excerpt",
+    "source_document_id",
+    "confidence_level",
+    "notes"
+  ],
+  "properties": {
+    "evaluation_criterion_item_id": { "type": "string" },
+    "procedure_id": { "type": "string" },
+    "evaluation_criterion_id": { "type": "string" },
+    "criterion_type": {
+      "type": "string",
+      "enum": [
+        "main_criterion",
+        "subcriterion",
+        "weight",
+        "threshold",
+        "profile_linked_criterion",
+        "discretionary_criterion",
+        "other_criterion_feature"
+      ]
+    },
+    "criterion_label": { "type": "string" },
+    "criterion_text": { "type": "string" },
+    "weight_value": { "type": ["number", "null"] },
+    "weight_unit": { "type": ["string", "null"] },
+    "threshold_value": { "type": ["string", "null"] },
+    "is_profile_linked": { "type": "boolean" },
+    "is_discretionary": { "type": "boolean" },
+    "source_excerpt": { "type": "string" },
+    "source_document_id": { "type": "string" },
+    "confidence_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "notes": { "type": "string" }
+  }
+}
