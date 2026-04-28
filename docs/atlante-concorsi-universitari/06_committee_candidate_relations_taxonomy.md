@@ -19,6 +19,7 @@ It does not assert proven conflicts.
 - `grant_or_project_hierarchy`
 - `declared_abstention_or_challenge`
 - `other_documented_relation`
+- `no_documented_relation_in_registered_sources`
 - `no_relation_found`
 - `not_determinable`
 
@@ -49,3 +50,10 @@ It does not assert proven conflicts.
 - Never use a field named `conflict_of_interest_confirmed`.
 - If evidence is insufficient, set `relation_type=not_determinable` and `human_review_required=true`.
 - For absence claims, prefer `no_relation_found` only after documented search protocol.
+
+
+## Distinction rules for neutral/absence outcomes
+- `no_documented_relation_in_registered_sources`: use when committee members and candidates are determinable, registered official sources have been reviewed, and no explicit committee-candidate relationship evidence is documented in those registered sources. This does **not** assert that no relationship exists outside the reviewed registered sources.
+- `no_relation_found`: use only after a broader documented search protocol (as defined by methodology) concludes no documented relation evidence in the searched scope.
+- `not_determinable`: use when available public documentation is insufficient to determine relation status.
+- Any explicit relation evidence in sources must be coded with the appropriate documented relation enum (e.g., `coauthorship_single`, `shared_research_project`, `declared_abstention_or_challenge`, etc.).
