@@ -64,6 +64,7 @@ ALLOWED_RELATION_TYPES = {
     "grant_or_project_hierarchy",
     "declared_abstention_or_challenge",
     "other_documented_relation",
+    "no_documented_relation_in_registered_sources",
     "no_relation_found",
     "not_determinable",
 }
