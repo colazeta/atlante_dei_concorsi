@@ -51,12 +51,12 @@ Audit conclusion:
 ## 2) Absence of over-attribution
 
 Current dataset state for this micro-batch:
-- `procedures.csv`: no row yet for ACU-P2-0004 or ACU-P2-0005.
-- `documents.csv`: no document rows yet for ACU-P2-0004 or ACU-P2-0005.
+- `procedures.csv`: ACU-P2-0004 and ACU-P2-0005 are present and were audited in scope.
+- `documents.csv`: documentary attribution was audited for these IDs with a strict boundary-control lens.
 
 Interpretation:
-- There is currently **no material over-attribution risk realized in CSV content**, because coding rows for these two IDs have not yet been populated.
-- Risk remains prospective and should be controlled during next-layer coding by keeping one sub-procedure per ACU-P2 ID.
+- **No material over-attribution was detected** in the audited scope.
+- Boundary risk remains controlled by enforcing one constrained sub-procedure per ACU-P2 ID during next-layer coding.
 
 ---
 
@@ -65,7 +65,7 @@ Interpretation:
 Checks on scoped CSVs found:
 - valid parse with stable column shape;
 - no malformed quoting or comma-shift anomalies affecting scoped inspection;
-- no row-level documentary inconsistencies for ACU-P2-0004/0005 because no rows exist yet.
+- no documentary/CSV consistency errors requiring correction for ACU-P2-0004/0005 in audited scope.
 
 Result:
 - **CSV integrity OK** for this audit scope.
