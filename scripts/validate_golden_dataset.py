@@ -17,7 +17,9 @@ EXPECTED_FILES = {
     "procedures": GOLDEN / "procedures" / "procedures.csv",
     "documents": GOLDEN / "procedures" / "documents.csv",
     "profile_requirements": GOLDEN / "procedures" / "profile_requirements.csv",
+    "profile_requirement_items": GOLDEN / "procedures" / "profile_requirement_items.csv",
     "evaluation_criteria": GOLDEN / "procedures" / "evaluation_criteria.csv",
+    "evaluation_criterion_items": GOLDEN / "procedures" / "evaluation_criterion_items.csv",
     "committee_members": GOLDEN / "procedures" / "committee_members.csv",
     "candidates": GOLDEN / "procedures" / "candidates.csv",
     "committee_candidate_relations": GOLDEN / "procedures" / "committee_candidate_relations.csv",
@@ -29,7 +31,9 @@ TEMPLATE_MAP = {
     "procedures": TEMPLATES / "procedures_template.csv",
     "documents": TEMPLATES / "documents_template.csv",
     "profile_requirements": TEMPLATES / "profile_requirements_template.csv",
+    "profile_requirement_items": TEMPLATES / "profile_requirement_items_template.csv",
     "evaluation_criteria": TEMPLATES / "evaluation_criteria_template.csv",
+    "evaluation_criterion_items": TEMPLATES / "evaluation_criterion_items_template.csv",
     "committee_members": TEMPLATES / "committee_members_template.csv",
     "candidates": TEMPLATES / "candidates_template.csv",
     "committee_candidate_relations": TEMPLATES / "committee_candidate_relations_template.csv",
@@ -60,8 +64,29 @@ ALLOWED_RELATION_TYPES = {
     "grant_or_project_hierarchy",
     "declared_abstention_or_challenge",
     "other_documented_relation",
+    "no_documented_relation_in_registered_sources",
     "no_relation_found",
     "not_determinable",
+}
+
+ALLOWED_PROFILE_ITEM_TYPES = {
+    "thematic_keyword",
+    "methodological_keyword",
+    "experience_requirement",
+    "project_lab_centre_reference",
+    "language_requirement",
+    "specific_combination_term",
+    "other_profile_feature",
+}
+
+ALLOWED_CRITERION_TYPES = {
+    "main_criterion",
+    "subcriterion",
+    "weight",
+    "threshold",
+    "profile_linked_criterion",
+    "discretionary_criterion",
+    "other_criterion_feature",
 }
 
 REQUIRED_GITIGNORE_LINES = {
@@ -83,13 +108,32 @@ def load_header(path: Path) -> list[str]:
             return []
 
 
-def load_rows(path: Path) -> list[dict[str, str]]:
+def load_rows(path: Path, file_key: str, errors: list[str]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
     with path.open("r", encoding="utf-8", newline="") as f:
-        return list(csv.DictReader(f))
+        reader = csv.DictReader(f)
+        for row in reader:
+            if None in row:
+                extras = row.get(None) or []
+                errors.append(
+                    f"CSV row has extra fields, likely due to an unquoted comma "
+                    f"[{file_key}] line {reader.line_num}: extra={extras}"
+                )
+                row = {k: v for k, v in row.items() if k is not None}
+            rows.append(row)
+    return rows
 
 
-def is_synthetic_row(row: dict[str, str]) -> bool:
-    haystack = " ".join((v or "") for v in row.values()).lower()
+def is_synthetic_row(row: dict[str, object]) -> bool:
+    parts: list[str] = []
+    for value in row.values():
+        if value is None:
+            continue
+        if isinstance(value, list):
+            parts.extend(str(v) for v in value if v is not None)
+        else:
+            parts.append(str(value))
+    haystack = " ".join(parts).lower()
     return "synthetic" in haystack or "fictional" in haystack
 
 
@@ -156,7 +200,9 @@ def main() -> int:
         "procedures",
         "documents",
         "profile_requirements",
+        "profile_requirement_items",
         "evaluation_criteria",
+        "evaluation_criterion_items",
         "committee_members",
         "candidates",
         "committee_candidate_relations",
@@ -169,8 +215,25 @@ def main() -> int:
     if "source_url" not in headers.get("documents", []):
         errors.append("Missing required column source_url in [documents]")
 
-    # 5) relation terminology check
-    relation_rows = load_rows(EXPECTED_FILES["committee_candidate_relations"])
+    # 5) value domain checks for new item-level layers
+    profile_item_rows = load_rows(EXPECTED_FILES["profile_requirement_items"], "profile_requirement_items", errors)
+    for i, row in enumerate(profile_item_rows, start=2):
+        if not (row.get("procedure_id") or "").strip():
+            errors.append(f"Missing procedure_id at line {i} in profile_requirement_items.csv")
+        item_type = (row.get("item_type") or "").strip()
+        if item_type and item_type not in ALLOWED_PROFILE_ITEM_TYPES:
+            errors.append(f"Invalid item_type at line {i} in profile_requirement_items.csv: {item_type}")
+
+    criterion_item_rows = load_rows(EXPECTED_FILES["evaluation_criterion_items"], "evaluation_criterion_items", errors)
+    for i, row in enumerate(criterion_item_rows, start=2):
+        if not (row.get("procedure_id") or "").strip():
+            errors.append(f"Missing procedure_id at line {i} in evaluation_criterion_items.csv")
+        criterion_type = (row.get("criterion_type") or "").strip()
+        if criterion_type and criterion_type not in ALLOWED_CRITERION_TYPES:
+            errors.append(f"Invalid criterion_type at line {i} in evaluation_criterion_items.csv: {criterion_type}")
+
+    # 6) relation terminology check
+    relation_rows = load_rows(EXPECTED_FILES["committee_candidate_relations"], "committee_candidate_relations", errors)
     for i, row in enumerate(relation_rows, start=2):
         value = (row.get("relation_type") or "").strip()
         if not value:
@@ -179,10 +242,10 @@ def main() -> int:
         if value not in ALLOWED_RELATION_TYPES:
             errors.append(f"Non-neutral/unknown relation_type at line {i}: {value}")
 
-    # 6) conservative data-presence guard (real-looking rows)
+    # 7) conservative data-presence guard (real-looking rows)
     # If non-empty rows exist in golden CSVs, they must be explicitly synthetic.
     for key, path in EXPECTED_FILES.items():
-        rows = load_rows(path)
+        rows = load_rows(path, key, errors)
         for i, row in enumerate(rows, start=2):
             # ignore fully empty rows
             if not any((v or "").strip() for v in row.values()):

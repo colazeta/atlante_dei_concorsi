@@ -9,8 +9,9 @@ The workspace enforces this chain:
 2. downloaded/stored raw document;
 3. document metadata (`documents.csv`);
 4. extracted fields (`procedures/*.csv`);
-5. derived indicators (profile/criteria files);
-6. QA validation and review notes.
+5. aggregate indicators (`profile_requirements.csv`, `evaluation_criteria.csv`);
+6. item-level evidence (`profile_requirement_items.csv`, `evaluation_criterion_items.csv`);
+7. QA validation and review notes.
 
 ## Operational folders
 - `data/golden-dataset/atlante-concorsi-universitari/source_registry/`

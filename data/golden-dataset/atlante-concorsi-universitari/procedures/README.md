@@ -7,6 +7,8 @@ This folder contains the structured CSVs for manually coded procedures.
 - `documents.csv`
 - `profile_requirements.csv`
 - `evaluation_criteria.csv`
+- `profile_requirement_items.csv`
+- `evaluation_criterion_items.csv`
 - `committee_members.csv`
 - `candidates.csv`
 - `committee_candidate_relations.csv`

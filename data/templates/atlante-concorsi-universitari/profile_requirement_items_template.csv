@@ -1,0 +1,2 @@
+profile_requirement_item_id,procedure_id,profile_requirement_id,item_type,item_text,source_excerpt,source_document_id,confidence_level,notes
+PRI-0001,SYN-UNI-2026-001,PR-0001,thematic_keyword,synthetic thematic keyword,"Synthetic excerpt for profile item",DOC-0001,high,Synthetic row
