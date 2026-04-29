@@ -64,6 +64,7 @@ ALLOWED_RELATION_TYPES = {
     "grant_or_project_hierarchy",
     "declared_abstention_or_challenge",
     "other_documented_relation",
+    "no_documented_relation_in_registered_sources",
     "no_relation_found",
     "not_determinable",
 }
@@ -107,13 +108,32 @@ def load_header(path: Path) -> list[str]:
             return []
 
 
-def load_rows(path: Path) -> list[dict[str, str]]:
+def load_rows(path: Path, file_key: str, errors: list[str]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
     with path.open("r", encoding="utf-8", newline="") as f:
-        return list(csv.DictReader(f))
+        reader = csv.DictReader(f)
+        for row in reader:
+            if None in row:
+                extras = row.get(None) or []
+                errors.append(
+                    f"CSV row has extra fields, likely due to an unquoted comma "
+                    f"[{file_key}] line {reader.line_num}: extra={extras}"
+                )
+                row = {k: v for k, v in row.items() if k is not None}
+            rows.append(row)
+    return rows
 
 
-def is_synthetic_row(row: dict[str, str]) -> bool:
-    haystack = " ".join((v or "") for v in row.values()).lower()
+def is_synthetic_row(row: dict[str, object]) -> bool:
+    parts: list[str] = []
+    for value in row.values():
+        if value is None:
+            continue
+        if isinstance(value, list):
+            parts.extend(str(v) for v in value if v is not None)
+        else:
+            parts.append(str(value))
+    haystack = " ".join(parts).lower()
     return "synthetic" in haystack or "fictional" in haystack
 
 
@@ -196,7 +216,7 @@ def main() -> int:
         errors.append("Missing required column source_url in [documents]")
 
     # 5) value domain checks for new item-level layers
-    profile_item_rows = load_rows(EXPECTED_FILES["profile_requirement_items"])
+    profile_item_rows = load_rows(EXPECTED_FILES["profile_requirement_items"], "profile_requirement_items", errors)
     for i, row in enumerate(profile_item_rows, start=2):
         if not (row.get("procedure_id") or "").strip():
             errors.append(f"Missing procedure_id at line {i} in profile_requirement_items.csv")
@@ -204,7 +224,7 @@ def main() -> int:
         if item_type and item_type not in ALLOWED_PROFILE_ITEM_TYPES:
             errors.append(f"Invalid item_type at line {i} in profile_requirement_items.csv: {item_type}")
 
-    criterion_item_rows = load_rows(EXPECTED_FILES["evaluation_criterion_items"])
+    criterion_item_rows = load_rows(EXPECTED_FILES["evaluation_criterion_items"], "evaluation_criterion_items", errors)
     for i, row in enumerate(criterion_item_rows, start=2):
         if not (row.get("procedure_id") or "").strip():
             errors.append(f"Missing procedure_id at line {i} in evaluation_criterion_items.csv")
@@ -213,7 +233,7 @@ def main() -> int:
             errors.append(f"Invalid criterion_type at line {i} in evaluation_criterion_items.csv: {criterion_type}")
 
     # 6) relation terminology check
-    relation_rows = load_rows(EXPECTED_FILES["committee_candidate_relations"])
+    relation_rows = load_rows(EXPECTED_FILES["committee_candidate_relations"], "committee_candidate_relations", errors)
     for i, row in enumerate(relation_rows, start=2):
         value = (row.get("relation_type") or "").strip()
         if not value:
@@ -225,7 +245,7 @@ def main() -> int:
     # 7) conservative data-presence guard (real-looking rows)
     # If non-empty rows exist in golden CSVs, they must be explicitly synthetic.
     for key, path in EXPECTED_FILES.items():
-        rows = load_rows(path)
+        rows = load_rows(path, key, errors)
         for i, row in enumerate(rows, start=2):
             # ignore fully empty rows
             if not any((v or "").strip() for v in row.values()):
