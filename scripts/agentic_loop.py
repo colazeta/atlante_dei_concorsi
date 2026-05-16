@@ -61,6 +61,21 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
+def normalise_optional_input(value: str | None) -> str | None:
+    """Trim workflow-dispatch input and remove accidental wrapper quotes.
+
+    GitHub Actions shell construction may accidentally pass literal quote
+    characters. The loop should compare task names after normalisation, while
+    still rejecting unknown values.
+    """
+    if value is None:
+        return None
+    cleaned = value.strip()
+    while len(cleaned) >= 2 and cleaned[0] == cleaned[-1] and cleaned[0] in {"'", '"'}:
+        cleaned = cleaned[1:-1].strip()
+    return cleaned or None
+
+
 def run_command(command: list[str]) -> dict[str, Any]:
     try:
         completed = subprocess.run(
@@ -205,6 +220,8 @@ def build_state(
     task: str | None,
     procedure_id: str | None,
 ) -> dict[str, Any]:
+    task = normalise_optional_input(task)
+    procedure_id = normalise_optional_input(procedure_id)
     state_dir.mkdir(parents=True, exist_ok=True)
     docs_dir.mkdir(parents=True, exist_ok=True)
 
@@ -341,8 +358,8 @@ def main() -> int:
         docs_dir=args.docs_dir,
         run_validators=not args.skip_validators,
         mode=args.mode,
-        task=args.task,
-        procedure_id=args.procedure_id,
+        task=normalise_optional_input(args.task),
+        procedure_id=normalise_optional_input(args.procedure_id),
     )
 
     state_path = args.state_dir / f"{state['loop_id']}_state.json"
