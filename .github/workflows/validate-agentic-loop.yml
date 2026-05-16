@@ -97,3 +97,13 @@ jobs:
             --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
             --skip-validators
           python scripts/validate_agentic_loop_state.py
+
+      - name: Controlled implementation gate-decision smoke test
+        run: |
+          python scripts/agentic_loop.py \
+            --issue-number 56 \
+            --mode controlled_implementation \
+            --task evaluate-collection-approval-gates \
+            --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
+            --skip-validators
+          python scripts/validate_agentic_loop_state.py
