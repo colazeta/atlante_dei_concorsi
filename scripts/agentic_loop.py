@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Governed agentic loop runner for Atlante dei Concorsi.
 
-The implementation is intentionally conservative. It can run a dry-run state
-initialisation and one first-stage controlled implementation task. It does not
+The implementation is intentionally conservative. It supports dry-run state
+initialisation and a small set of controlled implementation tasks. It does not
 collect data, modify the golden dataset, infer relations or call external
 sources.
 """
@@ -21,9 +21,13 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_STATE_DIR = ROOT / "reports" / "agentic-loop"
 DEFAULT_DOCS_DIR = ROOT / "docs" / "executions"
 REVIEW_CHECKLIST_DIR = DEFAULT_DOCS_DIR / "review-checklists"
+REVIEW_PACK_DIR = DEFAULT_DOCS_DIR / "procedure-review-packs"
 
 ALLOWED_MODES = {"dry_run", "controlled_implementation"}
-ALLOWED_CONTROLLED_TASKS = {"prepare-empty-review-checklist"}
+ALLOWED_CONTROLLED_TASKS = {
+    "prepare-empty-review-checklist",
+    "prepare-procedure-review-pack",
+}
 
 ALLOWED_ACTIONS = [
     "read_repository",
@@ -36,6 +40,7 @@ ALLOWED_ACTIONS = [
 
 CONTROLLED_IMPLEMENTATION_ACTIONS = ALLOWED_ACTIONS + [
     "prepare_empty_review_checklist",
+    "prepare_procedure_review_pack",
 ]
 
 PROHIBITED_ACTIONS = [
@@ -62,12 +67,6 @@ def utc_now() -> str:
 
 
 def normalise_optional_input(value: str | None) -> str | None:
-    """Trim workflow-dispatch input and remove accidental wrapper quotes.
-
-    GitHub Actions shell construction may accidentally pass literal quote
-    characters. The loop should compare task names after normalisation, while
-    still rejecting unknown values.
-    """
     if value is None:
         return None
     cleaned = value.strip()
@@ -78,29 +77,13 @@ def normalise_optional_input(value: str | None) -> str | None:
 
 def run_command(command: list[str]) -> dict[str, Any]:
     try:
-        completed = subprocess.run(
-            command,
-            cwd=ROOT,
-            check=False,
-            capture_output=True,
-            text=True,
-        )
+        completed = subprocess.run(command, cwd=ROOT, check=False, capture_output=True, text=True)
     except OSError as exc:
-        return {
-            "status": "blocked",
-            "command": " ".join(command),
-            "return_code": None,
-            "summary": f"Could not execute command: {exc}",
-        }
+        return {"status": "blocked", "command": " ".join(command), "return_code": None, "summary": f"Could not execute command: {exc}"}
 
     output = "\n".join(part for part in [completed.stdout.strip(), completed.stderr.strip()] if part)
     summary = output[-1200:] if output else "No output."
-    return {
-        "status": "passed" if completed.returncode == 0 else "failed",
-        "command": " ".join(command),
-        "return_code": completed.returncode,
-        "summary": summary,
-    }
+    return {"status": "passed" if completed.returncode == 0 else "failed", "command": " ".join(command), "return_code": completed.returncode, "summary": summary}
 
 
 def compute_quality_score(validation: dict[str, dict[str, Any]], blocking_issues: list[str]) -> int:
@@ -125,7 +108,6 @@ def prepare_empty_review_checklist(issue_number: int | None, procedure_id: str |
     REVIEW_CHECKLIST_DIR.mkdir(parents=True, exist_ok=True)
     clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
     checklist_path = REVIEW_CHECKLIST_DIR / f"{clean_procedure_id}_checklist.md"
-
     content = f"""# Empty review checklist — {clean_procedure_id}
 
 ## Scope
@@ -181,45 +163,160 @@ This checklist is a neutral review scaffold. It contains no factual findings, no
     return [str(checklist_path.relative_to(ROOT))]
 
 
+def prepare_procedure_review_pack(issue_number: int | None, procedure_id: str | None) -> list[str]:
+    clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
+    pack_dir = REVIEW_PACK_DIR / clean_procedure_id
+    pack_dir.mkdir(parents=True, exist_ok=True)
+
+    files: dict[str, str] = {
+        "README.md": f"""# Procedure review pack — {clean_procedure_id}
+
+## Purpose
+
+This folder is a neutral preparation pack for later human review.
+
+It contains no factual findings, no source extraction, no candidate or committee information, no relation coding, no risk score, and no legal or reputational conclusion.
+
+## Pack contents
+
+- `source_inventory.md`: empty inventory for future source review.
+- `coding_plan.md`: empty plan for future coding steps.
+- `human_review_notes.md`: empty human-review notes.
+- `handoff.md`: empty handoff template for the next authorised step.
+
+## Current status
+
+- Procedure/review identifier: `{clean_procedure_id}`
+- Created by controlled implementation mode.
+- Substantive coding: not started.
+- Human review: pending.
+""",
+        "source_inventory.md": """# Source inventory
+
+## Official source page
+
+- URL:
+- Retrieval date:
+- Snapshot saved:
+- Notes:
+
+## Documents expected
+
+- Call notice:
+- Committee appointment:
+- Evaluation criteria / first minutes:
+- Admission or candidate list:
+- Final acts approval:
+- Other official documents:
+
+## Ambiguity checks
+
+- Multi-position source page:
+- Version/date ambiguity:
+- Missing documents:
+- Search path still to document:
+""",
+        "coding_plan.md": """# Coding plan
+
+## Pre-coding checks
+
+- Procedure identifier confirmed:
+- Source registry entry prepared:
+- Documents linked to source URLs:
+- Raw documents handled according to repository policy:
+- Snapshot policy checked:
+
+## Future coding sequence
+
+1. Procedure metadata.
+2. Document registry.
+3. Profile requirements.
+4. Evaluation criteria.
+5. Committee members.
+6. Candidates.
+7. Committee-candidate relations only if evidence and approval permit.
+
+## Stop gates
+
+- Identity ambiguity:
+- Conflicting documents:
+- Weak relation evidence:
+- Sensitive interpretation:
+- Human review required:
+""",
+        "human_review_notes.md": """# Human review notes
+
+## Reviewer
+
+- Name:
+- Date:
+- Scope reviewed:
+
+## Notes
+
+- Source availability:
+- Methodological ambiguity:
+- Coding uncertainty:
+- Required follow-up:
+
+## Decision
+
+- Proceed:
+- Repeat preparation:
+- Stop:
+- Reason:
+""",
+        "handoff.md": f"""# Handoff — {clean_procedure_id}
+
+## Current state
+
+A neutral procedure review pack has been prepared. No substantive coding has been performed.
+
+## Files prepared
+
+- README.md
+- source_inventory.md
+- coding_plan.md
+- human_review_notes.md
+- handoff.md
+
+## Next authorised step
+
+A human reviewer should complete the source inventory and decide whether substantive coding can be authorised under the repository governance rules.
+
+## Non-actions confirmed
+
+- No external source collection performed.
+- No golden-dataset row changed.
+- No relation inferred.
+- No legal or reputational conclusion introduced.
+""",
+    }
+
+    touched: list[str] = []
+    for filename, content in files.items():
+        path = pack_dir / filename
+        path.write_text(content, encoding="utf-8")
+        touched.append(str(path.relative_to(ROOT)))
+    return touched
+
+
 def build_validation(run_validators: bool) -> dict[str, dict[str, Any]]:
     if run_validators:
         methodology = run_command([sys.executable, "scripts/validate_atlante_methodology.py"])
         golden = run_command([sys.executable, "scripts/validate_golden_dataset.py"])
     else:
-        methodology = {
-            "status": "not_run",
-            "command": "python3 scripts/validate_atlante_methodology.py",
-            "return_code": None,
-            "summary": "Skipped by runner option.",
-        }
-        golden = {
-            "status": "not_run",
-            "command": "python3 scripts/validate_golden_dataset.py",
-            "return_code": None,
-            "summary": "Skipped by runner option.",
-        }
+        methodology = {"status": "not_run", "command": "python3 scripts/validate_atlante_methodology.py", "return_code": None, "summary": "Skipped by runner option."}
+        golden = {"status": "not_run", "command": "python3 scripts/validate_golden_dataset.py", "return_code": None, "summary": "Skipped by runner option."}
 
     return {
-        "state_schema": {
-            "status": "not_run",
-            "command": "python3 scripts/validate_agentic_loop_state.py",
-            "return_code": None,
-            "summary": "State schema validation is run after this file is written.",
-        },
+        "state_schema": {"status": "not_run", "command": "python3 scripts/validate_agentic_loop_state.py", "return_code": None, "summary": "State schema validation is run after this file is written."},
         "methodology": methodology,
         "golden_dataset": golden,
     }
 
 
-def build_state(
-    issue_number: int | None,
-    state_dir: Path,
-    docs_dir: Path,
-    run_validators: bool,
-    mode: str,
-    task: str | None,
-    procedure_id: str | None,
-) -> dict[str, Any]:
+def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_validators: bool, mode: str, task: str | None, procedure_id: str | None) -> dict[str, Any]:
     task = normalise_optional_input(task)
     procedure_id = normalise_optional_input(procedure_id)
     state_dir.mkdir(parents=True, exist_ok=True)
@@ -227,10 +324,7 @@ def build_state(
 
     loop_id = f"ACU-LOOP-{issue_number:04d}" if issue_number else "ACU-LOOP-0000"
     now = utc_now()
-    files_touched = [
-        f"reports/agentic-loop/{loop_id}_state.json",
-        f"docs/executions/{loop_id}_execution.md",
-    ]
+    files_touched = [f"reports/agentic-loop/{loop_id}_state.json", f"docs/executions/{loop_id}_execution.md"]
     blocking_issues: list[str] = []
     notes = [
         "No source expansion, no data collection, no relation inference and no golden-dataset update.",
@@ -248,6 +342,9 @@ def build_state(
         elif task == "prepare-empty-review-checklist":
             files_touched.extend(prepare_empty_review_checklist(issue_number, procedure_id))
             notes.append("Created a neutral empty review checklist for later human use.")
+        elif task == "prepare-procedure-review-pack":
+            files_touched.extend(prepare_procedure_review_pack(issue_number, procedure_id))
+            notes.append("Created a neutral procedure review pack for later human use.")
     elif task:
         blocking_issues.append("--task is only allowed with --mode controlled_implementation.")
 
@@ -266,6 +363,8 @@ def build_state(
         next_action = "Resolve blocking issues before continuing."
     elif mode == "dry_run":
         next_action = "Open a reviewed issue for controlled implementation mode; keep substantive coding disabled by default."
+    elif task == "prepare-procedure-review-pack":
+        next_action = "Review the generated procedure review pack, then decide whether a later human-approved substantive coding task is appropriate."
     else:
         next_action = "Review the generated neutral checklist, then decide whether a later human-approved substantive coding task is appropriate."
 
@@ -295,14 +394,9 @@ def write_execution_log(state: dict[str, Any], docs_dir: Path) -> Path:
     log_path = docs_dir / f"{state['loop_id']}_execution.md"
     validation_lines = []
     for key, result in state["validation"].items():
-        validation_lines.append(
-            f"- `{key}`: {result['status']} "
-            f"(command: `{result['command']}`, return code: `{result['return_code']}`)"
-        )
-
+        validation_lines.append(f"- `{key}`: {result['status']} (command: `{result['command']}`, return code: `{result['return_code']}`)")
     blockers = state["blocking_issues"] or ["None."]
     blockers_text = "\n".join(f"- {item}" for item in blockers)
-
     content = f"""# {state['loop_id']} — governed agentic-loop execution
 
 ## Summary
