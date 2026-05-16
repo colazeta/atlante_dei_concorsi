@@ -22,11 +22,13 @@ DEFAULT_STATE_DIR = ROOT / "reports" / "agentic-loop"
 DEFAULT_DOCS_DIR = ROOT / "docs" / "executions"
 REVIEW_CHECKLIST_DIR = DEFAULT_DOCS_DIR / "review-checklists"
 REVIEW_PACK_DIR = DEFAULT_DOCS_DIR / "procedure-review-packs"
+SOURCE_INTAKE_DIR = DEFAULT_DOCS_DIR / "source-intake-packs"
 
 ALLOWED_MODES = {"dry_run", "controlled_implementation"}
 ALLOWED_CONTROLLED_TASKS = {
     "prepare-empty-review-checklist",
     "prepare-procedure-review-pack",
+    "prepare-source-intake-pack",
 }
 
 ALLOWED_ACTIONS = [
@@ -41,6 +43,7 @@ ALLOWED_ACTIONS = [
 CONTROLLED_IMPLEMENTATION_ACTIONS = ALLOWED_ACTIONS + [
     "prepare_empty_review_checklist",
     "prepare_procedure_review_pack",
+    "prepare_source_intake_pack",
 ]
 
 PROHIBITED_ACTIONS = [
@@ -301,6 +304,157 @@ A human reviewer should complete the source inventory and decide whether substan
     return touched
 
 
+def prepare_source_intake_pack(issue_number: int | None, procedure_id: str | None) -> list[str]:
+    clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
+    pack_dir = SOURCE_INTAKE_DIR / clean_procedure_id
+    pack_dir.mkdir(parents=True, exist_ok=True)
+
+    files: dict[str, str] = {
+        "README.md": f"""# Source intake pack — {clean_procedure_id}
+
+## Purpose
+
+This folder is a neutral intake workspace for later human entry of official source URLs and retrieval notes.
+
+It contains no downloaded material, no factual findings, no source extraction, no candidate or committee information, no relation coding, no risk score, and no legal or reputational conclusion.
+
+## Pack contents
+
+- `official_urls.md`: empty fields for official URLs and source-status notes.
+- `document_expectations.md`: empty checklist of expected document categories.
+- `retrieval_log.md`: empty log for future human retrieval activity.
+- `source_risk_notes.md`: empty notes for source ambiguity and provenance risks.
+- `handoff.md`: empty handoff template for the next authorised step.
+
+## Current status
+
+- Procedure/review identifier: `{clean_procedure_id}`
+- Created by controlled implementation mode.
+- External fetching: not performed.
+- Substantive coding: not started.
+- Human review: pending.
+""",
+        "official_urls.md": """# Official URLs
+
+## Primary official source
+
+- URL:
+- Institution/domain:
+- Page title:
+- Retrieval date:
+- Human reviewer:
+- Notes:
+
+## Secondary official pages
+
+- URL:
+- Institution/domain:
+- Page title:
+- Retrieval date:
+- Notes:
+
+## Exclusion notes
+
+- Unofficial pages excluded:
+- Search-engine snippets excluded:
+- Mirrors or third-party copies excluded:
+""",
+        "document_expectations.md": """# Document expectations
+
+## Expected official document categories
+
+- Call notice:
+- Committee appointment:
+- Evaluation criteria / first minutes:
+- Admission or candidate list:
+- Final acts approval:
+- Other official documents:
+
+## Availability status to be filled later
+
+- Complete:
+- Partial:
+- Missing:
+- Not determinable:
+
+## Ambiguity checks
+
+- Shared multi-position page:
+- Multiple versions of same document:
+- Date/version inconsistency:
+- Document title ambiguity:
+- Procedure-code ambiguity:
+""",
+        "retrieval_log.md": """# Retrieval log
+
+## Human retrieval events
+
+| Date | Reviewer | Source URL | Action | Result | Notes |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Repository handling
+
+- Raw documents committed to repository:
+- Raw documents excluded by policy:
+- Snapshot path, if applicable:
+- Hash manifest update required:
+""",
+        "source_risk_notes.md": """# Source risk notes
+
+## Provenance risks
+
+- Source is official:
+- Source is institutional but ambiguous:
+- Source is departmental rather than central:
+- Source is a shared listing page:
+- Source requires attribution to a specific position/procedure:
+
+## Interpretation risks
+
+- Missing document risk:
+- Versioning risk:
+- Identity ambiguity risk:
+- Relation-evidence sensitivity:
+- Human review required before coding:
+""",
+        "handoff.md": f"""# Handoff — {clean_procedure_id}
+
+## Current state
+
+A neutral source-intake pack has been prepared. No external source collection or substantive coding has been performed.
+
+## Files prepared
+
+- README.md
+- official_urls.md
+- document_expectations.md
+- retrieval_log.md
+- source_risk_notes.md
+- handoff.md
+
+## Next authorised step
+
+A human reviewer should enter official URLs and retrieval notes, then decide whether document collection or coding can be authorised under the repository governance rules.
+
+## Non-actions confirmed
+
+- No web fetching performed.
+- No document downloaded.
+- No golden-dataset row changed.
+- No relation inferred.
+- No legal or reputational conclusion introduced.
+""",
+    }
+
+    touched: list[str] = []
+    for filename, content in files.items():
+        path = pack_dir / filename
+        path.write_text(content, encoding="utf-8")
+        touched.append(str(path.relative_to(ROOT)))
+    return touched
+
+
 def build_validation(run_validators: bool) -> dict[str, dict[str, Any]]:
     if run_validators:
         methodology = run_command([sys.executable, "scripts/validate_atlante_methodology.py"])
@@ -345,6 +499,9 @@ def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_v
         elif task == "prepare-procedure-review-pack":
             files_touched.extend(prepare_procedure_review_pack(issue_number, procedure_id))
             notes.append("Created a neutral procedure review pack for later human use.")
+        elif task == "prepare-source-intake-pack":
+            files_touched.extend(prepare_source_intake_pack(issue_number, procedure_id))
+            notes.append("Created a neutral source intake pack for later human use.")
     elif task:
         blocking_issues.append("--task is only allowed with --mode controlled_implementation.")
 
@@ -365,6 +522,8 @@ def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_v
         next_action = "Open a reviewed issue for controlled implementation mode; keep substantive coding disabled by default."
     elif task == "prepare-procedure-review-pack":
         next_action = "Review the generated procedure review pack, then decide whether a later human-approved substantive coding task is appropriate."
+    elif task == "prepare-source-intake-pack":
+        next_action = "Review the generated source-intake pack, then enter official URLs manually before any later collection or coding step."
     else:
         next_action = "Review the generated neutral checklist, then decide whether a later human-approved substantive coding task is appropriate."
 
