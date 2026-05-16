@@ -55,18 +55,24 @@ jobs:
           python-version: "3.11"
 
       - name: Run governed loop
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          LOOP_MODE: ${{ inputs.mode }}
+          LOOP_TASK: ${{ inputs.task }}
+          PROCEDURE_ID: ${{ inputs.procedure_id }}
+          SKIP_VALIDATORS: ${{ inputs.skip_validators }}
         run: |
-          ARGS="--issue-number ${{ inputs.issue_number }} --mode ${{ inputs.mode }}"
-          if [ -n "${{ inputs.task }}" ]; then
-            ARGS="$ARGS --task '${{ inputs.task }}'"
+          ARGS=(--issue-number "$ISSUE_NUMBER" --mode "$LOOP_MODE")
+          if [ -n "$LOOP_TASK" ]; then
+            ARGS+=(--task "$LOOP_TASK")
           fi
-          if [ -n "${{ inputs.procedure_id }}" ]; then
-            ARGS="$ARGS --procedure-id '${{ inputs.procedure_id }}'"
+          if [ -n "$PROCEDURE_ID" ]; then
+            ARGS+=(--procedure-id "$PROCEDURE_ID")
           fi
-          if [ "${{ inputs.skip_validators }}" = "true" ]; then
-            ARGS="$ARGS --skip-validators"
+          if [ "$SKIP_VALIDATORS" = "true" ]; then
+            ARGS+=(--skip-validators)
           fi
-          python scripts/agentic_loop.py $ARGS
+          python scripts/agentic_loop.py "${ARGS[@]}"
 
       - name: Validate agentic-loop state
         run: |
