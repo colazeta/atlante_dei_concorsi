@@ -77,3 +77,13 @@ jobs:
             --procedure-id ACU-REVIEW-PACK-PLACEHOLDER \
             --skip-validators
           python scripts/validate_agentic_loop_state.py
+
+      - name: Controlled implementation source-intake smoke test
+        run: |
+          python scripts/agentic_loop.py \
+            --issue-number 52 \
+            --mode controlled_implementation \
+            --task prepare-source-intake-pack \
+            --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
+            --skip-validators
+          python scripts/validate_agentic_loop_state.py
