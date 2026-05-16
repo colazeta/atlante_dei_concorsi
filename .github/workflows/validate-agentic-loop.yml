@@ -57,3 +57,13 @@ jobs:
         run: |
           python scripts/agentic_loop.py --issue-number 42 --skip-validators
           python scripts/validate_agentic_loop_state.py
+
+      - name: Controlled implementation smoke test
+        run: |
+          python scripts/agentic_loop.py \
+            --issue-number 44 \
+            --mode controlled_implementation \
+            --task prepare-empty-review-checklist \
+            --procedure-id ACU-REVIEW-PLACEHOLDER \
+            --skip-validators
+          python scripts/validate_agentic_loop_state.py

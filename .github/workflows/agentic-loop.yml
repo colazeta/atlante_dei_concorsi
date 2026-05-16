@@ -7,6 +7,22 @@ on:
         description: "GitHub issue number controlling the loop"
         required: true
         type: string
+      mode:
+        description: "Execution mode"
+        required: false
+        default: "dry_run"
+        type: choice
+        options:
+          - "dry_run"
+          - "controlled_implementation"
+      task:
+        description: "Controlled task name, required only for controlled implementation"
+        required: false
+        type: string
+      procedure_id:
+        description: "Optional procedure/review identifier for neutral scaffolding"
+        required: false
+        type: string
       skip_validators:
         description: "Skip methodology/golden-dataset validators"
         required: false
@@ -26,7 +42,7 @@ permissions:
   actions: read
 
 jobs:
-  dry-run:
+  governed-loop:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,9 +54,15 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run governed dry-run loop
+      - name: Run governed loop
         run: |
-          ARGS="--issue-number ${{ inputs.issue_number }}"
+          ARGS="--issue-number ${{ inputs.issue_number }} --mode ${{ inputs.mode }}"
+          if [ -n "${{ inputs.task }}" ]; then
+            ARGS="$ARGS --task '${{ inputs.task }}'"
+          fi
+          if [ -n "${{ inputs.procedure_id }}" ]; then
+            ARGS="$ARGS --procedure-id '${{ inputs.procedure_id }}'"
+          fi
           if [ "${{ inputs.skip_validators }}" = "true" ]; then
             ARGS="$ARGS --skip-validators"
           fi
@@ -59,5 +81,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/agentic-loop docs/executions
-          git commit -m "Record governed agentic loop dry-run for issue #${{ inputs.issue_number }}"
+          git commit -m "Record governed agentic loop run for issue #${{ inputs.issue_number }}"
           git push
