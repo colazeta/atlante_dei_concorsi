@@ -1,0 +1,63 @@
+name: Governed agentic loop
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "GitHub issue number controlling the loop"
+        required: true
+        type: string
+      skip_validators:
+        description: "Skip methodology/golden-dataset validators"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run governed dry-run loop
+        run: |
+          ARGS="--issue-number ${{ inputs.issue_number }}"
+          if [ "${{ inputs.skip_validators }}" = "true" ]; then
+            ARGS="$ARGS --skip-validators"
+          fi
+          python scripts/agentic_loop.py $ARGS
+
+      - name: Validate agentic-loop state
+        run: |
+          python scripts/validate_agentic_loop_state.py
+
+      - name: Commit loop state and execution log if changed
+        run: |
+          if git diff --quiet; then
+            echo "No loop-state changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/agentic-loop docs/executions
+          git commit -m "Record governed agentic loop dry-run for issue #${{ inputs.issue_number }}"
+          git push

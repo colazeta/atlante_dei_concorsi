@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/atlante-dei-concorsi/agentic-loop-state.schema.json",
+  "title": "Atlante dei Concorsi governed agentic loop state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "loop_id",
+    "issue_number",
+    "mode",
+    "status",
+    "phase",
+    "created_at_utc",
+    "updated_at_utc",
+    "allowed_actions",
+    "prohibited_actions",
+    "quality_score",
+    "validation",
+    "blocking_issues",
+    "human_review_required",
+    "next_action",
+    "files_touched"
+  ],
+  "properties": {
+    "loop_id": {
+      "type": "string",
+      "pattern": "^ACU-LOOP-[0-9]{4}$"
+    },
+    "issue_number": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["dry_run", "controlled_implementation", "substantive_coding"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["initialised", "running", "completed", "blocked", "failed"]
+    },
+    "phase": {
+      "type": "string"
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "updated_at_utc": {
+      "type": "string"
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "prohibited_actions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "quality_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_schema", "methodology", "golden_dataset"],
+      "properties": {
+        "state_schema": {"$ref": "#/$defs/validation_result"},
+        "methodology": {"$ref": "#/$defs/validation_result"},
+        "golden_dataset": {"$ref": "#/$defs/validation_result"}
+      }
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "files_touched": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "last_commit": {
+      "type": ["string", "null"]
+    },
+    "last_pr": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "notes": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "validation_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "command", "return_code"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not_run", "passed", "failed", "blocked"]
+        },
+        "command": {
+          "type": ["string", "null"]
+        },
+        "return_code": {
+          "type": ["integer", "null"]
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
