@@ -87,3 +87,13 @@ jobs:
             --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
             --skip-validators
           python scripts/validate_agentic_loop_state.py
+
+      - name: Controlled implementation collection-plan smoke test
+        run: |
+          python scripts/agentic_loop.py \
+            --issue-number 54 \
+            --mode controlled_implementation \
+            --task prepare-collection-plan-from-intake \
+            --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
+            --skip-validators
+          python scripts/validate_agentic_loop_state.py

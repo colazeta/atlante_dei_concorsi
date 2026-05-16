@@ -23,12 +23,14 @@ DEFAULT_DOCS_DIR = ROOT / "docs" / "executions"
 REVIEW_CHECKLIST_DIR = DEFAULT_DOCS_DIR / "review-checklists"
 REVIEW_PACK_DIR = DEFAULT_DOCS_DIR / "procedure-review-packs"
 SOURCE_INTAKE_DIR = DEFAULT_DOCS_DIR / "source-intake-packs"
+COLLECTION_PLAN_DIR = DEFAULT_DOCS_DIR / "collection-plans"
 
 ALLOWED_MODES = {"dry_run", "controlled_implementation"}
 ALLOWED_CONTROLLED_TASKS = {
     "prepare-empty-review-checklist",
     "prepare-procedure-review-pack",
     "prepare-source-intake-pack",
+    "prepare-collection-plan-from-intake",
 }
 
 ALLOWED_ACTIONS = [
@@ -44,6 +46,7 @@ CONTROLLED_IMPLEMENTATION_ACTIONS = ALLOWED_ACTIONS + [
     "prepare_empty_review_checklist",
     "prepare_procedure_review_pack",
     "prepare_source_intake_pack",
+    "prepare_collection_plan_from_intake",
 ]
 
 PROHIBITED_ACTIONS = [
@@ -83,7 +86,6 @@ def run_command(command: list[str]) -> dict[str, Any]:
         completed = subprocess.run(command, cwd=ROOT, check=False, capture_output=True, text=True)
     except OSError as exc:
         return {"status": "blocked", "command": " ".join(command), "return_code": None, "summary": f"Could not execute command: {exc}"}
-
     output = "\n".join(part for part in [completed.stdout.strip(), completed.stderr.strip()] if part)
     summary = output[-1200:] if output else "No output."
     return {"status": "passed" if completed.returncode == 0 else "failed", "command": " ".join(command), "return_code": completed.returncode, "summary": summary}
@@ -107,11 +109,30 @@ def safe_procedure_id(procedure_id: str | None, issue_number: int | None) -> str
     return cleaned or f"ACU-REVIEW-{issue_number or 0:04d}"
 
 
+def read_local_pack_status(pack_dir: Path) -> dict[str, str]:
+    status: dict[str, str] = {}
+    if not pack_dir.exists():
+        return status
+    for path in sorted(pack_dir.glob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        filled_lines = [line for line in text.splitlines() if line.strip() and not line.strip().startswith("#")]
+        status[path.name] = "present; human fields may still be empty" if filled_lines else "present but empty"
+    return status
+
+
+def write_files(base_dir: Path, files: dict[str, str]) -> list[str]:
+    base_dir.mkdir(parents=True, exist_ok=True)
+    touched: list[str] = []
+    for filename, content in files.items():
+        path = base_dir / filename
+        path.write_text(content, encoding="utf-8")
+        touched.append(str(path.relative_to(ROOT)))
+    return touched
+
+
 def prepare_empty_review_checklist(issue_number: int | None, procedure_id: str | None) -> list[str]:
-    REVIEW_CHECKLIST_DIR.mkdir(parents=True, exist_ok=True)
     clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
-    checklist_path = REVIEW_CHECKLIST_DIR / f"{clean_procedure_id}_checklist.md"
-    content = f"""# Empty review checklist — {clean_procedure_id}
+    return write_files(REVIEW_CHECKLIST_DIR, {f"{clean_procedure_id}_checklist.md": f"""# Empty review checklist — {clean_procedure_id}
 
 ## Scope
 
@@ -161,17 +182,13 @@ This checklist is a neutral review scaffold. It contains no factual findings, no
 - Required follow-up:
 - Blocking issues:
 - Approval to proceed to substantive coding:
-"""
-    checklist_path.write_text(content, encoding="utf-8")
-    return [str(checklist_path.relative_to(ROOT))]
+"""})
 
 
 def prepare_procedure_review_pack(issue_number: int | None, procedure_id: str | None) -> list[str]:
     clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
     pack_dir = REVIEW_PACK_DIR / clean_procedure_id
-    pack_dir.mkdir(parents=True, exist_ok=True)
-
-    files: dict[str, str] = {
+    return write_files(pack_dir, {
         "README.md": f"""# Procedure review pack — {clean_procedure_id}
 
 ## Purpose
@@ -294,22 +311,13 @@ A human reviewer should complete the source inventory and decide whether substan
 - No relation inferred.
 - No legal or reputational conclusion introduced.
 """,
-    }
-
-    touched: list[str] = []
-    for filename, content in files.items():
-        path = pack_dir / filename
-        path.write_text(content, encoding="utf-8")
-        touched.append(str(path.relative_to(ROOT)))
-    return touched
+    })
 
 
 def prepare_source_intake_pack(issue_number: int | None, procedure_id: str | None) -> list[str]:
     clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
     pack_dir = SOURCE_INTAKE_DIR / clean_procedure_id
-    pack_dir.mkdir(parents=True, exist_ok=True)
-
-    files: dict[str, str] = {
+    return write_files(pack_dir, {
         "README.md": f"""# Source intake pack — {clean_procedure_id}
 
 ## Purpose
@@ -445,14 +453,136 @@ A human reviewer should enter official URLs and retrieval notes, then decide whe
 - No relation inferred.
 - No legal or reputational conclusion introduced.
 """,
-    }
+    })
 
-    touched: list[str] = []
-    for filename, content in files.items():
-        path = pack_dir / filename
-        path.write_text(content, encoding="utf-8")
-        touched.append(str(path.relative_to(ROOT)))
-    return touched
+
+def prepare_collection_plan_from_intake(issue_number: int | None, procedure_id: str | None) -> tuple[list[str], list[str]]:
+    clean_procedure_id = safe_procedure_id(procedure_id, issue_number)
+    intake_dir = SOURCE_INTAKE_DIR / clean_procedure_id
+    if not intake_dir.exists():
+        return [], [f"Missing source-intake pack: {intake_dir.relative_to(ROOT)}"]
+
+    status = read_local_pack_status(intake_dir)
+    status_lines = "\n".join(f"- `{name}`: {value}" for name, value in sorted(status.items())) or "- No intake files found."
+    plan_dir = COLLECTION_PLAN_DIR / clean_procedure_id
+    touched = write_files(plan_dir, {
+        "README.md": f"""# Collection plan — {clean_procedure_id}
+
+## Purpose
+
+This folder contains a neutral collection-planning scaffold derived only from local source-intake files.
+
+It contains no web fetching, no downloaded material, no factual extraction, no candidate or committee information, no relation coding, no risk score, and no legal or reputational conclusion.
+
+## Local intake files observed
+
+{status_lines}
+
+## Current status
+
+- Procedure/review identifier: `{clean_procedure_id}`
+- Created by controlled implementation mode.
+- External fetching: not performed.
+- Document download: not performed.
+- Substantive coding: not started.
+""",
+        "collection_plan.md": """# Collection plan
+
+## Manual collection sequence
+
+1. Human reviewer confirms official source URLs in the intake pack.
+2. Human reviewer checks whether each source is official and procedure-specific.
+3. Human reviewer records retrieval date and source status.
+4. Human reviewer decides whether document collection is authorised.
+5. Human reviewer records any ambiguity before coding is considered.
+
+## Fields still requiring human input
+
+- Official source confirmation:
+- Source-domain approval:
+- Procedure-code matching:
+- Retrieval method:
+- Collection authorisation:
+
+## Non-automated steps
+
+- Web fetching:
+- Document download:
+- Source extraction:
+- Golden-dataset update:
+""",
+        "document_handling_plan.md": """# Document handling plan
+
+## Before collection
+
+- Confirm repository policy for raw documents:
+- Confirm whether snapshots are allowed:
+- Confirm naming convention:
+- Confirm hash-manifest requirement:
+- Confirm no restricted material is included:
+
+## After collection, if later authorised
+
+- Store documents only in approved locations:
+- Preserve original filenames where useful:
+- Record source URL and retrieval date:
+- Generate or update hash manifest:
+- Do not code facts until a separate coding task is approved:
+""",
+        "approval_gates.md": """# Approval gates
+
+## Gate 1 — Source perimeter
+
+- All URLs are official:
+- Source-domain expansion approved:
+- Unofficial mirrors excluded:
+
+## Gate 2 — Procedure specificity
+
+- Source is tied to the intended procedure:
+- Shared listing/page ambiguity resolved:
+- Procedure code verified:
+
+## Gate 3 — Collection authorisation
+
+- Human reviewer authorises collection:
+- Repository storage policy confirmed:
+- Hashing/snapshot policy confirmed:
+
+## Gate 4 — Coding authorisation
+
+- Coding is separately approved:
+- Ambiguities documented:
+- Human-review requirement assessed:
+""",
+        "handoff.md": f"""# Handoff — {clean_procedure_id}
+
+## Current state
+
+A neutral collection plan has been prepared from local source-intake files only.
+
+## Files prepared
+
+- README.md
+- collection_plan.md
+- document_handling_plan.md
+- approval_gates.md
+- handoff.md
+
+## Next authorised step
+
+A human reviewer should complete approval gates before any later collection or coding task is considered.
+
+## Non-actions confirmed
+
+- No web fetching performed.
+- No document downloaded.
+- No golden-dataset row changed.
+- No relation inferred.
+- No legal or reputational conclusion introduced.
+""",
+    })
+    return touched, []
 
 
 def build_validation(run_validators: bool) -> dict[str, dict[str, Any]]:
@@ -462,7 +592,6 @@ def build_validation(run_validators: bool) -> dict[str, dict[str, Any]]:
     else:
         methodology = {"status": "not_run", "command": "python3 scripts/validate_atlante_methodology.py", "return_code": None, "summary": "Skipped by runner option."}
         golden = {"status": "not_run", "command": "python3 scripts/validate_golden_dataset.py", "return_code": None, "summary": "Skipped by runner option."}
-
     return {
         "state_schema": {"status": "not_run", "command": "python3 scripts/validate_agentic_loop_state.py", "return_code": None, "summary": "State schema validation is run after this file is written."},
         "methodology": methodology,
@@ -475,7 +604,6 @@ def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_v
     procedure_id = normalise_optional_input(procedure_id)
     state_dir.mkdir(parents=True, exist_ok=True)
     docs_dir.mkdir(parents=True, exist_ok=True)
-
     loop_id = f"ACU-LOOP-{issue_number:04d}" if issue_number else "ACU-LOOP-0000"
     now = utc_now()
     files_touched = [f"reports/agentic-loop/{loop_id}_state.json", f"docs/executions/{loop_id}_execution.md"]
@@ -502,6 +630,12 @@ def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_v
         elif task == "prepare-source-intake-pack":
             files_touched.extend(prepare_source_intake_pack(issue_number, procedure_id))
             notes.append("Created a neutral source intake pack for later human use.")
+        elif task == "prepare-collection-plan-from-intake":
+            touched, task_blockers = prepare_collection_plan_from_intake(issue_number, procedure_id)
+            files_touched.extend(touched)
+            blocking_issues.extend(task_blockers)
+            if not task_blockers:
+                notes.append("Created a neutral collection plan from local source-intake files only.")
     elif task:
         blocking_issues.append("--task is only allowed with --mode controlled_implementation.")
 
@@ -524,6 +658,8 @@ def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_v
         next_action = "Review the generated procedure review pack, then decide whether a later human-approved substantive coding task is appropriate."
     elif task == "prepare-source-intake-pack":
         next_action = "Review the generated source-intake pack, then enter official URLs manually before any later collection or coding step."
+    elif task == "prepare-collection-plan-from-intake":
+        next_action = "Review the generated collection plan and complete approval gates before any later collection or coding step."
     else:
         next_action = "Review the generated neutral checklist, then decide whether a later human-approved substantive coding task is appropriate."
 
@@ -551,9 +687,7 @@ def build_state(issue_number: int | None, state_dir: Path, docs_dir: Path, run_v
 
 def write_execution_log(state: dict[str, Any], docs_dir: Path) -> Path:
     log_path = docs_dir / f"{state['loop_id']}_execution.md"
-    validation_lines = []
-    for key, result in state["validation"].items():
-        validation_lines.append(f"- `{key}`: {result['status']} (command: `{result['command']}`, return code: `{result['return_code']}`)")
+    validation_lines = [f"- `{key}`: {result['status']} (command: `{result['command']}`, return code: `{result['return_code']}`)" for key, result in state["validation"].items()]
     blockers = state["blocking_issues"] or ["None."]
     blockers_text = "\n".join(f"- {item}" for item in blockers)
     content = f"""# {state['loop_id']} — governed agentic-loop execution
@@ -604,17 +738,7 @@ def main() -> int:
     parser.add_argument("--task", default=None)
     parser.add_argument("--procedure-id", default=None)
     args = parser.parse_args()
-
-    state = build_state(
-        issue_number=args.issue_number,
-        state_dir=args.state_dir,
-        docs_dir=args.docs_dir,
-        run_validators=not args.skip_validators,
-        mode=args.mode,
-        task=normalise_optional_input(args.task),
-        procedure_id=normalise_optional_input(args.procedure_id),
-    )
-
+    state = build_state(args.issue_number, args.state_dir, args.docs_dir, not args.skip_validators, args.mode, normalise_optional_input(args.task), normalise_optional_input(args.procedure_id))
     state_path = args.state_dir / f"{state['loop_id']}_state.json"
     state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     log_path = write_execution_log(state, args.docs_dir)
@@ -628,7 +752,6 @@ def main() -> int:
         state["human_review_required"] = True
         state["next_action"] = "Fix state schema validation before continuing."
     state["updated_at_utc"] = utc_now()
-
     state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     write_execution_log(state, args.docs_dir)
 
@@ -640,7 +763,6 @@ def main() -> int:
         print("Blocking issues:")
         for issue in state["blocking_issues"]:
             print(f"- {issue}")
-
     return 0 if state["status"] in {"completed", "blocked"} else 1
 
 
