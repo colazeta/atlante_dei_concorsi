@@ -1,0 +1,56 @@
+name: Validate agentic loop foundation
+
+on:
+  pull_request:
+    paths:
+      - "AGENTS.md"
+      - "docs/agentic-loop/**"
+      - "docs/executions/**"
+      - "reports/agentic-loop/**"
+      - "schemas/agentic-loop/**"
+      - "scripts/agentic_loop.py"
+      - "scripts/validate_agentic_loop_state.py"
+      - ".github/workflows/agentic-loop.yml"
+      - ".github/workflows/validate-agentic-loop.yml"
+      - "scripts/validate_atlante_methodology.py"
+      - "scripts/validate_golden_dataset.py"
+      - "data/templates/atlante-concorsi-universitari/**"
+      - "schemas/atlante-concorsi-universitari/**"
+      - "data/golden-dataset/atlante-concorsi-universitari/**"
+      - "docs/atlante-concorsi-universitari/**"
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate existing methodology
+        run: |
+          python scripts/validate_atlante_methodology.py
+
+      - name: Validate golden dataset safeguards
+        run: |
+          python scripts/validate_golden_dataset.py
+
+      - name: Validate agentic-loop state
+        run: |
+          python scripts/validate_agentic_loop_state.py
+
+      - name: Dry-run agentic loop without substantive changes
+        run: |
+          python scripts/agentic_loop.py --issue-number 42 --skip-validators
+          python scripts/validate_agentic_loop_state.py
