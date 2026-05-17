@@ -1,0 +1,60 @@
+{
+  "loop_id": "ACU-LOOP-0062",
+  "issue_number": 61,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "controlled_implementation",
+  "created_at_utc": "2026-05-17T10:05:00+00:00",
+  "updated_at_utc": "2026-05-17T10:05:00+00:00",
+  "allowed_actions": [
+    "read_repository",
+    "write_loop_state",
+    "write_execution_log",
+    "run_validation",
+    "report_blockers",
+    "audit_registry_coverage"
+  ],
+  "prohibited_actions": [
+    "large_scale_scraping",
+    "unapproved_domain_expansion",
+    "legal_conclusions",
+    "raw_document_commit",
+    "golden_dataset_modification"
+  ],
+  "quality_score": 94,
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0,
+      "summary": "Result: PASSED"
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0,
+      "summary": "Validation passed"
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0,
+      "summary": "Result: PASSED (warnings preserved)"
+    }
+  },
+  "blocking_issues": [
+    "Institutional universe reconciliation not yet complete: 80/99 covered in current registry."
+  ],
+  "human_review_required": true,
+  "next_action": "Extract canonical MUR lists and reconcile missing institutions before closing issue #61.",
+  "files_touched": [
+    "docs/executions/ACU-LOOP-0062_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0062_state.json"
+  ],
+  "last_commit": null,
+  "last_pr": null,
+  "notes": [
+    "Audit-only run; no registry rows added.",
+    "Issue #61 should remain open pending complete reconciliation."
+  ]
+}
