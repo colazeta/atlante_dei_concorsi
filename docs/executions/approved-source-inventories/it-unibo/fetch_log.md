@@ -1,8 +1,5 @@
 # Fetch log
 
-- Generated at: 2026-05-17T19:00:08Z
+- Generated at: 2026-05-17T19:36:30Z
 - Mode: intake-pack derived scaffold (no network fetch in this run).
 - Blocking status: pending_fetch
-
-- 2026-05-17T19:23:33Z | uid=it-unibo
-  - fetched: https://www.unibo.it/it/ateneo/lavora-con-noi status=200 links_recorded=30

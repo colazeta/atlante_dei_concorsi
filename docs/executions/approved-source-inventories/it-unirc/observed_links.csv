@@ -1,2 +1,1 @@
-university_id,source_url,http_status,content_type,page_title,observed_at_utc,error
-it-unirc,https://www.unirc.it/,,,,2026-05-17T19:23:33Z,<urlopen error Tunnel connection failed: 403 Forbidden>
+university_id,source_url,http_status,content_type,page_title,observed_at_utc
