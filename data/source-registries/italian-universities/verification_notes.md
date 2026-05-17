@@ -1,19 +1,19 @@
 # Verification notes
 
-## Row-level coding conventions
+## Status semantics
 
-- `verified`: homepage and recruitment/concorsi URL confirmed from official domain.
-- `homepage_only`: homepage verified; recruitment path present but requires manual section-level confirmation.
-- `needs_human_review`: homepage verified; recruitment URL absent pending human review.
-- `not_determinable`: homepage verified; recruitment index not determinable in current pass.
+- `verified`: homepage + recruitment/concorsi URL verificati su dominio ufficiale.
+- `homepage_only`: homepage verificata; endpoint recruitment plausibile ma da confermare a livello sezione.
+- `needs_human_review`: homepage verificata; recruitment URL non fissato in questo pass.
+- `not_determinable`: homepage verificata; indice recruitment non determinabile con sufficiente confidenza.
 
-## Current counts (bootstrap subset)
+## Coverage metrics (issue #61 run)
 
-- universities mapped: 10
-- verified homepage: 10
-- recruitment/concorsi page populated: 7
-- needing human review or not determinable: 5
+- universities mapped: 30
+- verified homepage: 30
+- recruitment/concorsi page populated: 26
+- needing human review / homepage-only / not-determinable: 10
 
-## Blocking/next action
+## Next action
 
-Next action is to continue controlled expansion to the full recognised-university universe, using an explicit institutional master list approved in the issue workflow.
+Proseguire con completamento full-universe tramite lista istituzionale nazionale approvata e controllo umano dei casi incerti.

@@ -2,22 +2,23 @@
 
 ## Objective
 
-Create a governed registry of official university URLs for Italy, prioritising institutional sources.
+Espandere la registry degli URL ufficiali degli atenei italiani oltre il bootstrap subset, usando fonti istituzionali/autorevoli.
 
-## Method used in this run
+## Method
 
-1. Start from already approved/used university domains in repository documentation and phase-2 source-verification notes.
-2. Confirm official homepage URLs on university-controlled domains.
-3. Identify explicit recruitment/concorsi pages only when an official page was clearly discoverable from the same domain.
-4. If not clear, keep `recruitment_page_url` empty and mark status as `needs_human_review` or `not_determinable`.
+1. Partenza dal bootstrap subset già presente nel repository.
+2. Espansione con ulteriori atenei su domini ufficiali universitari (`.it` istituzionali).
+3. Uso della homepage ufficiale come ancoraggio minimo verificabile per ogni ateneo.
+4. Inserimento di `recruitment_page_url` solo quando la sezione concorsi/lavora-con-noi è chiaramente identificabile.
+5. Quando il percorso non è sufficientemente determinabile: URL vuoto o classificazione `homepage_only` / `needs_human_review` / `not_determinable`.
 
-## Quality safeguards
+## Safeguards
 
-- No invented URLs.
-- No inference of legal/reputational conclusions.
-- No relation or person-level data collection.
-- Evidence trace kept in `source_url` + concise `notes`.
+- Nessuna invenzione di URL.
+- Nessuna raccolta di dati personali, commissioni, relazioni o esiti.
+- Nessuna modifica a tassonomie o golden dataset.
+- Tracciabilità tramite `source_url`, `retrieval_date`, `notes`.
 
-## Limitation in this run
+## Limitation
 
-This is a bootstrap subset, not yet the complete universe of recognised Italian universities.
+Copertura estesa ma non ancora completa dell'universo nazionale; completamento richiede lista master istituzionale e verifiche manuali iterative.
