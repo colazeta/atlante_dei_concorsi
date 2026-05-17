@@ -1,12 +1,15 @@
 {
   "evaluator_id": "ACU-POSTRUN-EVAL-0001",
   "status": "completed",
-  "created_at_utc": "2026-05-17T19:11:50+00:00",
-  "updated_at_utc": "2026-05-17T19:11:50+00:00",
+  "created_at_utc": "2026-05-17T20:08:27+00:00",
+  "updated_at_utc": "2026-05-17T20:08:27+00:00",
   "repo": "colazeta/atlante_dei_concorsi",
-  "scanned_issue_count": 5,
+  "scanned_issue_count": 8,
   "scanned_issue_numbers": [
-    112,
+    122,
+    120,
+    118,
+    116,
     101,
     79,
     78,
@@ -17,13 +20,13 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T19:11:48+00:00",
-      "updated_at_utc": "2026-05-17T19:11:48+00:00",
+      "created_at_utc": "2026-05-17T20:08:17+00:00",
+      "updated_at_utc": "2026-05-17T20:08:17+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
-        "number": 112,
-        "title": "Classify candidate document links from approved source inventories",
-        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/112",
+        "number": 122,
+        "title": "Schedule bounded depth-1 source discovery automatically every 10 minutes",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/122",
         "labels": [
           "enhancement",
           "governance",
@@ -33,8 +36,8 @@
       },
       "signals": {
         "comment_count": 1,
-        "issue_updated_at": "2026-05-17T19:08:25Z",
-        "last_comment_updated_at": "2026-05-17T19:08:25Z",
+        "issue_updated_at": "2026-05-17T19:58:30Z",
+        "last_comment_updated_at": "2026-05-17T19:58:30Z",
         "last_comment_has_summary": false,
         "last_comment_has_testing": false,
         "last_comment_has_blocker": true,
@@ -71,8 +74,170 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T19:11:50+00:00",
-      "updated_at_utc": "2026-05-17T19:11:50+00:00",
+      "created_at_utc": "2026-05-17T20:08:19+00:00",
+      "updated_at_utc": "2026-05-17T20:08:19+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 120,
+        "title": "Add bounded depth-1 discovery for approved university source pages",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/120",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 2,
+        "issue_updated_at": "2026-05-17T19:57:38Z",
+        "last_comment_updated_at": "2026-05-17T19:57:38Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "set_blocked",
+        "next_label": "agent-blocked",
+        "rationale": [
+          "Latest comment contains blocker language."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": false,
+      "continuation": {
+        "continuation_needed": false,
+        "reason": "No local loop state found for this issue."
+      },
+      "label_mutation": {
+        "status": "completed",
+        "added": [
+          "agent-blocked"
+        ],
+        "removed": [
+          "agent-running"
+        ]
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T20:08:21+00:00",
+      "updated_at_utc": "2026-05-17T20:08:21+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 118,
+        "title": "Add live automation status panel to GitHub Pages UX",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/118",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T19:34:49Z",
+        "last_comment_updated_at": "2026-05-17T19:34:49Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "set_blocked",
+        "next_label": "agent-blocked",
+        "rationale": [
+          "Latest comment contains blocker language."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": false,
+      "continuation": {
+        "continuation_needed": false,
+        "reason": "No local loop state found for this issue."
+      },
+      "label_mutation": {
+        "status": "completed",
+        "added": [
+          "agent-blocked"
+        ],
+        "removed": [
+          "agent-running"
+        ]
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T20:08:23+00:00",
+      "updated_at_utc": "2026-05-17T20:08:23+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 116,
+        "title": "Populate candidate document links from approved source pages",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/116",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T19:20:30Z",
+        "last_comment_updated_at": "2026-05-17T19:20:30Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "set_blocked",
+        "next_label": "agent-blocked",
+        "rationale": [
+          "Latest comment contains blocker language."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": false,
+      "continuation": {
+        "continuation_needed": false,
+        "reason": "No local loop state found for this issue."
+      },
+      "label_mutation": {
+        "status": "completed",
+        "added": [
+          "agent-blocked"
+        ],
+        "removed": [
+          "agent-running"
+        ]
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T20:08:25+00:00",
+      "updated_at_utc": "2026-05-17T20:08:25+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 101,
@@ -111,7 +276,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 101,
-        "created_at_utc": "2026-05-17T19:11:50+00:00",
+        "created_at_utc": "2026-05-17T20:08:25+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 1,
@@ -128,8 +293,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T19:11:50+00:00",
-      "updated_at_utc": "2026-05-17T19:11:50+00:00",
+      "created_at_utc": "2026-05-17T20:08:26+00:00",
+      "updated_at_utc": "2026-05-17T20:08:26+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 79,
@@ -168,7 +333,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 79,
-        "created_at_utc": "2026-05-17T19:11:50+00:00",
+        "created_at_utc": "2026-05-17T20:08:26+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -185,8 +350,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T19:11:50+00:00",
-      "updated_at_utc": "2026-05-17T19:11:50+00:00",
+      "created_at_utc": "2026-05-17T20:08:26+00:00",
+      "updated_at_utc": "2026-05-17T20:08:26+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 78,
@@ -225,7 +390,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 78,
-        "created_at_utc": "2026-05-17T19:11:50+00:00",
+        "created_at_utc": "2026-05-17T20:08:26+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -242,8 +407,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T19:11:50+00:00",
-      "updated_at_utc": "2026-05-17T19:11:50+00:00",
+      "created_at_utc": "2026-05-17T20:08:27+00:00",
+      "updated_at_utc": "2026-05-17T20:08:27+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 70,
