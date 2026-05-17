@@ -1,12 +1,14 @@
 name: Approved Source Fetch
 
 on:
+  schedule:
+    - cron: "*/10 * * * *" # best-effort cadence; GitHub Actions scheduling is not guaranteed to run exactly on time
   workflow_dispatch:
     inputs:
       batch_size:
         description: 'Universities batch size'
         required: false
-        default: '5'
+        default: '10'
       university_id:
         description: 'Optional single university id'
         required: false
@@ -14,15 +16,11 @@ on:
       max_links_per_page:
         description: 'Max candidate links per fetched page'
         required: false
-        default: '40'
+        default: '30'
       max_follow_links_per_university:
         description: 'Max depth-1 follow links per university'
         required: false
-        default: '10'
-      depth:
-        description: 'Discovery depth (0 or 1)'
-        required: false
-        default: '0'
+        default: '5'
 
 jobs:
   fetch-approved-sources:
@@ -34,13 +32,19 @@ jobs:
           python-version: '3.11'
       - name: Run bounded approved-source fetch
         run: |
+          BATCH_SIZE="${{ github.event.inputs.batch_size || '10' }}"
+          MAX_LINKS_PER_PAGE="${{ github.event.inputs.max_links_per_page || '30' }}"
+          MAX_FOLLOW_LINKS="${{ github.event.inputs.max_follow_links_per_university || '5' }}"
           python3 scripts/fetch_approved_source_pages.py \
-            --batch-size "${{ github.event.inputs.batch_size }}" \
+            --batch-size "${BATCH_SIZE}" \
             --university-id "${{ github.event.inputs.university_id }}" \
-            --max-links-per-page "${{ github.event.inputs.max_links_per_page }}" \
-            --max-follow-links-per-university "${{ github.event.inputs.max_follow_links_per_university }}" \
-            --depth "${{ github.event.inputs.depth }}"
+            --max-links-per-page "${MAX_LINKS_PER_PAGE}" \
+            --max-follow-links-per-university "${MAX_FOLLOW_LINKS}" \
+            --depth 1
       - name: Rebuild progress layers
         run: |
           python3 scripts/build_source_inventory_progress.py
           python3 scripts/build_document_link_classification_progress.py
+          if [ -f scripts/build_automation_status.py ]; then
+            python3 scripts/build_automation_status.py
+          fi
