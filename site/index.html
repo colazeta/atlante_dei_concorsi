@@ -17,7 +17,7 @@
     .timeline { margin: .7rem 0; padding-left:1rem; }
     .timeline li { margin-bottom:.45rem; }
     label { font-size:.9rem; color:var(--muted); display:block; }
-    input,select { width:100%; padding:.45rem; margin-top:.2rem; border:1px solid #cbd5e1; border-radius:.35rem; background:#fff; }
+    input,select,textarea { width:100%; padding:.45rem; margin-top:.2rem; border:1px solid #cbd5e1; border-radius:.35rem; background:#fff; }
     table { width:100%; border-collapse:collapse; background:#fff; }
     th,td { border:1px solid #dbe3eb; padding:.45rem; font-size:.9rem; vertical-align:top; }
     th { background:#edf2f7; text-align:left; }
@@ -27,7 +27,7 @@
     .ok { color:var(--ok); font-weight:600; }
     .placeholder { margin-top:1.2rem; background:#fff; border:1px dashed #9ca3af; padding:.9rem; border-radius:.4rem; }
     .small { color:var(--muted); font-size:.87rem; }
-    .actions { display:flex; gap:.4rem; flex-wrap:wrap; }
+    .actions { display:flex; gap:.4rem; flex-wrap:wrap; margin:.5rem 0; }
     button { border:1px solid #cbd5e1; background:#fff; border-radius:.35rem; padding:.35rem .5rem; cursor:pointer; }
   </style>
 </head>
@@ -59,6 +59,15 @@
       <button id="clear-manual-focus" type="button">Clear manual focus</button>
     </div>
     <p id="manual-focus-status" class="small">Manual focus: none (showing all entries).</p>
+
+    <h3>Manual decision layer (client-side fallback)</h3>
+    <p class="small">This static UX cannot write directly to repository files. Manual decisions are stored in your browser and can be exported as CSV/JSON for manual commit in a follow-up repository task.</p>
+    <div class="actions">
+      <button id="download-decisions-json" type="button">Download manual decisions (JSON)</button>
+      <button id="download-decisions-csv" type="button">Download manual decisions (CSV)</button>
+      <button id="clear-decisions" type="button">Clear browser-stored decisions</button>
+    </div>
+    <p id="decision-status" class="small">No manual decisions saved yet.</p>
   </section>
 
   <section class="filters">
@@ -69,7 +78,7 @@
   </section>
 
   <table>
-    <thead><tr><th>University</th><th>Type</th><th>Official homepage</th><th>Recruitment / concorsi URL</th><th>Confidence</th><th>Verification</th><th>Notes</th><th>Attention</th></tr></thead>
+    <thead><tr><th>University</th><th>Type</th><th>Official homepage</th><th>Recruitment / concorsi URL</th><th>Confidence</th><th>Verification</th><th>Notes</th><th>Attention</th><th>Manual decision</th></tr></thead>
     <tbody id="rows"></tbody>
   </table>
 
@@ -79,37 +88,33 @@
   </section>
 </main>
 <script>
+const MANUAL_DECISION_VALUES=['accepted','rejected','needs_more_evidence','keep_under_review'];
+const DECISION_STORAGE_KEY='acu_manual_review_decisions_v1';
 const cards=[['total_universities_mapped','Total universities mapped'],['with_verified_homepage','With verified homepage'],['with_recruitment_url','With recruitment / concorsi URL'],['homepage_only','Homepage-only'],['needing_attention','Needing attention'],['not_determinable','Not determinable']];
-const state={entries:[],filtered:[]};
+const state={entries:[],filtered:[],decisions:{}};
 const fmt=(u)=>u?`<a href="${u}" target="_blank" rel="noopener">${u}</a>`:'—';
+const decisionKey=(e)=>`${e.university_name}||${e.official_homepage_url||''}||${e.recruitment_page_url||''}`;
 function badge(s){if(s==='verified')return `<span class="tag ok">${s}</span>`;if(s==='needs_human_review'||s==='not_determinable')return `<span class="tag uncertain">${s}</span>`;return `<span class="tag">${s||'—'}</span>`}
 function renderSummary(summary){document.getElementById('summary').innerHTML=cards.map(([k,l])=>`<div class="card"><div class="n">${summary[k]??0}</div><div>${l}</div></div>`).join('')}
-function renderTracker(historyData){
-  const current=historyData.history[historyData.history.length-1];
-  const missing=Math.max(0,99-current.universities_total);
-  document.getElementById('tracker-cards').innerHTML=[
-    ['Current mapped universities',current.universities_total],
-    ['Current recruitment / concorsi URLs',current.universities_with_recruitment_url],
-    ['Current missing / backlog',missing],
-    ['Current status label',current.status_label]
-  ].map(([l,n])=>`<div class="card"><div class="n">${n}</div><div>${l}</div></div>`).join('');
-  document.getElementById('timeline').innerHTML=historyData.history.map(h=>`<li><strong>${h.snapshot_date}</strong> — ${h.status_label} (${h.universities_total} mapped; ${h.universities_with_recruitment_url} recruitment URLs)</li>`).join('');
-  document.getElementById('progress-events').innerHTML=historyData.history.map(h=>`<li>${h.snapshot_date}: ${h.notes}</li>`).join('');
-  const comp=historyData.history[historyData.history.length-1];
-  document.getElementById('competition-placeholder').textContent=`Competition source classification progress: ${comp.competition_sources_classified}/${comp.competition_sources_total}.`;
+function renderTracker(historyData){const current=historyData.history[historyData.history.length-1];const missing=Math.max(0,99-current.universities_total);document.getElementById('tracker-cards').innerHTML=[['Current mapped universities',current.universities_total],['Current recruitment / concorsi URLs',current.universities_with_recruitment_url],['Current missing / backlog',missing],['Current status label',current.status_label]].map(([l,n])=>`<div class="card"><div class="n">${n}</div><div>${l}</div></div>`).join('');document.getElementById('timeline').innerHTML=historyData.history.map(h=>`<li><strong>${h.snapshot_date}</strong> — ${h.status_label} (${h.universities_total} mapped; ${h.universities_with_recruitment_url} recruitment URLs)</li>`).join('');document.getElementById('progress-events').innerHTML=historyData.history.map(h=>`<li>${h.snapshot_date}: ${h.notes}</li>`).join('');const comp=historyData.history[historyData.history.length-1];document.getElementById('competition-placeholder').textContent=`Competition source classification progress: ${comp.competition_sources_classified}/${comp.competition_sources_total}.`;}
+function updateDecisionStatus(){const c=Object.keys(state.decisions).length;document.getElementById('decision-status').textContent=c?`${c} manual decisions saved locally. Export JSON/CSV and commit manually to the repository.`:'No manual decisions saved yet.';}
+function saveDecisions(){localStorage.setItem(DECISION_STORAGE_KEY,JSON.stringify(state.decisions));updateDecisionStatus();}
+function loadDecisions(){try{state.decisions=JSON.parse(localStorage.getItem(DECISION_STORAGE_KEY)||'{}')}catch(_){state.decisions={};}updateDecisionStatus();}
+function renderRows(){const t=document.getElementById('rows');t.innerHTML=state.filtered.map((e,i)=>{const k=decisionKey(e);const d=state.decisions[k]||{};return `<tr><td>${e.university_name}</td><td>${e.university_type||'—'}</td><td>${fmt(e.official_homepage_url)}</td><td>${fmt(e.recruitment_page_url)}</td><td>${badge(e.confidence_level)}</td><td>${badge(e.verification_status)}</td><td>${e.notes||'—'}</td><td>${e.needs_attention?'<span class="attn">Needs attention</span>':'—'}</td><td><label class="small" for="decision-${i}">Decision</label><select id="decision-${i}" data-key="${k}" class="manual-decision"><option value="">—</option>${MANUAL_DECISION_VALUES.map(v=>`<option value="${v}" ${d.decision===v?'selected':''}>${v}</option>`).join('')}</select><label class="small" for="notes-${i}">Review notes</label><textarea id="notes-${i}" rows="2" data-key="${k}" class="manual-notes" placeholder="Optional notes">${d.review_notes||''}</textarea></td></tr>`}).join('');
+  document.querySelectorAll('.manual-decision').forEach(el=>el.addEventListener('change',(ev)=>updateDecision(ev.target.dataset.key,ev.target.value,null)));
+  document.querySelectorAll('.manual-notes').forEach(el=>el.addEventListener('change',(ev)=>updateDecision(ev.target.dataset.key,null,ev.target.value)));
 }
-function renderRows(){const t=document.getElementById('rows');t.innerHTML=state.filtered.map(e=>`<tr><td>${e.university_name}</td><td>${e.university_type||'—'}</td><td>${fmt(e.official_homepage_url)}</td><td>${fmt(e.recruitment_page_url)}</td><td>${badge(e.confidence_level)}</td><td>${badge(e.verification_status)}</td><td>${e.notes||'—'}</td><td>${e.needs_attention?'<span class="attn">Needs attention</span>':'—'}</td></tr>`).join('');}
+function updateDecision(key,decision,notes){const prev=state.decisions[key]||{};const next={...prev};if(decision!==null)next.decision=decision;if(notes!==null)next.review_notes=notes;next.reviewed_at_utc=new Date().toISOString();if(!next.decision&&!next.review_notes){delete state.decisions[key];}else{state.decisions[key]=next;}saveDecisions();}
 function setManualFocusStatus(message){document.getElementById('manual-focus-status').textContent=message;}
-function applyManualFocus(type){
-  if(type==='low-confidence'){document.getElementById('confidence').value='low'; setManualFocusStatus('Manual focus: low confidence entries.');}
-  if(type==='review-needed'){document.getElementById('verification').value='needs_human_review'; setManualFocusStatus('Manual focus: needs_human_review entries.');}
-  if(type==='attention'){setManualFocusStatus('Manual focus: entries flagged as needing attention.');}
-  if(type==='clear'){document.getElementById('confidence').value='';document.getElementById('verification').value='';setManualFocusStatus('Manual focus: none (showing all entries).');}
-  applyFilters(type);
-}
+function applyManualFocus(type){if(type==='low-confidence'){document.getElementById('confidence').value='low'; setManualFocusStatus('Manual focus: low confidence entries.');}if(type==='review-needed'){document.getElementById('verification').value='needs_human_review'; setManualFocusStatus('Manual focus: needs_human_review entries.');}if(type==='attention'){setManualFocusStatus('Manual focus: entries flagged as needing attention.');}if(type==='clear'){document.getElementById('confidence').value='';document.getElementById('verification').value='';setManualFocusStatus('Manual focus: none (showing all entries).');}applyFilters(type);}
 function applyFilters(focusType){const q=document.getElementById('search').value.toLowerCase().trim();const v=document.getElementById('verification').value;const c=document.getElementById('confidence').value;const r=document.getElementById('recruitment').value;state.filtered=state.entries.filter(e=>{if(q&&!e.university_name.toLowerCase().includes(q))return false;if(v&&e.verification_status!==v)return false;if(c&&e.confidence_level!==c)return false;if(r==='with'&&!e.has_recruitment_url)return false;if(r==='without'&&e.has_recruitment_url)return false;if(focusType==='attention'&&!e.needs_attention)return false;return true;});renderRows();}
-Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/mapping_progress_history.json').then(r=>r.json())]).then(([data,history])=>{
+function buildExportRows(){return Object.entries(state.decisions).map(([k,v])=>{const [university_name,official_homepage_url,recruitment_page_url]=k.split('||');return {decision_id:btoa(unescape(encodeURIComponent(k))).replace(/=+$/,''),university_name,official_homepage_url,recruitment_page_url,decision:v.decision||'',review_notes:v.review_notes||'',reviewed_by:'',reviewed_at_utc:v.reviewed_at_utc||''};}).filter(r=>r.decision||r.review_notes);}
+function download(name,content,type){const blob=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);}
+function toCsv(rows){const h=['decision_id','university_name','official_homepage_url','recruitment_page_url','decision','review_notes','reviewed_by','reviewed_at_utc'];const esc=(x)=>`"${String(x??'').replaceAll('"','""')}"`;return [h.join(','),...rows.map(r=>h.map(k=>esc(r[k])).join(','))].join('\n');}
+Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/mapping_progress_history.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]}))]).then(([data,history,manual])=>{
   renderSummary(data.summary);renderTracker(history);state.entries=data.entries;state.filtered=data.entries.slice();
+  (manual.decisions||[]).forEach(d=>{const key=`${d.university_name}||${d.official_homepage_url||''}||${d.recruitment_page_url||''}`;state.decisions[key]={decision:d.decision||'',review_notes:d.review_notes||'',reviewed_at_utc:d.reviewed_at_utc||''};});
+  loadDecisions();
   const v=document.getElementById('verification'); data.filters.verification_status.forEach(s=>v.insertAdjacentHTML('beforeend',`<option>${s}</option>`));
   const c=document.getElementById('confidence'); data.filters.confidence_level.forEach(s=>c.insertAdjacentHTML('beforeend',`<option>${s}</option>`));
   ['search','verification','confidence','recruitment'].forEach(id=>document.getElementById(id).addEventListener('input',applyFilters));
@@ -117,6 +122,9 @@ Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('.
   document.getElementById('focus-review-needed').addEventListener('click',()=>applyManualFocus('review-needed'));
   document.getElementById('focus-attention').addEventListener('click',()=>applyManualFocus('attention'));
   document.getElementById('clear-manual-focus').addEventListener('click',()=>applyManualFocus('clear'));
+  document.getElementById('download-decisions-json').addEventListener('click',()=>download('manual_review_decisions.json',JSON.stringify({metadata:{exported_at_utc:new Date().toISOString(),allowed_decisions:MANUAL_DECISION_VALUES},decisions:buildExportRows()},null,2),'application/json'));
+  document.getElementById('download-decisions-csv').addEventListener('click',()=>download('manual_review_decisions.csv',toCsv(buildExportRows()),'text/csv'));
+  document.getElementById('clear-decisions').addEventListener('click',()=>{state.decisions={};saveDecisions();renderRows();});
   renderRows();
 });
 </script>

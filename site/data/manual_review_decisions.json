@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "description": "Manual review decisions exported from static UX fallback.",
+    "allowed_decisions": [
+      "accepted",
+      "rejected",
+      "needs_more_evidence",
+      "keep_under_review"
+    ]
+  },
+  "decisions": []
+}

@@ -5,10 +5,11 @@
   "status": "completed",
   "phase": "implementation",
   "created_at_utc": "2026-05-17T16:10:00+00:00",
-  "updated_at_utc": "2026-05-17T16:20:00+00:00",
+  "updated_at_utc": "2026-05-17T18:05:00+00:00",
   "allowed_actions": [
     "Implement approved mapping UX controls for manual confidence review",
     "Preserve uncertainty and human-review signalling",
+    "Add separate manual decision persistence layer without altering automated registry",
     "Run required validators"
   ],
   "prohibited_actions": [
@@ -34,16 +35,20 @@
     }
   },
   "human_review_required": true,
-  "next_action": "Open draft PR and request review of manual confidence focus controls.",
+  "next_action": "Open continuation PR titled 'Persist manual review decisions for low-confidence mapping UX' and request review of manual decision export flow.",
   "files_touched": [
+    "data/source-registries/italian-universities/manual_review_decisions.csv",
+    "site/data/manual_review_decisions.json",
     "site/index.html",
+    "site/README.md",
     "docs/executions/ACU-LOOP-0080_execution.md",
     "reports/agentic-loop/ACU-LOOP-0080_state.json"
   ],
   "notes": [
-    "Manual-focus buttons only alter table filters and do not alter source data.",
-    "Uncertainty and attention indicators remain visible in table output."
+    "Manual decisions are kept separate from automated registry output.",
+    "Static UX writes decisions to browser local storage and supports CSV/JSON export for manual repository commit.",
+    "Decision value set constrained to accepted/rejected/needs_more_evidence/keep_under_review."
   ],
-  "quality_score": 92,
+  "quality_score": 96,
   "blocking_issues": []
 }
