@@ -1,13 +1,15 @@
 {
-  "updated_at_utc": "2026-05-17T20:03:25Z",
+  "updated_at_utc": "2026-05-17T20:22:00Z",
   "pages_deploy_status": "generated_predeploy",
-  "source_inventory_last_updated_utc": "2026-05-17T20:03:24Z",
-  "document_classification_last_updated_utc": "2026-05-17T20:03:25Z",
+  "source_inventory_last_updated_utc": "2026-05-17T20:21:59Z",
+  "document_classification_last_updated_utc": "2026-05-17T20:21:59Z",
   "source_inventory_freshness_minutes": 0,
   "document_classification_freshness_minutes": 0,
   "expected_refresh_cadence_minutes": 10,
   "freshness_status": "fresh",
   "latest_counts": {
+    "source_run_status": "skipped_no_eligible_urls",
+    "source_no_progress_reason": "No approved recruitment/homepage URL was eligible in the selected batch.",
     "total_intake_packs": 80,
     "source_inventories_created": 80,
     "candidate_links_observed": 0,

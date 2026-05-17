@@ -48,3 +48,15 @@ jobs:
           if [ -f scripts/build_automation_status.py ]; then
             python3 scripts/build_automation_status.py
           fi
+      - name: Fail on unhealthy fetch output
+        run: |
+          python3 - <<'PY2'
+          import json
+          from pathlib import Path
+          progress=json.loads(Path('site/data/source_inventory_progress.json').read_text(encoding='utf-8'))
+          status=progress.get('run_status')
+          allowed={'productive','completed_no_links','skipped_no_eligible_urls'}
+          if status not in allowed:
+              raise SystemExit(f"approved-source-fetch unhealthy run_status={status}; reason={progress.get('no_progress_reason','')}")
+          print(f"approved-source-fetch run_status={status}")
+          PY2

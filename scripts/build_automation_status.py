@@ -79,6 +79,8 @@ def main() -> None:
         warnings.append('Document classification progress timestamp is unavailable.')
 
     source_counts = {
+        'source_run_status': source.get('run_status'),
+        'source_no_progress_reason': source.get('no_progress_reason'),
         'total_intake_packs': source.get('total_intake_packs'),
         'source_inventories_created': source.get('inventories_created'),
         'candidate_links_observed': source.get('candidate_links_total'),
