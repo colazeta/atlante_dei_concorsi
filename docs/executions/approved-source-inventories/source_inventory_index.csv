@@ -1,14 +1,14 @@
 university_id,university_name,intake_pack_exists,inventory_exists,homepage_url,recruitment_url,fetch_status,candidate_links_count,requires_human_attention,blocking_status,last_updated_utc
-it-unibo,Università di Bologna,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unina,Università degli Studi di Napoli Federico II,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unipd,Università degli Studi di Padova,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unipa,Università degli Studi di Palermo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unipi,Università di Pisa,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unimi,Università degli Studi di Milano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unito,Università degli Studi di Torino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unirc,Università degli Studi Mediterranea di Reggio Calabria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-unibocconi,Università Commerciale Luigi Bocconi,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
-it-luiss,LUISS Guido Carli,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
+it-unibo,Università di Bologna,yes,yes,,,fetched,30,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unina,Università degli Studi di Napoli Federico II,yes,yes,,,fetched,0,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unipd,Università degli Studi di Padova,yes,yes,,,fetched,30,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unipa,Università degli Studi di Palermo,yes,yes,,,fetched,30,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unipi,Università di Pisa,yes,yes,,,fetched,0,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unimi,Università degli Studi di Milano,yes,yes,,,fetched,0,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unito,Università degli Studi di Torino,yes,yes,,,fetched,0,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unirc,Università degli Studi Mediterranea di Reggio Calabria,yes,yes,,,fetched,0,yes,needs_human_review,2026-05-17T19:23:33Z
+it-unibocconi,Università Commerciale Luigi Bocconi,yes,yes,,,fetched,30,yes,needs_human_review,2026-05-17T19:23:33Z
+it-luiss,LUISS Guido Carli,yes,yes,,,fetched,0,yes,needs_human_review,2026-05-17T19:23:33Z
 it-unifi,Università degli Studi di Firenze,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
 it-unisi,Università degli Studi di Siena,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z
 it-uniroma1,Sapienza Università di Roma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:00:08Z

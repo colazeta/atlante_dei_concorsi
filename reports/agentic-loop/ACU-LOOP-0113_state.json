@@ -1,0 +1,21 @@
+{
+  "run_id": "ACU-LOOP-0113",
+  "timestamp_utc": "2026-05-17T00:00:00Z",
+  "issue": 116,
+  "mode": "controlled",
+  "status": "completed",
+  "summary": "Added bounded approved-source fetch script and populated candidate links for a first batch of 10 universities.",
+  "artifacts": [
+    "scripts/fetch_approved_source_pages.py",
+    "docs/executions/ACU-LOOP-0113_issue-116_fetch-approved-source-pages.md",
+    "docs/executions/approved-source-inventories/source_inventory_index.csv",
+    "site/data/source_inventory_progress.json",
+    "site/data/document_link_classification_progress.json"
+  ],
+  "validations": {
+    "validate_atlante_methodology": "passed",
+    "validate_golden_dataset": "passed_with_warnings",
+    "validate_agentic_loop_state": "passed"
+  },
+  "next_action": "Run additional bounded fetch batches and perform human review of uncertain candidate links."
+}
