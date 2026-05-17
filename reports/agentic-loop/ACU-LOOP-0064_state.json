@@ -1,0 +1,50 @@
+{
+  "loop_id": "ACU-LOOP-0064",
+  "issue_number": 70,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T12:10:00+00:00",
+  "updated_at_utc": "2026-05-17T12:10:00+00:00",
+  "allowed_actions": [
+    "Implement post-run evaluator tooling for governed issue lifecycle",
+    "Update methodology documentation",
+    "Run required validators"
+  ],
+  "prohibited_actions": [
+    "Dataset expansion",
+    "Unapproved source-domain expansion",
+    "Legal or reputational judgement automation"
+  ],
+  "quality_score": 90,
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "blocking_issues": [],
+  "human_review_required": true,
+  "next_action": "Run post-run evaluator in controlled mode from GitHub Actions and review recommended label transition.",
+  "files_touched": [
+    "scripts/agentic_post_run_evaluator.py",
+    "docs/agentic-loop/03_dispatcher_model.md",
+    "reports/agentic-loop/ACU-LOOP-0064_state.json",
+    "docs/executions/ACU-LOOP-0064_execution.md"
+  ],
+  "notes": [
+    "Evaluator recommendation is intentionally conservative and signal-based.",
+    "Human review remains mandatory before applying agent-done."
+  ]
+}
