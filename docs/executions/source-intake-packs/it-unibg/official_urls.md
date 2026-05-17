@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unibg
 
-- **University ID**: `it-unibg`
-- **University name**: Università degli Studi di Bergamo
-- **Type**: public
-- **Official homepage**: https://www.unibg.it/
-- **Recruitment page**: https://www.unibg.it/ateneo/concorsi-e-selezioni
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unibg.it/`
+- recruitment_page_url: `https://www.unibg.it/ateneo/concorsi-e-selezioni`
+- source_url: `https://www.unibg.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi/selezioni page identified.`

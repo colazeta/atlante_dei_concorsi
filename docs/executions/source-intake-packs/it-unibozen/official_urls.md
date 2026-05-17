@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unibozen
 
-- **University ID**: `it-unibozen`
-- **University name**: Libera Università di Bolzano
-- **Type**: private
-- **Official homepage**: https://www.unibz.it/
-- **Recruitment page**: https://www.unibz.it/it/home/position-calls/
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unibz.it/`
+- recruitment_page_url: `https://www.unibz.it/it/home/position-calls/`
+- source_url: `https://www.unibz.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official position calls page identified.`

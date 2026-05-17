@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-uninsubria
 
-- **University ID**: `it-uninsubria`
-- **University name**: Università degli Studi dell'Insubria
-- **Type**: public
-- **Official homepage**: https://www.uninsubria.it/
-- **Recruitment page**: https://www.uninsubria.it/bandi-concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.uninsubria.it/`
+- recruitment_page_url: `https://www.uninsubria.it/bandi-concorsi`
+- source_url: `https://www.uninsubria.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official bandi/concorsi section identified.`

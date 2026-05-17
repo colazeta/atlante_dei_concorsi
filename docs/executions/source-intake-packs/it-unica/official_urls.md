@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unica
 
-- **University ID**: `it-unica`
-- **University name**: Università degli Studi di Cagliari
-- **Type**: public
-- **Official homepage**: https://www.unica.it/
-- **Recruitment page**: https://www.unica.it/it/ateneo/bandi-e-concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unica.it/`
+- recruitment_page_url: `https://www.unica.it/it/ateneo/bandi-e-concorsi`
+- source_url: `https://www.unica.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official bandi/concorsi section identified.`

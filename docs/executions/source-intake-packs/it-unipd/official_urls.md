@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unipd
 
-- **University ID**: `it-unipd`
-- **University name**: Università degli Studi di Padova
-- **Type**: public
-- **Official homepage**: https://www.unipd.it/
-- **Recruitment page**: https://www.unipd.it/concorsi-selezioni-personale-docente
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unipd.it/`
+- recruitment_page_url: `https://www.unipd.it/concorsi-selezioni-personale-docente`
+- source_url: `https://www.unipd.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi page identified.`

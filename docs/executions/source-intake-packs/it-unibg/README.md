@@ -1,10 +1,10 @@
-# Intake pack — Università degli Studi di Bergamo
+# Source intake pack — it-unibg
 
-Questo pacchetto documenta l'intake manuale delle fonti ufficiali per `it-unibg`.
+- university_id: `it-unibg`
+- university_name: `Università degli Studi di Bergamo`
+- university_type: `public`
+- automated verification status: `verified`
+- manual decision status: `accepted`
+- intake status: `ready_for_source_inventory`
+- recruitment/concorsi URL present: `true`
 
-## Scope
-- Solo fonti istituzionali ufficiali già identificate nei registry.
-- Nessun download PDF in questa fase.
-- Nessuno scraping ampio o crawling massivo.
-- Nessun dato su candidati/commissioni.
-- Nessuna modifica al golden dataset.

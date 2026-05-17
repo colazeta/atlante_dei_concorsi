@@ -1,10 +1,10 @@
-# Intake pack — Università degli Studi di Modena e Reggio Emilia
+# Source intake pack — it-unimore
 
-Questo pacchetto documenta l'intake manuale delle fonti ufficiali per `it-unimore`.
+- university_id: `it-unimore`
+- university_name: `Università degli Studi di Modena e Reggio Emilia`
+- university_type: `public`
+- automated verification status: `verified`
+- manual decision status: `accepted`
+- intake status: `ready_for_source_inventory`
+- recruitment/concorsi URL present: `true`
 
-## Scope
-- Solo fonti istituzionali ufficiali già identificate nei registry.
-- Nessun download PDF in questa fase.
-- Nessuno scraping ampio o crawling massivo.
-- Nessun dato su candidati/commissioni.
-- Nessuna modifica al golden dataset.
