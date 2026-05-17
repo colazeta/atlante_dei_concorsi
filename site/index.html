@@ -27,6 +27,12 @@
 <main>
   <p class="small">This static civic-data view exposes certainty and uncertainty.</p>
   <section class="cards" id="summary"></section>
+  <section class="tracker">
+    <h2>Source inventory progress</h2>
+    <p id="source-progress-meta" class="small">Loading source inventory progress…</p>
+    <section class="cards" id="source-progress-cards"></section>
+    <table><thead><tr><th>University</th><th>Inventory</th><th>Fetch status</th><th>Candidate links</th><th>Attention</th></tr></thead><tbody id="source-progress-rows"></tbody></table>
+  </section>
 
   <section class="tracker">
     <h2>Manual confidence review actions</h2>
@@ -116,6 +122,18 @@ function buildGithubIssueBody(rows,scopeLabel){
     '```'
   ].join('\n');
 }
+
+function renderSourceInventoryProgress(progress){
+ const meta=document.getElementById('source-progress-meta');
+ const cards=document.getElementById('source-progress-cards');
+ const rows=document.getElementById('source-progress-rows');
+ if(!progress){meta.textContent='Source inventory progress unavailable.';return;}
+ meta.textContent=`Last update: ${progress.updated_at_utc||'—'}`;
+ const items=[['Total intake packs',progress.total_intake_packs],['Inventories created',progress.inventories_created],['Pending inventories',progress.inventories_pending],['With candidate links',progress.inventories_with_candidate_links],['Fetch errors',progress.fetch_errors],['Need attention',progress.inventories_needing_attention]];
+ cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
+ rows.innerHTML=(progress.by_university||[]).slice(0,50).map(e=>`<tr><td>${e.university_name||e.university_id}</td><td>${e.inventory_exists}</td><td>${e.fetch_status||'—'}</td><td>${e.candidate_links_count||0}</td><td>${e.requires_human_attention==='yes'?'<span class="attn">yes</span>':'no'}</td></tr>`).join('');
+}
+
 function submitGithubIssue(selectedOnly){
   const rows=buildRows(selectedOnly);
   const status=document.getElementById('github-submit-status');
@@ -143,7 +161,8 @@ function submitGithubIssue(selectedOnly){
   fallback.select();
   status.textContent=`Prefilled URL was too long for ${scopeLabel} (${rows.length} rows). Copy payload from the fallback box and paste into a new GitHub issue.`;
 }
-Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]}))]).then(([data,manual])=>{
+Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]})),fetch('./data/source_inventory_progress.json').then(r=>r.json()).catch(()=>null)]).then(([data,manual,sourceProgress])=>{
+ renderSourceInventoryProgress(sourceProgress);
  state.entries=data.entries;state.filtered=data.entries.slice();
  data.filters.verification_status.forEach(s=>document.getElementById('verification').insertAdjacentHTML('beforeend',`<option>${s}</option>`));
  data.filters.confidence_level.forEach(s=>document.getElementById('confidence').insertAdjacentHTML('beforeend',`<option>${s}</option>`));

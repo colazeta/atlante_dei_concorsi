@@ -1,0 +1,52 @@
+{
+  "loop_id": "ACU-LOOP-0106",
+  "issue_number": 108,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "approved-source-inventory-automation",
+  "created_at_utc": "2026-05-17T17:30:00+00:00",
+  "updated_at_utc": "2026-05-17T18:30:00+00:00",
+  "validation": {
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0,
+      "notes": "Validator returned warnings only; overall pass."
+    },
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    }
+  },
+  "human_review_required": true,
+  "files_touched": [
+    "scripts/build_source_inventory_progress.py",
+    ".github/workflows/source-inventory-progress.yml",
+    "docs/executions/approved-source-inventories/README.md",
+    "docs/executions/approved-source-inventories/source_inventory_index.csv",
+    "docs/executions/approved-source-inventories/*/*",
+    "site/data/source_inventory_progress.json",
+    "site/index.html",
+    "docs/executions/ACU-LOOP-0106_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0106_state.json"
+  ],
+  "next_action": "Human review to approve bounded fetch activation over approved official URLs in a follow-up run.",
+  "blocking_issues": [],
+  "allowed_actions": [
+    "Create approved-source-inventory scaffolds from existing intake packs",
+    "Publish progress JSON for static UX",
+    "Run required validators and record outcomes"
+  ],
+  "prohibited_actions": [
+    "Modify golden dataset rows",
+    "Download or commit raw documents/snapshots",
+    "Infer wrongdoing or legal conclusions"
+  ],
+  "quality_score": 100
+}
