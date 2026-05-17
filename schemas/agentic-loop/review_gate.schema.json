@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/atlante-dei-concorsi/review-gate.schema.json",
+  "title": "Atlante dei Concorsi review gate decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_number",
+    "decision",
+    "confidence_level",
+    "verification_status",
+    "requires_human_attention",
+    "review_reason",
+    "blocking_status"
+  ],
+  "properties": {
+    "issue_number": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["autonomous_allowed", "continuation_needed", "human_review_required", "blocked"]
+    },
+    "confidence_level": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "not_determinable"]
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": ["verified", "partially_verified", "homepage_only", "not_determinable", "missing_recruitment_url"]
+    },
+    "requires_human_attention": {
+      "type": "boolean"
+    },
+    "review_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "blocking_status": {
+      "type": "string",
+      "enum": ["non_blocking", "blocking"]
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "needs_human_review": {"type": "boolean"},
+        "policy_breach": {"type": "boolean"},
+        "unapproved_domain": {"type": "boolean"},
+        "validator_failure": {"type": "boolean"},
+        "raw_document_policy_breach": {"type": "boolean"},
+        "relation_inference_outside_scope": {"type": "boolean"},
+        "legal_or_reputational_conclusion": {"type": "boolean"},
+        "task_outside_scope": {"type": "boolean"},
+        "incomplete_coverage": {"type": "boolean"}
+      }
+    }
+  }
+}

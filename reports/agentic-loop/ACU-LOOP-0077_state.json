@@ -1,0 +1,60 @@
+{
+  "loop_id": "ACU-LOOP-0077",
+  "issue_number": 77,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "exception_based_review_gates",
+  "created_at_utc": "2026-05-17T13:35:00+00:00",
+  "updated_at_utc": "2026-05-17T14:05:00+00:00",
+  "allowed_actions": [
+    "Add exception-based review policy documentation",
+    "Add review gate decision schema",
+    "Add review gate decider script",
+    "Add review-gates report directory marker",
+    "Run required validators"
+  ],
+  "prohibited_actions": [
+    "Dataset expansion",
+    "Unapproved source-domain expansion",
+    "Legal or reputational judgement automation"
+  ],
+  "quality_score": 95,
+  "validation": {
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0,
+      "summary": "Validation passed: expected files, JSON parsing, and schema/CSV header alignment are OK."
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0,
+      "summary": "Result: PASSED (367 warning(s))."
+    },
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0,
+      "summary": "Result: PASSED (12 state file(s))."
+    }
+  },
+  "blocking_issues": [],
+  "human_review_required": false,
+  "next_action": "Use scripts/review_gate_decider.py and schemas/agentic-loop/review_gate.schema.json in evaluator workflows to enforce exception-based autonomous continuation gates.",
+  "files_touched": [
+    "docs/agentic-loop/05_exception_based_review_policy.md",
+    "schemas/agentic-loop/review_gate.schema.json",
+    "scripts/review_gate_decider.py",
+    "reports/review-gates/.gitkeep",
+    "docs/executions/ACU-LOOP-0077_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0077_state.json"
+  ],
+  "last_commit": null,
+  "last_pr": null,
+  "notes": [
+    "Default gate behaviour changed to autonomous continuation with confidence and verification metadata.",
+    "Low confidence, homepage_only, not_determinable and needs_human_review are non-blocking unless policy breach exists.",
+    "No golden dataset rows, raw documents, or snapshots were modified."
+  ]
+}
