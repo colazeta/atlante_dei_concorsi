@@ -28,6 +28,13 @@
   <p class="small">This static civic-data view exposes certainty and uncertainty.</p>
   <section class="cards" id="summary"></section>
   <section class="tracker">
+    <h2>Automation status</h2>
+    <p id="automation-status-meta" class="small">Loading automation status…</p>
+    <section class="cards" id="automation-status-cards"></section>
+    <ul id="automation-status-warnings" class="small"></ul>
+    <p id="automation-status-next" class="small"></p>
+  </section>
+  <section class="tracker">
     <h2>Source inventory progress</h2>
     <p id="source-progress-meta" class="small">Loading source inventory progress…</p>
     <section class="cards" id="source-progress-cards"></section>
@@ -129,6 +136,24 @@ function buildGithubIssueBody(rows,scopeLabel){
   ].join('\n');
 }
 
+
+function renderAutomationStatus(status){
+ const meta=document.getElementById('automation-status-meta');
+ const cards=document.getElementById('automation-status-cards');
+ const warnings=document.getElementById('automation-status-warnings');
+ const next=document.getElementById('automation-status-next');
+ if(!status){meta.textContent='Automation status unavailable.';cards.innerHTML='';warnings.innerHTML='';next.textContent='';return;}
+ const freshness=status.freshness_status||'unknown';
+ const freshLabel=freshness==='fresh'?'<span class="ok">fresh</span>':(freshness==='stale'?'<span class="attn">stale</span>':'<span class="uncertain">unknown</span>');
+ meta.innerHTML=`Last status update: ${status.updated_at_utc||'—'} · Freshness: ${freshLabel}`;
+ const c=status.latest_counts||{};
+ const items=[['Last Pages deployment status',status.pages_deploy_status],['Source progress updated',status.source_inventory_last_updated_utc],['Classification updated',status.document_classification_last_updated_utc],['Source freshness (min)',status.source_inventory_freshness_minutes],['Classification freshness (min)',status.document_classification_freshness_minutes],['Expected cadence (min)',status.expected_refresh_cadence_minutes],['Total intake packs',c.total_intake_packs],['Source inventories created',c.source_inventories_created],['Candidate links observed',c.candidate_links_observed],['Document links classified',c.document_links_classified],['Fetch errors',c.source_fetch_errors],['Records needing attention',((c.source_records_needing_attention||0)+(c.classification_records_needing_attention||0))]];
+ cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
+ const ws=status.warnings||[];
+ warnings.innerHTML=ws.length?ws.map(w=>`<li>${w}</li>`).join(''):'<li>No warnings reported by the automation summary.</li>';
+ next.textContent=`Next expected step: ${status.next_expected_step||'—'}`;
+}
+
 function renderSourceInventoryProgress(progress){
  const meta=document.getElementById('source-progress-meta');
  const cards=document.getElementById('source-progress-cards');
@@ -177,7 +202,8 @@ function submitGithubIssue(selectedOnly){
   fallback.select();
   status.textContent=`Prefilled URL was too long for ${scopeLabel} (${rows.length} rows). Copy payload from the fallback box and paste into a new GitHub issue.`;
 }
-Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]})),fetch('./data/source_inventory_progress.json').then(r=>r.json()).catch(()=>null),fetch('./data/document_link_classification_progress.json').then(r=>r.json()).catch(()=>null)]).then(([data,manual,sourceProgress,classificationProgress])=>{
+Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]})),fetch('./data/source_inventory_progress.json').then(r=>r.json()).catch(()=>null),fetch('./data/document_link_classification_progress.json').then(r=>r.json()).catch(()=>null),fetch('./data/automation_status.json').then(r=>r.json()).catch(()=>null)]).then(([data,manual,sourceProgress,classificationProgress,automationStatus])=>{
+ renderAutomationStatus(automationStatus);
  renderSourceInventoryProgress(sourceProgress);
  renderClassificationProgress(classificationProgress);
  state.entries=data.entries;state.filtered=data.entries.slice();
