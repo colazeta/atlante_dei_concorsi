@@ -9,11 +9,11 @@
 
 ## Coverage metrics (issue #61 run)
 
-- universities mapped: 30
-- verified homepage: 30
-- recruitment/concorsi page populated: 26
-- needing human review / homepage-only / not-determinable: 10
+- universities mapped: 80
+- verified homepage: 80
+- recruitment/concorsi page populated: 28
+- needing human review / homepage-only / not-determinable: 61
 
 ## Next action
 
-Proseguire con completamento full-universe tramite lista istituzionale nazionale approvata e controllo umano dei casi incerti.
+Completare la verifica endpoint recruitment sui casi residuali e riconciliare periodicamente contro master-list istituzionale aggiornata.

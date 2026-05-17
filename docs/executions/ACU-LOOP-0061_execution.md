@@ -10,16 +10,15 @@
 
 ## Scope actually executed
 
-- Expanded `data/source-registries/italian-universities/official_university_urls.csv` from bootstrap to a broader subset.
-- Updated methodology and verification notes.
+- Expanded `data/source-registries/italian-universities/official_university_urls.csv` toward broad national coverage.
 - Preserved uncertainty tags for non-determinable recruitment endpoints.
 
 ## Coverage metrics
 
-- universities mapped: 30
-- verified homepage: 30
-- recruitment/concorsi page populated: 26
-- needing human review / homepage-only / not-determinable: 10
+- universities mapped: 80
+- verified homepage: 80
+- recruitment/concorsi page populated: 28
+- needing human review / homepage-only / not-determinable: 61
 
 ## Validation
 

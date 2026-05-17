@@ -4,10 +4,10 @@ Registry governato degli URL ufficiali degli atenei italiani, orientato a intake
 
 ## Current scope
 
-- execution type: controlled URL-registry expansion;
-- rows mapped: **30** universities (expanded subset beyond bootstrap);
+- execution type: controlled URL-registry expansion (issue #61 handoff);
+- rows mapped: **80** universities (esteso verso copertura nazionale);
 - homepage ufficiale valorizzata per tutte le righe;
-- recruitment/concorsi URL valorizzato solo dove determinabile con sufficiente confidenza.
+- recruitment/concorsi URL valorizzato solo dove determinabile con confidenza sufficiente.
 
 ## Required CSV schema
 
@@ -20,4 +20,4 @@ Registry governato degli URL ufficiali degli atenei italiani, orientato a intake
 - Nessuna modifica al golden dataset.
 - Nessun documento raw/snapshot raccolto o committato.
 - Incertezza preservata tramite `verification_status` e `notes`.
-- Copertura ancora parziale rispetto all'universo completo degli atenei riconosciuti; richiede ulteriori run controllate.
+- Residua attività di verifica umana per endpoint recruitment non ancora confermati in modo robusto.
