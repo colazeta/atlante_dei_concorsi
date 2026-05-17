@@ -1,10 +1,10 @@
 {
-  "updated_at_utc": "2026-05-17T19:10:34Z",
-  "universities_with_candidate_links": 0,
-  "total_candidate_links": 0,
-  "total_classified_links": 0,
-  "unknown_links": 0,
-  "links_requiring_attention": 0,
+  "updated_at_utc": "2026-05-17T19:23:51Z",
+  "universities_with_candidate_links": 4,
+  "total_candidate_links": 120,
+  "total_classified_links": 120,
+  "unknown_links": 116,
+  "links_requiring_attention": 120,
   "progress_events": [
     "Built governed document-link classification layer from approved source-inventory candidate-link files."
   ],
@@ -12,11 +12,11 @@
     {
       "university_id": "it-unibo",
       "university_name": "Università di Bologna",
-      "candidate_links_count": 0,
-      "classified_links_count": 0,
-      "unknown_links_count": 0,
-      "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "candidate_links_count": 30,
+      "classified_links_count": 30,
+      "unknown_links_count": 30,
+      "requires_attention_count": 30,
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unina",
@@ -25,25 +25,25 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipd",
       "university_name": "Università degli Studi di Padova",
-      "candidate_links_count": 0,
-      "classified_links_count": 0,
-      "unknown_links_count": 0,
-      "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "candidate_links_count": 30,
+      "classified_links_count": 30,
+      "unknown_links_count": 30,
+      "requires_attention_count": 30,
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipa",
       "university_name": "Università degli Studi di Palermo",
-      "candidate_links_count": 0,
-      "classified_links_count": 0,
-      "unknown_links_count": 0,
-      "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "candidate_links_count": 30,
+      "classified_links_count": 30,
+      "unknown_links_count": 28,
+      "requires_attention_count": 30,
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipi",
@@ -52,7 +52,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimi",
@@ -61,7 +61,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unito",
@@ -70,7 +70,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unirc",
@@ -79,16 +79,16 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unibocconi",
       "university_name": "Università Commerciale Luigi Bocconi",
-      "candidate_links_count": 0,
-      "classified_links_count": 0,
-      "unknown_links_count": 0,
-      "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "candidate_links_count": 30,
+      "classified_links_count": 30,
+      "unknown_links_count": 28,
+      "requires_attention_count": 30,
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-luiss",
@@ -97,7 +97,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unifi",
@@ -106,7 +106,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unisi",
@@ -115,7 +115,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniroma1",
@@ -124,7 +124,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniroma2",
@@ -133,7 +133,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniroma3",
@@ -142,7 +142,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unige",
@@ -151,7 +151,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unica",
@@ -160,7 +160,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unict",
@@ -169,7 +169,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unive",
@@ -178,7 +178,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uninsubria",
@@ -187,7 +187,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unibg",
@@ -196,7 +196,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unibs",
@@ -205,7 +205,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipr",
@@ -214,7 +214,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unibozen",
@@ -223,7 +223,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimore",
@@ -232,7 +232,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniss",
@@ -241,7 +241,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-univaq",
@@ -250,7 +250,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimib",
@@ -259,7 +259,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-polimi",
@@ -268,7 +268,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-polito",
@@ -277,7 +277,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-sns",
@@ -286,7 +286,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniba",
@@ -295,7 +295,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unibas",
@@ -304,7 +304,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unical",
@@ -313,7 +313,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicam",
@@ -322,7 +322,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicas",
@@ -331,7 +331,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unich",
@@ -340,7 +340,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicz",
@@ -349,7 +349,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unife",
@@ -358,7 +358,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unifg",
@@ -367,7 +367,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimc",
@@ -376,7 +376,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unime",
@@ -385,7 +385,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimol",
@@ -394,7 +394,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unior",
@@ -403,7 +403,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniparthenope",
@@ -412,7 +412,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipg",
@@ -421,7 +421,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-univpm",
@@ -430,7 +430,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unirsm",
@@ -439,7 +439,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unisalento",
@@ -448,7 +448,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unisa",
@@ -457,7 +457,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unisannio",
@@ -466,7 +466,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unistrapg",
@@ -475,7 +475,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unistrasi",
@@ -484,7 +484,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unite",
@@ -493,7 +493,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unitn",
@@ -502,7 +502,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-units",
@@ -511,7 +511,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniud",
@@ -520,7 +520,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uniurb",
@@ -529,7 +529,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-univda",
@@ -538,7 +538,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-univr",
@@ -547,7 +547,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unitus",
@@ -556,7 +556,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uinsubria",
@@ -565,7 +565,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipiemonteorientale",
@@ -574,7 +574,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-iusspavia",
@@ -583,7 +583,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-sissa",
@@ -592,7 +592,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-gssi",
@@ -601,7 +601,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-santanna",
@@ -610,7 +610,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-imtlucca",
@@ -619,7 +619,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicamillus",
@@ -628,7 +628,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicatt",
@@ -637,7 +637,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-lumsa",
@@ -646,7 +646,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-iulm",
@@ -655,7 +655,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unisr",
@@ -664,7 +664,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicollegio",
@@ -673,7 +673,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-uninettuno",
@@ -682,7 +682,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimarconi",
@@ -691,7 +691,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unipegaso",
@@ -700,7 +700,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unimercatorum",
@@ -709,7 +709,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unifortunato",
@@ -718,7 +718,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     },
     {
       "university_id": "it-unicusano",
@@ -727,7 +727,7 @@
       "classified_links_count": 0,
       "unknown_links_count": 0,
       "requires_attention_count": 0,
-      "last_updated_utc": "2026-05-17T19:10:34Z"
+      "last_updated_utc": "2026-05-17T19:23:51Z"
     }
   ]
 }
