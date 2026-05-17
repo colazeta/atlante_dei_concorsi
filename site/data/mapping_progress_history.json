@@ -1,0 +1,77 @@
+{
+  "generated_at_utc": "2026-05-17T00:00:00Z",
+  "source_registry_json": "site/data/university_registry.json",
+  "source_missing_csv": "data/source-registries/italian-universities/missing_universities_to_verify.csv",
+  "history": [
+    {
+      "snapshot_date": "2026-01-20",
+      "snapshot_source": "bootstrap_registry",
+      "universities_total": 10,
+      "universities_with_homepage": 10,
+      "universities_with_recruitment_url": 4,
+      "universities_homepage_only": 6,
+      "universities_needs_human_attention": 6,
+      "universities_not_determinable": 0,
+      "competition_sources_total": 0,
+      "competition_sources_classified": 0,
+      "status_label": "partial coverage",
+      "notes": "Bootstrap registry milestone (10 universities mapped)."
+    },
+    {
+      "snapshot_date": "2026-02-10",
+      "snapshot_source": "expanded_subset",
+      "universities_total": 30,
+      "universities_with_homepage": 30,
+      "universities_with_recruitment_url": 12,
+      "universities_homepage_only": 18,
+      "universities_needs_human_attention": 18,
+      "universities_not_determinable": 0,
+      "competition_sources_total": 0,
+      "competition_sources_classified": 0,
+      "status_label": "partial coverage",
+      "notes": "Expanded subset milestone (30 universities mapped)."
+    },
+    {
+      "snapshot_date": "2026-03-18",
+      "snapshot_source": "controlled_registry_expansion",
+      "universities_total": 80,
+      "universities_with_homepage": 80,
+      "universities_with_recruitment_url": 28,
+      "universities_homepage_only": 9,
+      "universities_needs_human_attention": 52,
+      "universities_not_determinable": 1,
+      "competition_sources_total": 0,
+      "competition_sources_classified": 0,
+      "status_label": "needs continuation",
+      "notes": "Controlled registry expansion milestone (80 universities mapped)."
+    },
+    {
+      "snapshot_date": "2026-04-12",
+      "snapshot_source": "coverage_audit",
+      "universities_total": 80,
+      "universities_with_homepage": 80,
+      "universities_with_recruitment_url": 28,
+      "universities_homepage_only": 9,
+      "universities_needs_human_attention": 52,
+      "universities_not_determinable": 1,
+      "competition_sources_total": 0,
+      "competition_sources_classified": 0,
+      "status_label": "coverage audit",
+      "notes": "99 expected / 80 present / 19 missing coverage audit recorded."
+    },
+    {
+      "snapshot_date": "2026-05-17",
+      "snapshot_source": "registry_plus_missing_reconciliation",
+      "universities_total": 80,
+      "universities_with_homepage": 80,
+      "universities_with_recruitment_url": 28,
+      "universities_homepage_only": 9,
+      "universities_needs_human_attention": 52,
+      "universities_not_determinable": 1,
+      "competition_sources_total": 0,
+      "competition_sources_classified": 0,
+      "status_label": "reconciliation backlog",
+      "notes": "80 mapped + missing_universities_to_verify.csv with 19 rows pending verification."
+    }
+  ]
+}
