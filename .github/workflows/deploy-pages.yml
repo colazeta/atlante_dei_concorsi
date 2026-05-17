@@ -11,6 +11,7 @@ on:
       - "site/**"
       - "scripts/build_university_registry_json.py"
       - "scripts/build_mapping_progress_history.py"
+      - "scripts/build_document_link_classification_progress.py"
       - "data/source-registries/italian-universities/official_university_urls.csv"
       - "data/source-registries/italian-universities/missing_universities_to_verify.csv"
 
@@ -50,6 +51,11 @@ jobs:
             python3 scripts/build_source_inventory_progress.py
           else
             echo "scripts/build_source_inventory_progress.py not found; skipping source-inventory progress build."
+          fi
+          if [ -f scripts/build_document_link_classification_progress.py ]; then
+            python3 scripts/build_document_link_classification_progress.py
+          else
+            echo "scripts/build_document_link_classification_progress.py not found; skipping document-link classification progress build."
           fi
 
       - name: Note scheduled-run cadence
