@@ -1,21 +1,52 @@
 {
-  "run_id": "ACU-LOOP-0113",
-  "timestamp_utc": "2026-05-17T00:00:00Z",
-  "issue": 116,
-  "mode": "controlled",
+  "loop_id": "ACU-LOOP-0113",
+  "issue_number": 116,
+  "mode": "controlled_implementation",
   "status": "completed",
-  "summary": "Added bounded approved-source fetch script and populated candidate links for a first batch of 10 universities.",
-  "artifacts": [
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T00:00:00Z",
+  "updated_at_utc": "2026-05-17T00:00:00Z",
+  "allowed_actions": [
+    "Run bounded approved-source fetch from approved inputs",
+    "Update inventory progress and governed execution records",
+    "Run repository validators"
+  ],
+  "prohibited_actions": [
+    "Unbounded crawling or external-domain traversal",
+    "Golden-dataset modifications without explicit authorization",
+    "Raw document/snapshot commits"
+  ],
+  "validation": {
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    },
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    }
+  },
+  "human_review_required": true,
+  "next_action": "Run additional bounded fetch batches and review uncertain links.",
+  "files_touched": [
     "scripts/fetch_approved_source_pages.py",
     "docs/executions/ACU-LOOP-0113_issue-116_fetch-approved-source-pages.md",
     "docs/executions/approved-source-inventories/source_inventory_index.csv",
     "site/data/source_inventory_progress.json",
-    "site/data/document_link_classification_progress.json"
+    "site/data/document_link_classification_progress.json",
+    "reports/agentic-loop/ACU-LOOP-0113_state.json"
   ],
-  "validations": {
-    "validate_atlante_methodology": "passed",
-    "validate_golden_dataset": "passed_with_warnings",
-    "validate_agentic_loop_state": "passed"
-  },
-  "next_action": "Run additional bounded fetch batches and perform human review of uncertain candidate links."
+  "notes": [
+    "Converted legacy state payload into governed schema.",
+    "Preserved conservative bounded-fetch posture and human-review flags."
+  ],
+  "quality_score": 90,
+  "blocking_issues": []
 }

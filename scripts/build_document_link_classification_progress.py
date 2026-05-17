@@ -143,10 +143,13 @@ def main() -> None:
 
     progress = {
         'updated_at_utc': classified_at,
+        'universities_processed': len(by_university),
         'universities_with_candidate_links': sum(1 for x in by_university if x['candidate_links_count'] > 0),
         'total_candidate_links': sum(x['candidate_links_count'] for x in by_university),
         'total_classified_links': sum(x['classified_links_count'] for x in by_university),
         'unknown_links': sum(x['unknown_links_count'] for x in by_university),
+        'depth_1_pages_followed': 0,
+        'fetch_errors': 0,
         'links_requiring_attention': sum(x['requires_attention_count'] for x in by_university),
         'progress_events': ['Built governed document-link classification layer from approved source-inventory candidate-link files.'],
         'by_university': by_university,

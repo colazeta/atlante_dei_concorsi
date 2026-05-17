@@ -10,7 +10,7 @@ OUT=ROOT/'docs/executions/approved-source-inventories'
 SITE=ROOT/'site/data/source_inventory_progress.json'
 INDEX=INTAKE/'source_intake_index.csv'
 
-HDR=["university_id","source_url","link_url","link_text","link_type_hint","same_domain","confidence_level","requires_human_attention","blocking_status","notes","observed_at_utc"]
+HDR=["university_id","source_url","discovery_depth","parent_url","link_url","link_text","link_type_hint","same_domain","keyword_match","confidence_level","requires_human_attention","blocking_status","notes","observed_at_utc"]
 
 
 def extract_url(md:Path,label:str)->str:
