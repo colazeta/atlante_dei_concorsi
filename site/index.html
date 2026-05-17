@@ -33,6 +33,12 @@
     <section class="cards" id="source-progress-cards"></section>
     <table><thead><tr><th>University</th><th>Inventory</th><th>Fetch status</th><th>Candidate links</th><th>Attention</th></tr></thead><tbody id="source-progress-rows"></tbody></table>
   </section>
+  <section class="tracker">
+    <h2>Document link classification progress</h2>
+    <p id="classification-progress-meta" class="small">Loading document-link classification progress…</p>
+    <section class="cards" id="classification-progress-cards"></section>
+    <table><thead><tr><th>University</th><th>Candidate links</th><th>Classified</th><th>Unknown</th><th>Attention</th></tr></thead><tbody id="classification-progress-rows"></tbody></table>
+  </section>
 
   <section class="tracker">
     <h2>Manual confidence review actions</h2>
@@ -133,6 +139,16 @@ function renderSourceInventoryProgress(progress){
  cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
  rows.innerHTML=(progress.by_university||[]).slice(0,50).map(e=>`<tr><td>${e.university_name||e.university_id}</td><td>${e.inventory_exists}</td><td>${e.fetch_status||'—'}</td><td>${e.candidate_links_count||0}</td><td>${e.requires_human_attention==='yes'?'<span class="attn">yes</span>':'no'}</td></tr>`).join('');
 }
+function renderClassificationProgress(progress){
+ const meta=document.getElementById('classification-progress-meta');
+ const cards=document.getElementById('classification-progress-cards');
+ const rows=document.getElementById('classification-progress-rows');
+ if(!progress){meta.textContent='Document-link classification progress unavailable.';return;}
+ meta.textContent=`Last update: ${progress.updated_at_utc||'—'}`;
+ const items=[['Total candidate links',progress.total_candidate_links],['Total classified links',progress.total_classified_links],['Unknown links',progress.unknown_links],['Links requiring attention',progress.links_requiring_attention],['Universities with candidate links',progress.universities_with_candidate_links]];
+ cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
+ rows.innerHTML=(progress.by_university||[]).slice(0,50).map(e=>`<tr><td>${e.university_name||e.university_id}</td><td>${e.candidate_links_count||0}</td><td>${e.classified_links_count||0}</td><td>${e.unknown_links_count||0}</td><td>${(e.requires_attention_count||0)>0?'<span class="attn">yes</span>':'no'}</td></tr>`).join('');
+}
 
 function submitGithubIssue(selectedOnly){
   const rows=buildRows(selectedOnly);
@@ -161,8 +177,9 @@ function submitGithubIssue(selectedOnly){
   fallback.select();
   status.textContent=`Prefilled URL was too long for ${scopeLabel} (${rows.length} rows). Copy payload from the fallback box and paste into a new GitHub issue.`;
 }
-Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]})),fetch('./data/source_inventory_progress.json').then(r=>r.json()).catch(()=>null)]).then(([data,manual,sourceProgress])=>{
+Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]})),fetch('./data/source_inventory_progress.json').then(r=>r.json()).catch(()=>null),fetch('./data/document_link_classification_progress.json').then(r=>r.json()).catch(()=>null)]).then(([data,manual,sourceProgress,classificationProgress])=>{
  renderSourceInventoryProgress(sourceProgress);
+ renderClassificationProgress(classificationProgress);
  state.entries=data.entries;state.filtered=data.entries.slice();
  data.filters.verification_status.forEach(s=>document.getElementById('verification').insertAdjacentHTML('beforeend',`<option>${s}</option>`));
  data.filters.confidence_level.forEach(s=>document.getElementById('confidence').insertAdjacentHTML('beforeend',`<option>${s}</option>`));

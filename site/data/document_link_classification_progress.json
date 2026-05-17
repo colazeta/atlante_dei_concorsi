@@ -1,0 +1,733 @@
+{
+  "updated_at_utc": "2026-05-17T19:10:34Z",
+  "universities_with_candidate_links": 0,
+  "total_candidate_links": 0,
+  "total_classified_links": 0,
+  "unknown_links": 0,
+  "links_requiring_attention": 0,
+  "progress_events": [
+    "Built governed document-link classification layer from approved source-inventory candidate-link files."
+  ],
+  "by_university": [
+    {
+      "university_id": "it-unibo",
+      "university_name": "Università di Bologna",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unina",
+      "university_name": "Università degli Studi di Napoli Federico II",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipd",
+      "university_name": "Università degli Studi di Padova",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipa",
+      "university_name": "Università degli Studi di Palermo",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipi",
+      "university_name": "Università di Pisa",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimi",
+      "university_name": "Università degli Studi di Milano",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unito",
+      "university_name": "Università degli Studi di Torino",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unirc",
+      "university_name": "Università degli Studi Mediterranea di Reggio Calabria",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unibocconi",
+      "university_name": "Università Commerciale Luigi Bocconi",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-luiss",
+      "university_name": "LUISS Guido Carli",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unifi",
+      "university_name": "Università degli Studi di Firenze",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unisi",
+      "university_name": "Università degli Studi di Siena",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniroma1",
+      "university_name": "Sapienza Università di Roma",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniroma2",
+      "university_name": "Università degli Studi di Roma Tor Vergata",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniroma3",
+      "university_name": "Università degli Studi Roma Tre",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unige",
+      "university_name": "Università degli Studi di Genova",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unica",
+      "university_name": "Università degli Studi di Cagliari",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unict",
+      "university_name": "Università degli Studi di Catania",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unive",
+      "university_name": "Università Ca' Foscari Venezia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uninsubria",
+      "university_name": "Università degli Studi dell'Insubria",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unibg",
+      "university_name": "Università degli Studi di Bergamo",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unibs",
+      "university_name": "Università degli Studi di Brescia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipr",
+      "university_name": "Università di Parma",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unibozen",
+      "university_name": "Libera Università di Bolzano",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimore",
+      "university_name": "Università degli Studi di Modena e Reggio Emilia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniss",
+      "university_name": "Università degli Studi di Sassari",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-univaq",
+      "university_name": "Università degli Studi dell'Aquila",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimib",
+      "university_name": "Università degli Studi di Milano-Bicocca",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-polimi",
+      "university_name": "Politecnico di Milano",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-polito",
+      "university_name": "Politecnico di Torino",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-sns",
+      "university_name": "Scuola Normale Superiore",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniba",
+      "university_name": "Università degli Studi di Bari Aldo Moro",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unibas",
+      "university_name": "Università degli Studi della Basilicata",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unical",
+      "university_name": "Università della Calabria",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicam",
+      "university_name": "Università degli Studi di Camerino",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicas",
+      "university_name": "Università degli Studi di Cassino e del Lazio Meridionale",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unich",
+      "university_name": "Università degli Studi G. d'Annunzio Chieti-Pescara",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicz",
+      "university_name": "Università Magna Graecia di Catanzaro",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unife",
+      "university_name": "Università degli Studi di Ferrara",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unifg",
+      "university_name": "Università di Foggia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimc",
+      "university_name": "Università degli Studi di Macerata",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unime",
+      "university_name": "Università degli Studi di Messina",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimol",
+      "university_name": "Università degli Studi del Molise",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unior",
+      "university_name": "Università degli Studi di Napoli L'Orientale",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniparthenope",
+      "university_name": "Università degli Studi di Napoli Parthenope",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipg",
+      "university_name": "Università degli Studi di Perugia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-univpm",
+      "university_name": "Università Politecnica delle Marche",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unirsm",
+      "university_name": "Università degli Studi della Repubblica di San Marino",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unisalento",
+      "university_name": "Università del Salento",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unisa",
+      "university_name": "Università degli Studi di Salerno",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unisannio",
+      "university_name": "Università degli Studi del Sannio",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unistrapg",
+      "university_name": "Università per Stranieri di Perugia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unistrasi",
+      "university_name": "Università per Stranieri di Siena",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unite",
+      "university_name": "Università degli Studi di Teramo",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unitn",
+      "university_name": "Università degli Studi di Trento",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-units",
+      "university_name": "Università degli Studi di Trieste",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniud",
+      "university_name": "Università degli Studi di Udine",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uniurb",
+      "university_name": "Università degli Studi di Urbino Carlo Bo",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-univda",
+      "university_name": "Università della Valle d'Aosta",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-univr",
+      "university_name": "Università degli Studi di Verona",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unitus",
+      "university_name": "Università degli Studi della Tuscia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uinsubria",
+      "university_name": "Università degli Studi dell'Insubria",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipiemonteorientale",
+      "university_name": "Università del Piemonte Orientale",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-iusspavia",
+      "university_name": "IUSS Pavia",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-sissa",
+      "university_name": "SISSA Trieste",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-gssi",
+      "university_name": "Gran Sasso Science Institute",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-santanna",
+      "university_name": "Scuola Superiore Sant'Anna",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-imtlucca",
+      "university_name": "Scuola IMT Alti Studi Lucca",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicamillus",
+      "university_name": "Università UniCamillus",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicatt",
+      "university_name": "Università Cattolica del Sacro Cuore",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-lumsa",
+      "university_name": "LUMSA",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-iulm",
+      "university_name": "Libera Università di Lingue e Comunicazione IULM",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unisr",
+      "university_name": "Università Vita-Salute San Raffaele",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicollegio",
+      "university_name": "Università Campus Bio-Medico di Roma",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-uninettuno",
+      "university_name": "Università Telematica Internazionale UNINETTUNO",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimarconi",
+      "university_name": "Università degli Studi Guglielmo Marconi",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unipegaso",
+      "university_name": "Università Telematica Pegaso",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unimercatorum",
+      "university_name": "Università Telematica Universitas Mercatorum",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unifortunato",
+      "university_name": "Università Giustino Fortunato",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    },
+    {
+      "university_id": "it-unicusano",
+      "university_name": "Università Niccolò Cusano",
+      "candidate_links_count": 0,
+      "classified_links_count": 0,
+      "unknown_links_count": 0,
+      "requires_attention_count": 0,
+      "last_updated_utc": "2026-05-17T19:10:34Z"
+    }
+  ]
+}

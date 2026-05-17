@@ -1,0 +1,45 @@
+{
+  "loop_id": "ACU-LOOP-0112",
+  "issue_number": 112,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T19:20:00+00:00",
+  "updated_at_utc": "2026-05-17T19:20:00+00:00",
+  "allowed_actions": [
+    "Build neutral document-link classification infrastructure from approved source inventories",
+    "Update static UX progress display and governed execution/state documentation",
+    "Run required repository validators"
+  ],
+  "prohibited_actions": [
+    "Modify golden dataset rows without explicit authorization",
+    "Download or commit raw documents/snapshots",
+    "Infer relations or publish legal/reputational conclusions"
+  ],
+  "validation": {
+    "methodology": {"status": "passed", "command": "python3 scripts/validate_atlante_methodology.py", "return_code": 0},
+    "golden_dataset": {"status": "passed", "command": "python3 scripts/validate_golden_dataset.py", "return_code": 0},
+    "state_schema": {"status": "passed", "command": "python3 scripts/validate_agentic_loop_state.py", "return_code": 0}
+  },
+  "human_review_required": true,
+  "next_action": "Open draft PR for maintainer review of classification rules and UX copy before any substantive link-population run.",
+  "files_touched": [
+    "scripts/build_document_link_classification_progress.py",
+    "docs/executions/document-link-classification/README.md",
+    "docs/executions/document-link-classification/document_link_classification_index.csv",
+    "docs/executions/document-link-classification/classification_rules.md",
+    "docs/executions/document-link-classification/classification_progress.md",
+    "docs/executions/document-link-classification/handoff.md",
+    "site/data/document_link_classification_progress.json",
+    "site/index.html",
+    "docs/executions/ACU-LOOP-0112_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0112_state.json"
+  ],
+  "notes": [
+    "All current candidate-link CSV files were empty; infrastructure and zero-state aggregation were generated without fabricating links.",
+    "Unknown/low-confidence handling remains non-blocking and attention-preserving by rule.",
+    "No golden-dataset files or raw documents were modified."
+  ],
+  "quality_score": 96,
+  "blocking_issues": []
+}
