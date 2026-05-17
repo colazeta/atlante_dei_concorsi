@@ -1,0 +1,49 @@
+{
+  "loop_id": "ACU-LOOP-0079",
+  "issue_number": 79,
+  "mode": "controlled_implementation",
+  "status": "blocked",
+  "phase": "intake",
+  "created_at_utc": "2026-05-17T15:05:00+00:00",
+  "updated_at_utc": "2026-05-17T15:05:00+00:00",
+  "allowed_actions": [
+    "Read issue scope and comments",
+    "Implement approved UX-only mapping progress tracker",
+    "Run required validators"
+  ],
+  "prohibited_actions": [
+    "Golden dataset modification without explicit authorization",
+    "Raw document/snapshot commits",
+    "Unapproved scope expansion beyond issue text"
+  ],
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "blocking_issues": [
+    "Issue body/comments are inaccessible from this runtime (GitHub API returns 404 for private issue #79), so requested full scope cannot be read and validated before edits."
+  ],
+  "human_review_required": true,
+  "next_action": "Post blocker on issue #79 requesting access to full issue body/comments (or pasted scope), then resume implementation.",
+  "files_touched": [
+    "docs/executions/ACU-LOOP-0079_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0079_state.json"
+  ],
+  "notes": [
+    "Stopped before product changes to comply with governance and avoid guessing missing requirements."
+  ],
+  "quality_score": 70
+}
