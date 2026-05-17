@@ -1,42 +1,21 @@
 {
   "dispatcher_id": "ACU-DISPATCHER-0001",
   "mode": "controlled",
-  "status": "selected",
-  "created_at_utc": "2026-05-17T16:02:31+00:00",
-  "updated_at_utc": "2026-05-17T16:02:31+00:00",
+  "status": "idle",
+  "created_at_utc": "2026-05-17T16:11:51+00:00",
+  "updated_at_utc": "2026-05-17T16:11:51+00:00",
   "eligible_label": "agent-ready",
-  "selected_issue": {
-    "number": 101,
-    "title": "Fix UX display of manual verification decisions and homepage URLs",
-    "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/101",
-    "labels": [
-      "enhancement",
-      "governance",
-      "agent-ready",
-      "ux"
-    ]
-  },
-  "handoff_prompt": "Execute GitHub issue #101 in `colazeta/atlante_dei_concorsi`: Fix UX display of manual verification decisions and homepage URLs\n\nOperational instructions:\n\n1. Read the full issue body and all comments before editing files.\n2. Follow `AGENTS.md` and all repository governance rules.\n3. Create a dedicated branch from `main`.\n4. Implement only the scope requested by the issue.\n5. Preserve uncertainty, caveats, source references and review notes.\n6. Do not modify the golden dataset unless the issue explicitly authorises it.\n7. Do not commit raw documents or snapshots unless policy explicitly allows it.\n8. Run the relevant validators:\n   - `python3 scripts/validate_atlante_methodology.py`\n   - `python3 scripts/validate_golden_dataset.py`\n   - `python3 scripts/validate_agentic_loop_state.py`\n9. Open a draft PR when done.\n10. In the PR body, report scope, files changed, validation results, blockers and next action.\n11. If blocked, do not guess. Comment on the issue with the blocker and stop.\n",
+  "selected_issue": null,
+  "handoff_prompt": null,
   "blocking_issues": [],
-  "next_action": "Issue moved to agent-running. Start Codex/agent execution using the generated handoff prompt.",
-  "candidate_count": 1,
+  "next_action": "No open issue with label `agent-ready` found. Add `agent-ready` to an approved issue.",
+  "candidate_count": 0,
   "label_mutation": {
     "requested": true,
-    "added": [
-      "agent-running"
-    ],
-    "removed": [
-      "agent-ready"
-    ],
-    "ensured_labels": {
-      "agent-ready": "exists",
-      "agent-running": "exists",
-      "agent-review": "exists",
-      "agent-blocked": "exists",
-      "agent-done": "exists",
-      "agent-needs-human": "exists"
-    },
-    "status": "completed"
+    "status": "not_requested",
+    "added": [],
+    "removed": [],
+    "ensured_labels": {}
   },
   "notes": [
     "Dispatcher does not execute Codex directly in this phase.",
