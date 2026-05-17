@@ -13,6 +13,9 @@
     .card { background:var(--card); border-left:4px solid var(--accent); padding:.7rem .8rem; border-radius:.4rem; box-shadow:0 1px 2px rgba(0,0,0,.08); }
     .card .n { font-size:1.5rem; font-weight:700; }
     .filters { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:.6rem; margin:1rem 0; }
+    .tracker { margin:1rem 0; background:#fff; border:1px solid #dbe3eb; padding:.9rem; border-radius:.4rem; }
+    .timeline { margin: .7rem 0; padding-left:1rem; }
+    .timeline li { margin-bottom:.45rem; }
     label { font-size:.9rem; color:var(--muted); display:block; }
     input,select { width:100%; padding:.45rem; margin-top:.2rem; border:1px solid #cbd5e1; border-radius:.35rem; background:#fff; }
     table { width:100%; border-collapse:collapse; background:#fff; }
@@ -32,6 +35,18 @@
   <p class="small">This static civic-data view exposes certainty and uncertainty: low-confidence, needs_human_review, and not_determinable records are always visible unless explicitly filtered.</p>
   <section class="cards" id="summary"></section>
 
+  <section class="tracker" id="mapping-tracker">
+    <h2>Mapping progress over time</h2>
+    <p class="small">Progress is presented as controlled milestones. This does not indicate full completion until the whole expected universe is reconciled.</p>
+    <section class="cards" id="tracker-cards"></section>
+    <h3>Timeline (step chart)</h3>
+    <ol class="timeline" id="timeline"></ol>
+    <h3>Progress events</h3>
+    <ul id="progress-events"></ul>
+    <h3>Future public competition/procedure source mapping</h3>
+    <p id="competition-placeholder" class="small">No competition/procedure source history published yet.</p>
+  </section>
+
   <section class="filters">
     <div><label>Search by university name<input id="search" type="search" placeholder="Search name" /></label></div>
     <div><label>Verification status<select id="verification"><option value="">All</option></select></label></div>
@@ -50,37 +65,29 @@
   </section>
 </main>
 <script>
-const cards=[
-  ['total_universities_mapped','Total universities mapped'],['with_verified_homepage','With verified homepage'],['with_recruitment_url','With recruitment / concorsi URL'],['homepage_only','Homepage-only'],['needing_attention','Needing attention'],['not_determinable','Not determinable']
-];
+const cards=[['total_universities_mapped','Total universities mapped'],['with_verified_homepage','With verified homepage'],['with_recruitment_url','With recruitment / concorsi URL'],['homepage_only','Homepage-only'],['needing_attention','Needing attention'],['not_determinable','Not determinable']];
 const state={entries:[],filtered:[]};
 const fmt=(u)=>u?`<a href="${u}" target="_blank" rel="noopener">${u}</a>`:'—';
 function badge(s){if(s==='verified')return `<span class="tag ok">${s}</span>`;if(s==='needs_human_review'||s==='not_determinable')return `<span class="tag uncertain">${s}</span>`;return `<span class="tag">${s||'—'}</span>`}
 function renderSummary(summary){document.getElementById('summary').innerHTML=cards.map(([k,l])=>`<div class="card"><div class="n">${summary[k]??0}</div><div>${l}</div></div>`).join('')}
-function renderRows(){
-  const t=document.getElementById('rows');
-  t.innerHTML=state.filtered.map(e=>`<tr>
-    <td>${e.university_name}</td><td>${e.university_type||'—'}</td><td>${fmt(e.official_homepage_url)}</td>
-    <td>${fmt(e.recruitment_page_url)}</td><td>${badge(e.confidence_level)}</td><td>${badge(e.verification_status)}</td>
-    <td>${e.notes||'—'}</td><td>${e.needs_attention?'<span class="attn">Needs attention</span>':'—'}</td></tr>`).join('');
+function renderTracker(historyData){
+  const current=historyData.history[historyData.history.length-1];
+  const missing=Math.max(0,99-current.universities_total);
+  document.getElementById('tracker-cards').innerHTML=[
+    ['Current mapped universities',current.universities_total],
+    ['Current recruitment / concorsi URLs',current.universities_with_recruitment_url],
+    ['Current missing / backlog',missing],
+    ['Current status label',current.status_label]
+  ].map(([l,n])=>`<div class="card"><div class="n">${n}</div><div>${l}</div></div>`).join('');
+  document.getElementById('timeline').innerHTML=historyData.history.map(h=>`<li><strong>${h.snapshot_date}</strong> — ${h.status_label} (${h.universities_total} mapped; ${h.universities_with_recruitment_url} recruitment URLs)</li>`).join('');
+  document.getElementById('progress-events').innerHTML=historyData.history.map(h=>`<li>${h.snapshot_date}: ${h.notes}</li>`).join('');
+  const comp=historyData.history[historyData.history.length-1];
+  document.getElementById('competition-placeholder').textContent=`Competition source classification progress: ${comp.competition_sources_classified}/${comp.competition_sources_total}.`;
 }
-function applyFilters(){
-  const q=document.getElementById('search').value.toLowerCase().trim();
-  const v=document.getElementById('verification').value;
-  const c=document.getElementById('confidence').value;
-  const r=document.getElementById('recruitment').value;
-  state.filtered=state.entries.filter(e=>{
-    if(q && !e.university_name.toLowerCase().includes(q)) return false;
-    if(v && e.verification_status!==v) return false;
-    if(c && e.confidence_level!==c) return false;
-    if(r==='with' && !e.has_recruitment_url) return false;
-    if(r==='without' && e.has_recruitment_url) return false;
-    return true;
-  });
-  renderRows();
-}
-fetch('./data/university_registry.json').then(r=>r.json()).then(data=>{
-  renderSummary(data.summary); state.entries=data.entries; state.filtered=data.entries.slice();
+function renderRows(){const t=document.getElementById('rows');t.innerHTML=state.filtered.map(e=>`<tr><td>${e.university_name}</td><td>${e.university_type||'—'}</td><td>${fmt(e.official_homepage_url)}</td><td>${fmt(e.recruitment_page_url)}</td><td>${badge(e.confidence_level)}</td><td>${badge(e.verification_status)}</td><td>${e.notes||'—'}</td><td>${e.needs_attention?'<span class="attn">Needs attention</span>':'—'}</td></tr>`).join('');}
+function applyFilters(){const q=document.getElementById('search').value.toLowerCase().trim();const v=document.getElementById('verification').value;const c=document.getElementById('confidence').value;const r=document.getElementById('recruitment').value;state.filtered=state.entries.filter(e=>{if(q&&!e.university_name.toLowerCase().includes(q))return false;if(v&&e.verification_status!==v)return false;if(c&&e.confidence_level!==c)return false;if(r==='with'&&!e.has_recruitment_url)return false;if(r==='without'&&e.has_recruitment_url)return false;return true;});renderRows();}
+Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/mapping_progress_history.json').then(r=>r.json())]).then(([data,history])=>{
+  renderSummary(data.summary);renderTracker(history);state.entries=data.entries;state.filtered=data.entries.slice();
   const v=document.getElementById('verification'); data.filters.verification_status.forEach(s=>v.insertAdjacentHTML('beforeend',`<option>${s}</option>`));
   const c=document.getElementById('confidence'); data.filters.confidence_level.forEach(s=>c.insertAdjacentHTML('beforeend',`<option>${s}</option>`));
   ['search','verification','confidence','recruitment'].forEach(id=>document.getElementById(id).addEventListener('input',applyFilters));
