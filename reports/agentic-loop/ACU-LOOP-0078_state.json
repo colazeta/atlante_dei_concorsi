@@ -1,0 +1,52 @@
+{
+  "loop_id": "ACU-LOOP-0078",
+  "issue_number": 78,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T13:56:56+00:00",
+  "updated_at_utc": "2026-05-17T14:10:00+00:00",
+  "allowed_actions": [
+    "Build static UX for mapped universities",
+    "Generate deterministic registry JSON from approved CSV",
+    "Run required validators"
+  ],
+  "prohibited_actions": [
+    "Golden dataset modification",
+    "Raw document modification",
+    "Risk scoring or wrongdoing inference"
+  ],
+  "quality_score": 91,
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "blocking_issues": [],
+  "human_review_required": true,
+  "next_action": "Review and merge the static UX, then wire in competition/procedure source inventory once available.",
+  "files_touched": [
+    "scripts/build_university_registry_json.py",
+    "site/data/university_registry.json",
+    "site/index.html",
+    "site/README.md",
+    "docs/executions/ACU-LOOP-0078_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0078_state.json"
+  ],
+  "notes": [
+    "Uncertainty fields remain visible in UI and are never hidden by default.",
+    "Implementation is static and local-first by design."
+  ]
+}
