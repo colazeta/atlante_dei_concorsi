@@ -1,0 +1,234 @@
+{
+  "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+  "status": "completed",
+  "created_at_utc": "2026-05-17T14:16:37+00:00",
+  "updated_at_utc": "2026-05-17T14:16:37+00:00",
+  "repo": "colazeta/atlante_dei_concorsi",
+  "scanned_issue_count": 4,
+  "scanned_issue_numbers": [
+    79,
+    78,
+    72,
+    70
+  ],
+  "continuation_needed_count": 2,
+  "evaluations": [
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T14:16:34+00:00",
+      "updated_at_utc": "2026-05-17T14:16:34+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 79,
+        "title": "Add mapping progress time-tracker to UX",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/79",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T14:09:24Z",
+        "last_comment_updated_at": "2026-05-17T14:09:24Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "continuation_needed",
+        "next_label": null,
+        "rationale": [
+          "Expected quality score 99 is above current 70.",
+          "Continuation prompt generated; do not advance to agent-review yet."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": true,
+      "continuation": {
+        "issue_number": 79,
+        "created_at_utc": "2026-05-17T14:16:34+00:00",
+        "continuation_needed": true,
+        "expected_quality_score": 99,
+        "current_quality_score": 70,
+        "delta": 29,
+        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0079_state.json",
+        "continuation_prompt": "Issue #79 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 70\n- Delta: 29\n- Loop status: blocked\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Post blocker on issue #79 requesting access to full issue body/comments (or pasted scope), then resume implementation.",
+        "queue_path": "reports/codex-handoff-queue/79_continuation.json"
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "skipped_continuation_needed"
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T14:16:35+00:00",
+      "updated_at_utc": "2026-05-17T14:16:35+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 78,
+        "title": "Create lightweight public/admin UX for mapped universities and competitions",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/78",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T13:53:58Z",
+        "last_comment_updated_at": "2026-05-17T13:53:58Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "continuation_needed",
+        "next_label": null,
+        "rationale": [
+          "Expected quality score 99 is above current 91.",
+          "Continuation prompt generated; do not advance to agent-review yet."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": true,
+      "continuation": {
+        "issue_number": 78,
+        "created_at_utc": "2026-05-17T14:16:35+00:00",
+        "continuation_needed": true,
+        "expected_quality_score": 99,
+        "current_quality_score": 91,
+        "delta": 8,
+        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0078_state.json",
+        "continuation_prompt": "Issue #78 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 91\n- Delta: 8\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Review and merge the static UX, then wire in competition/procedure source inventory once available.",
+        "queue_path": "reports/codex-handoff-queue/78_continuation.json"
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "skipped_continuation_needed"
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T14:16:35+00:00",
+      "updated_at_utc": "2026-05-17T14:16:35+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 72,
+        "title": "Increase autonomy with scheduled dispatcher and continuation evaluator",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/72",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T11:52:42Z",
+        "last_comment_updated_at": "2026-05-17T11:52:42Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "set_blocked",
+        "next_label": "agent-blocked",
+        "rationale": [
+          "Latest comment contains blocker language."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": false,
+      "continuation": {
+        "continuation_needed": false,
+        "reason": "No local loop state found for this issue."
+      },
+      "label_mutation": {
+        "status": "completed",
+        "added": [
+          "agent-blocked"
+        ],
+        "removed": [
+          "agent-running"
+        ]
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T14:16:37+00:00",
+      "updated_at_utc": "2026-05-17T14:16:37+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 70,
+        "title": "Add post-run evaluator for agent output completion",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/70",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T11:42:18Z",
+        "last_comment_updated_at": "2026-05-17T11:42:17Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": true
+      },
+      "recommendation": {
+        "action": "manual_review",
+        "next_label": null,
+        "rationale": [
+          "Stale-state safeguards triggered; label transition requires human review."
+        ]
+      },
+      "warnings": [
+        "Issue has newer activity after the latest comment; completion signal may be stale."
+      ],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": false,
+      "continuation": {
+        "continuation_needed": false,
+        "reason": "No local loop state found for this issue."
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "not_requested"
+      }
+    }
+  ]
+}
