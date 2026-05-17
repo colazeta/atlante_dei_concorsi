@@ -2,23 +2,22 @@
 
 ## Objective
 
-Espandere la registry degli URL ufficiali degli atenei italiani oltre il bootstrap subset, usando fonti istituzionali/autorevoli.
+Riconciliare l'universo atteso degli atenei riconosciuti (99) con la registry locale, senza introdurre URL non verificati.
+
+## Authoritative universe source
+
+Perimetro istituzionale MUR (categorie: università statali, non statali legalmente riconosciute, telematiche, scuole superiori a ordinamento speciale), usato come fonte di universo atteso.
 
 ## Method
 
-1. Partenza dal bootstrap subset già presente nel repository.
-2. Espansione con ulteriori atenei su domini ufficiali universitari (`.it` istituzionali).
-3. Uso della homepage ufficiale come ancoraggio minimo verificabile per ogni ateneo.
-4. Inserimento di `recruitment_page_url` solo quando la sezione concorsi/lavora-con-noi è chiaramente identificabile.
-5. Quando il percorso non è sufficientemente determinabile: URL vuoto o classificazione `homepage_only` / `needs_human_review` / `not_determinable`.
+1. Verifica del totale atteso (99) rispetto alle righe già presenti nel CSV principale (80).
+2. Produzione di riconciliazione **row-level** per il delta (19 istituzioni).
+3. Per ciascuna istituzione mancante: valorizzazione homepage ufficiale quando determinabile da dominio istituzionale.
+4. Lasciare `recruitment_page_url` vuoto quando non determinabile con confidenza robusta.
+5. Uso di stati non bloccanti (`homepage_only`, `needs_human_review`, `not_determinable`) per preservare l'incertezza.
+6. Nessun cambiamento a golden dataset o raccolta raw.
 
-## Safeguards
+## Output policy
 
-- Nessuna invenzione di URL.
-- Nessuna raccolta di dati personali, commissioni, relazioni o esiti.
-- Nessuna modifica a tassonomie o golden dataset.
-- Tracciabilità tramite `source_url`, `retrieval_date`, `notes`.
-
-## Limitation
-
-Copertura estesa ma non ancora completa dell'universo nazionale; completamento richiede lista master istituzionale e verifiche manuali iterative.
+- Se la verifica piena è disponibile: aggiornare `official_university_urls.csv`.
+- Se la verifica piena non è completa: usare `missing_universities_to_verify.csv` con una riga per istituzione mancante (fallback adottato in questo pass).
