@@ -7,10 +7,13 @@ on:
       - "docs/agentic-loop/**"
       - "docs/executions/**"
       - "reports/agentic-loop/**"
+      - "reports/agentic-dispatcher/**"
       - "schemas/agentic-loop/**"
       - "scripts/agentic_loop.py"
+      - "scripts/agentic_dispatcher.py"
       - "scripts/validate_agentic_loop_state.py"
       - ".github/workflows/agentic-loop.yml"
+      - ".github/workflows/agentic-dispatcher.yml"
       - ".github/workflows/validate-agentic-loop.yml"
       - "scripts/validate_atlante_methodology.py"
       - "scripts/validate_golden_dataset.py"
@@ -27,6 +30,7 @@ env:
 
 permissions:
   contents: read
+  issues: read
 
 jobs:
   validate:
@@ -107,3 +111,13 @@ jobs:
             --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
             --skip-validators
           python scripts/validate_agentic_loop_state.py
+
+      - name: Dispatcher dry-run smoke test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/agentic_dispatcher.py \
+            --repo "${{ github.repository }}" \
+            --mode dry_run \
+            --label agent-ready
+          test -f reports/agentic-dispatcher/dispatcher_state.json
