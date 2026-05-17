@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-05-17T20:03:24Z",
+  "updated_at_utc": "2026-05-17T20:21:59Z",
   "total_intake_packs": 80,
   "inventories_created": 80,
   "inventories_pending": 80,
@@ -9,8 +9,17 @@
   "fetch_errors": 0,
   "candidate_links_total": 0,
   "progress_events": [
-    "Scaffolded approved source inventories from intake packs without broad crawling or raw downloads."
+    "Rebuilt source-inventory rollup from approved-source inventory index."
   ],
+  "run_mode": "bounded_approved_source_fetch",
+  "universities_selected": 0,
+  "universities_fetched": 0,
+  "seed_urls_attempted": 0,
+  "depth_1_pages_followed": 0,
+  "candidate_links_found": 0,
+  "output_files_changed": 2,
+  "run_status": "skipped_no_eligible_urls",
+  "no_progress_reason": "No approved recruitment/homepage URL was eligible in the selected batch.",
   "by_university": [
     {
       "university_id": "it-unibo",
@@ -20,7 +29,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -33,7 +42,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -46,7 +55,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -59,7 +68,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -72,7 +81,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -85,7 +94,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -98,7 +107,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -111,7 +120,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -124,7 +133,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -137,7 +146,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -150,7 +159,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -163,7 +172,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -176,7 +185,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -189,7 +198,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -202,7 +211,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -215,7 +224,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -228,7 +237,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -241,7 +250,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -254,7 +263,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -267,7 +276,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -280,7 +289,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -293,7 +302,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -306,7 +315,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -319,7 +328,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -332,7 +341,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -345,7 +354,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -358,7 +367,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -371,7 +380,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -384,7 +393,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -397,7 +406,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -410,7 +419,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -423,7 +432,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -436,7 +445,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -449,7 +458,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -462,7 +471,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -475,7 +484,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -488,7 +497,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -501,7 +510,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -514,7 +523,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -527,7 +536,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -540,7 +549,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -553,7 +562,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -566,7 +575,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -579,7 +588,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -592,7 +601,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -605,7 +614,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -618,7 +627,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -631,7 +640,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -644,7 +653,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -657,7 +666,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -670,7 +679,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -683,7 +692,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -696,7 +705,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -709,7 +718,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -722,7 +731,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -735,7 +744,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -748,7 +757,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -761,7 +770,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -774,7 +783,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -787,7 +796,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -800,7 +809,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -813,7 +822,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -826,7 +835,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -839,7 +848,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -852,7 +861,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -865,7 +874,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -878,7 +887,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -891,7 +900,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -904,7 +913,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -917,7 +926,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -930,7 +939,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -943,7 +952,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -956,7 +965,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -969,7 +978,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -982,7 +991,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -995,7 +1004,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -1008,7 +1017,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -1021,7 +1030,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -1034,7 +1043,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
@@ -1047,7 +1056,7 @@
       "homepage_url": "",
       "recruitment_url": "",
       "fetch_status": "pending_fetch",
-      "candidate_links_count": "0",
+      "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "awaiting_bounded_fetch",
       "last_updated_utc": "2026-05-17T20:03:24Z"
