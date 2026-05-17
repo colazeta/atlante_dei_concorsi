@@ -1,12 +1,11 @@
 # Document expectations
 
-Attesi documenti ufficiali pubblicati su dominio istituzionale:
+Expected future document categories (no collection in this step):
 
-- Bandi e avvisi relativi a procedure concorsuali accademiche.
-- Pagine indice o archivi di concorsi per personale docente/ricercatore.
-- Eventuali decreti/verbali pubblicati nella sezione trasparenza (solo metadati in questa fase).
-
-## Non incluso in questa fase
-- Download o archiviazione di PDF/atti.
-- Estrazione di dati personali o valutazioni su soggetti.
-- Inferenzioni su conflitti/interessi o giudizi legali.
+- call_notice
+- committee_appointment
+- evaluation_criteria
+- admission_or_candidate_list
+- final_acts_approval
+- other_official_document
+- unknown

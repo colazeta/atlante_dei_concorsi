@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unibocconi
 
-- **University ID**: `it-unibocconi`
-- **University name**: Università Commerciale Luigi Bocconi
-- **Type**: private
-- **Official homepage**: https://www.unibocconi.it/
-- **Recruitment page**: https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unibocconi.it/`
+- recruitment_page_url: `https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi`
+- source_url: `https://www.unibocconi.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official recruitment/concorsi page identified.`

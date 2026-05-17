@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-sns
 
-- **University ID**: `it-sns`
-- **University name**: Scuola Normale Superiore
-- **Type**: public
-- **Official homepage**: https://www.sns.it/
-- **Recruitment page**: https://www.sns.it/it/bandi-e-concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.sns.it/`
+- recruitment_page_url: `https://www.sns.it/it/bandi-e-concorsi`
+- source_url: `https://www.sns.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official bandi/concorsi page identified.`

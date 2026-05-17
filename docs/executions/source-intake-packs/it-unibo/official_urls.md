@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unibo
 
-- **University ID**: `it-unibo`
-- **University name**: Università di Bologna
-- **Type**: public
-- **Official homepage**: https://www.unibo.it/
-- **Recruitment page**: https://www.unibo.it/it/ateneo/lavora-con-noi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unibo.it/`
+- recruitment_page_url: `https://www.unibo.it/it/ateneo/lavora-con-noi`
+- source_url: `https://www.unibo.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Homepage and recruitment hub identified on official domain.`

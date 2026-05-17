@@ -1,10 +1,10 @@
-# Intake pack — Politecnico di Milano
+# Source intake pack — it-polimi
 
-Questo pacchetto documenta l'intake manuale delle fonti ufficiali per `it-polimi`.
+- university_id: `it-polimi`
+- university_name: `Politecnico di Milano`
+- university_type: `public`
+- automated verification status: `verified`
+- manual decision status: `accepted`
+- intake status: `ready_for_source_inventory`
+- recruitment/concorsi URL present: `true`
 
-## Scope
-- Solo fonti istituzionali ufficiali già identificate nei registry.
-- Nessun download PDF in questa fase.
-- Nessuno scraping ampio o crawling massivo.
-- Nessun dato su candidati/commissioni.
-- Nessuna modifica al golden dataset.

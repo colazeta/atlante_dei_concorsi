@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unipr
 
-- **University ID**: `it-unipr`
-- **University name**: Università di Parma
-- **Type**: public
-- **Official homepage**: https://www.unipr.it/
-- **Recruitment page**: https://www.unipr.it/concorsi-e-mobilita
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unipr.it/`
+- recruitment_page_url: `https://www.unipr.it/concorsi-e-mobilita`
+- source_url: `https://www.unipr.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi/mobilità page identified.`

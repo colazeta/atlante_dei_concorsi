@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unina
 
-- **University ID**: `it-unina`
-- **University name**: Università degli Studi di Napoli Federico II
-- **Type**: public
-- **Official homepage**: https://www.unina.it/
-- **Recruitment page**: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unina.it/`
+- recruitment_page_url: `https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore`
+- source_url: `https://www.unina.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi page for personale docente/ricercatore identified.`

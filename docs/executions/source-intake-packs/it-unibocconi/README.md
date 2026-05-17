@@ -1,10 +1,10 @@
-# Intake pack — Università Commerciale Luigi Bocconi
+# Source intake pack — it-unibocconi
 
-Questo pacchetto documenta l'intake manuale delle fonti ufficiali per `it-unibocconi`.
+- university_id: `it-unibocconi`
+- university_name: `Università Commerciale Luigi Bocconi`
+- university_type: `private`
+- automated verification status: `verified`
+- manual decision status: `accepted`
+- intake status: `ready_for_source_inventory`
+- recruitment/concorsi URL present: `true`
 
-## Scope
-- Solo fonti istituzionali ufficiali già identificate nei registry.
-- Nessun download PDF in questa fase.
-- Nessuno scraping ampio o crawling massivo.
-- Nessun dato su candidati/commissioni.
-- Nessuna modifica al golden dataset.

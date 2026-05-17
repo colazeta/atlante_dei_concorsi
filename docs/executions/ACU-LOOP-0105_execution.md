@@ -1,0 +1,28 @@
+# ACU-LOOP-0105 — Issue #105 source-intake pack generation
+
+## Scope
+Generate governed source-intake packs from the university registry without scraping, downloads, or golden-dataset changes.
+
+## Inputs used
+- `data/source-registries/italian-universities/official_university_urls.csv`
+- `data/source-registries/italian-universities/missing_universities_to_verify.csv`
+- `data/source-registries/italian-universities/manual_review_decisions.csv`
+
+## Actions performed
+- Generated one intake pack per eligible registry university (official homepage present) under `docs/executions/source-intake-packs/{university_id}/`.
+- Generated aggregate outputs:
+  - `docs/executions/source-intake-packs/README.md`
+  - `docs/executions/source-intake-packs/source_intake_index.csv`
+  - `docs/executions/source-intake-packs/verification_backlog.md`
+- Carried uncertainty into `source_risk_notes.md` with non-blocking flags for missing/uncertain recruitment URL data.
+
+## Validation
+- `python3 scripts/validate_atlante_methodology.py` → passed.
+- `python3 scripts/validate_golden_dataset.py` → passed with existing non-blocking warnings.
+- `python3 scripts/validate_agentic_loop_state.py` → failed due to pre-existing schema issues in `reports/agentic-loop/ACU-LOOP-0099_state.json`.
+
+## Blockers
+- Repository has a pre-existing agentic-loop state schema failure in `ACU-LOOP-0099_state.json` unrelated to this issue; this blocks full green validation for the state validator.
+
+## Next action
+Open draft PR for human review; decide whether to repair legacy `ACU-LOOP-0099_state.json` in a separate remediation issue/PR.

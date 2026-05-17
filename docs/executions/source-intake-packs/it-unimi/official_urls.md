@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unimi
 
-- **University ID**: `it-unimi`
-- **University name**: Università degli Studi di Milano
-- **Type**: public
-- **Official homepage**: https://www.unimi.it/
-- **Recruitment page**: https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unimi.it/`
+- recruitment_page_url: `https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori`
+- source_url: `https://www.unimi.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official recruitment page for professors/researchers identified.`

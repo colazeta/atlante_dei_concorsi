@@ -1,10 +1,10 @@
-# Intake pack — Libera Università di Bolzano
+# Source intake pack — it-unibozen
 
-Questo pacchetto documenta l'intake manuale delle fonti ufficiali per `it-unibozen`.
+- university_id: `it-unibozen`
+- university_name: `Libera Università di Bolzano`
+- university_type: `private`
+- automated verification status: `verified`
+- manual decision status: `accepted`
+- intake status: `ready_for_source_inventory`
+- recruitment/concorsi URL present: `true`
 
-## Scope
-- Solo fonti istituzionali ufficiali già identificate nei registry.
-- Nessun download PDF in questa fase.
-- Nessuno scraping ampio o crawling massivo.
-- Nessun dato su candidati/commissioni.
-- Nessuna modifica al golden dataset.

@@ -1,10 +1,10 @@
-# Intake pack — Università degli Studi dell'Insubria
+# Source intake pack — it-uninsubria
 
-Questo pacchetto documenta l'intake manuale delle fonti ufficiali per `it-uninsubria`.
+- university_id: `it-uninsubria`
+- university_name: `Università degli Studi dell'Insubria`
+- university_type: `public`
+- automated verification status: `verified`
+- manual decision status: `accepted`
+- intake status: `ready_for_source_inventory`
+- recruitment/concorsi URL present: `true`
 
-## Scope
-- Solo fonti istituzionali ufficiali già identificate nei registry.
-- Nessun download PDF in questa fase.
-- Nessuno scraping ampio o crawling massivo.
-- Nessun dato su candidati/commissioni.
-- Nessuna modifica al golden dataset.

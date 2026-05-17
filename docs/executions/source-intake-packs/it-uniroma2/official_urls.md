@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-uniroma2
 
-- **University ID**: `it-uniroma2`
-- **University name**: Università degli Studi di Roma Tor Vergata
-- **Type**: public
-- **Official homepage**: https://web.uniroma2.it/
-- **Recruitment page**: https://web.uniroma2.it/it/contenuto/concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://web.uniroma2.it/`
+- recruitment_page_url: `https://web.uniroma2.it/it/contenuto/concorsi`
+- source_url: `https://web.uniroma2.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi page identified.`

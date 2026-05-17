@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unimib
 
-- **University ID**: `it-unimib`
-- **University name**: Università degli Studi di Milano-Bicocca
-- **Type**: public
-- **Official homepage**: https://www.unimib.it/
-- **Recruitment page**: https://www.unimib.it/ateneo/concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unimib.it/`
+- recruitment_page_url: `https://www.unimib.it/ateneo/concorsi`
+- source_url: `https://www.unimib.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi page identified.`

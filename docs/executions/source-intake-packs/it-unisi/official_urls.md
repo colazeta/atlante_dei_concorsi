@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-unisi
 
-- **University ID**: `it-unisi`
-- **University name**: Università degli Studi di Siena
-- **Type**: public
-- **Official homepage**: https://www.unisi.it/
-- **Recruitment page**: https://www.unisi.it/ateneo/concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.unisi.it/`
+- recruitment_page_url: `https://www.unisi.it/ateneo/concorsi`
+- source_url: `https://www.unisi.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi section identified.`

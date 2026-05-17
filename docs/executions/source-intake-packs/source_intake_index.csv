@@ -1,0 +1,81 @@
+university_id,university_name,official_homepage_url,recruitment_page_url,requires_human_attention,blocking_status,review_reason
+it-unibo,Università di Bologna,https://www.unibo.it/,https://www.unibo.it/it/ateneo/lavora-con-noi,false,not_blocking,none
+it-unina,Università degli Studi di Napoli Federico II,https://www.unina.it/,https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore,false,not_blocking,none
+it-unipd,Università degli Studi di Padova,https://www.unipd.it/,https://www.unipd.it/concorsi-selezioni-personale-docente,false,not_blocking,none
+it-unipa,Università degli Studi di Palermo,https://www.unipa.it/,https://www.unipa.it/albo.html,false,not_blocking,none
+it-unipi,Università di Pisa,https://www.unipi.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unimi,Università degli Studi di Milano,https://www.unimi.it/,https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori,false,not_blocking,none
+it-unito,Università degli Studi di Torino,https://www.unito.it/,https://www.unito.it/ateneo/lavora-con-noi,false,not_blocking,none
+it-unirc,Università degli Studi Mediterranea di Reggio Calabria,https://www.unirc.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unibocconi,Università Commerciale Luigi Bocconi,https://www.unibocconi.it/,https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi,false,not_blocking,none
+it-luiss,LUISS Guido Carli,https://www.luiss.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unifi,Università degli Studi di Firenze,https://www.unifi.it/,https://www.unifi.it/it/ateneo/lavora-con-noi.html,false,not_blocking,none
+it-unisi,Università degli Studi di Siena,https://www.unisi.it/,https://www.unisi.it/ateneo/concorsi,false,not_blocking,none
+it-uniroma1,Sapienza Università di Roma,https://www.uniroma1.it/,https://www.uniroma1.it/it/pagina/concorsi,false,not_blocking,none
+it-uniroma2,Università degli Studi di Roma Tor Vergata,https://web.uniroma2.it/,https://web.uniroma2.it/it/contenuto/concorsi,false,not_blocking,none
+it-uniroma3,Università degli Studi Roma Tre,https://www.uniroma3.it/,https://www.uniroma3.it/ateneo/lavora-con-noi/,false,not_blocking,none
+it-unige,Università degli Studi di Genova,https://unige.it/,https://unige.it/lavora-con-noi,false,not_blocking,none
+it-unica,Università degli Studi di Cagliari,https://www.unica.it/,https://www.unica.it/it/ateneo/bandi-e-concorsi,false,not_blocking,none
+it-unict,Università degli Studi di Catania,https://www.unict.it/,https://www.unict.it/it/bandi/concorsi,false,not_blocking,none
+it-unive,Università Ca' Foscari Venezia,https://www.unive.it/,https://www.unive.it/pag/13526/,false,not_blocking,none
+it-uninsubria,Università degli Studi dell'Insubria,https://www.uninsubria.it/,https://www.uninsubria.it/bandi-concorsi,false,not_blocking,none
+it-unibg,Università degli Studi di Bergamo,https://www.unibg.it/,https://www.unibg.it/ateneo/concorsi-e-selezioni,false,not_blocking,none
+it-unibs,Università degli Studi di Brescia,https://www.unibs.it/,https://www.unibs.it/it/ateneo/concorsi,false,not_blocking,none
+it-unipr,Università di Parma,https://www.unipr.it/,https://www.unipr.it/concorsi-e-mobilita,false,not_blocking,none
+it-unibozen,Libera Università di Bolzano,https://www.unibz.it/,https://www.unibz.it/it/home/position-calls/,false,not_blocking,none
+it-unimore,Università degli Studi di Modena e Reggio Emilia,https://www.unimore.it/,https://www.unimore.it/it/ateneo/bandi-e-concorsi,false,not_blocking,none
+it-uniss,Università degli Studi di Sassari,https://www.uniss.it/,https://www.uniss.it/bandi,false,not_blocking,none
+it-univaq,Università degli Studi dell'Aquila,https://www.univaq.it/,https://www.univaq.it/section.php?id=1535,false,not_blocking,none
+it-unimib,Università degli Studi di Milano-Bicocca,https://www.unimib.it/,https://www.unimib.it/ateneo/concorsi,false,not_blocking,none
+it-polimi,Politecnico di Milano,https://www.polimi.it/,https://www.polimi.it/docenti-e-ricercatori/bandi-e-concorsi,false,not_blocking,none
+it-polito,Politecnico di Torino,https://www.polito.it/,https://www.polito.it/ateneo/lavora-con-noi,false,not_blocking,none
+it-sns,Scuola Normale Superiore,https://www.sns.it/,https://www.sns.it/it/bandi-e-concorsi,false,not_blocking,none
+it-uniba,Università degli Studi di Bari Aldo Moro,https://www.uniba.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unibas,Università degli Studi della Basilicata,https://www.unibas.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unical,Università della Calabria,https://www.unical.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicam,Università degli Studi di Camerino,https://www.unicam.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicas,Università degli Studi di Cassino e del Lazio Meridionale,https://www.unicas.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unich,Università degli Studi G. d'Annunzio Chieti-Pescara,https://www.unich.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicz,Università Magna Graecia di Catanzaro,https://web.unicz.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unife,Università degli Studi di Ferrara,https://www.unife.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unifg,Università di Foggia,https://www.unifg.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unimc,Università degli Studi di Macerata,https://www.unimc.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unime,Università degli Studi di Messina,https://www.unime.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unimol,Università degli Studi del Molise,https://www.unimol.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unior,Università degli Studi di Napoli L'Orientale,https://www.unior.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-uniparthenope,Università degli Studi di Napoli Parthenope,https://www.uniparthenope.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unipg,Università degli Studi di Perugia,https://www.unipg.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-univpm,Università Politecnica delle Marche,https://www.univpm.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unirsm,Università degli Studi della Repubblica di San Marino,https://www.unirsm.sm/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unisalento,Università del Salento,https://www.unisalento.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unisa,Università degli Studi di Salerno,https://www.unisa.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unisannio,Università degli Studi del Sannio,https://www.unisannio.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unistrapg,Università per Stranieri di Perugia,https://www.unistrapg.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unistrasi,Università per Stranieri di Siena,https://www.unistrasi.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unite,Università degli Studi di Teramo,https://www.unite.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unitn,Università degli Studi di Trento,https://www.unitn.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-units,Università degli Studi di Trieste,https://www.units.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-uniud,Università degli Studi di Udine,https://www.uniud.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-uniurb,Università degli Studi di Urbino Carlo Bo,https://www.uniurb.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-univda,Università della Valle d'Aosta,https://www.univda.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-univr,Università degli Studi di Verona,https://www.univr.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unitus,Università degli Studi della Tuscia,https://www.unitus.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-uinsubria,Università degli Studi dell'Insubria,https://www.uninsubria.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unipiemonteorientale,Università del Piemonte Orientale,https://www.uniupo.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-iusspavia,IUSS Pavia,https://www.iusspavia.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-sissa,SISSA Trieste,https://www.sissa.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-gssi,Gran Sasso Science Institute,https://www.gssi.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-santanna,Scuola Superiore Sant'Anna,https://www.santannapisa.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-imtlucca,Scuola IMT Alti Studi Lucca,https://www.imtlucca.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicamillus,Università UniCamillus,https://www.unicamillus.org/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicatt,Università Cattolica del Sacro Cuore,https://www.unicatt.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-lumsa,LUMSA,https://www.lumsa.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-iulm,Libera Università di Lingue e Comunicazione IULM,https://www.iulm.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unisr,Università Vita-Salute San Raffaele,https://www.unisr.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicollegio,Università Campus Bio-Medico di Roma,https://www.unicampus.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-uninettuno,Università Telematica Internazionale UNINETTUNO,https://www.uninettunouniversity.net/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unimarconi,Università degli Studi Guglielmo Marconi,https://www.unimarconi.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unipegaso,Università Telematica Pegaso,https://www.unipegaso.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unimercatorum,Università Telematica Universitas Mercatorum,https://www.unimercatorum.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unifortunato,Università Giustino Fortunato,https://www.unifortunato.eu/,,true,non_blocking,recruitment/concorsi URL missing or uncertain
+it-unicusano,Università Niccolò Cusano,https://www.unicusano.it/,,true,non_blocking,recruitment/concorsi URL missing or uncertain

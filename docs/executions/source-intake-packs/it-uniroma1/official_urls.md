@@ -1,9 +1,8 @@
-# Official URLs
+# Official URLs — it-uniroma1
 
-- **University ID**: `it-uniroma1`
-- **University name**: Sapienza Università di Roma
-- **Type**: public
-- **Official homepage**: https://www.uniroma1.it/
-- **Recruitment page**: https://www.uniroma1.it/it/pagina/concorsi
-- **Verification status**: verified
-- **Registry source**: official_university_urls.csv
+- official_homepage_url: `https://www.uniroma1.it/`
+- recruitment_page_url: `https://www.uniroma1.it/it/pagina/concorsi`
+- source_url: `https://www.uniroma1.it/`
+- confidence_level: `high`
+- verification_status: `verified`
+- notes: `Official concorsi page identified.`
