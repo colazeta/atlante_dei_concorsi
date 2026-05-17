@@ -1,0 +1,48 @@
+{
+  "loop_id": "ACU-LOOP-0081",
+  "issue_number": 91,
+  "mode": "controlled_implementation",
+  "status": "blocked",
+  "phase": "handoff-intake",
+  "created_at_utc": "2026-05-17T16:35:00+00:00",
+  "updated_at_utc": "2026-05-17T16:35:00+00:00",
+  "allowed_actions": [
+    "Read issue body/comments before implementation",
+    "Document blockers and preserve governed workflow state"
+  ],
+  "prohibited_actions": [
+    "Implement without confirmed issue scope",
+    "Guess requirements not visible in issue discussion"
+  ],
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "human_review_required": true,
+  "next_action": "Provide full issue #91 body/comments or authenticated access, then resume implementation.",
+  "files_touched": [
+    "docs/executions/ACU-LOOP-0081_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0081_state.json"
+  ],
+  "notes": [
+    "Execution intentionally halted to comply with instruction to read full issue body/comments first.",
+    "Public GitHub API endpoint returned 404 for issue #91 in target repository."
+  ],
+  "quality_score": 0,
+  "blocking_issues": [
+    "Issue content inaccessible from current environment"
+  ]
+}
