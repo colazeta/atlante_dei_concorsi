@@ -1,0 +1,61 @@
+{
+  "loop_id": "ACU-LOOP-0074",
+  "issue_number": 74,
+  "mode": "dry_run",
+  "status": "completed",
+  "phase": "governed_foundation_dry_run",
+  "created_at_utc": "2026-05-17T12:12:24+00:00",
+  "updated_at_utc": "2026-05-17T12:12:24+00:00",
+  "allowed_actions": [
+    "read_repository",
+    "read_issue_instruction",
+    "write_loop_state",
+    "write_execution_log",
+    "run_validation",
+    "report_blockers"
+  ],
+  "prohibited_actions": [
+    "large_scale_scraping",
+    "unapproved_domain_expansion",
+    "public_accusatory_language",
+    "legal_conclusions",
+    "raw_document_commit",
+    "substantive_dataset_expansion_in_dry_run",
+    "substantive_dataset_expansion_in_controlled_implementation",
+    "relation_inference_without_human_review"
+  ],
+  "quality_score": 100,
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "/root/.pyenv/versions/3.12.13/bin/python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0,
+      "summary": "Agentic loop state validation report\n--------------------------------------\nResult: PASSED (11 state file(s))"
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "/root/.pyenv/versions/3.12.13/bin/python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0,
+      "summary": "Validation passed: expected files, JSON parsing, and schema/CSV header alignment are OK."
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "/root/.pyenv/versions/3.12.13/bin/python3 scripts/validate_golden_dataset.py",
+      "return_code": 0,
+      "summary": "nsure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [candidates] line 22. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [candidates] line 23. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [candidates] line 24. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [committee_candidate_relations] line 2. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [committee_candidate_relations] line 3. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [committee_candidate_relations] line 4. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [committee_candidate_relations] line 5. Ensure this is intentional and approved for internal pilot use.\nWARN: Row may contain non-synthetic data [committee_candidate_relations] line 6. Ensure this is intentional and approved for internal pilot use.\nResult: PASSED (367 warning(s))"
+    }
+  },
+  "blocking_issues": [],
+  "human_review_required": false,
+  "next_action": "Open a reviewed issue for controlled implementation mode; keep substantive coding disabled by default.",
+  "files_touched": [
+    "docs/executions/ACU-LOOP-0074_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0074_state.json"
+  ],
+  "last_commit": null,
+  "last_pr": null,
+  "notes": [
+    "No source expansion, no data collection, no relation inference and no golden-dataset update.",
+    "Substantive coding mode remains disabled unless explicitly approved through a reviewed issue."
+  ]
+}

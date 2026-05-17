@@ -1,0 +1,10 @@
+{
+  "issue_number": 61,
+  "created_at_utc": "2026-05-17T13:02:10+00:00",
+  "continuation_needed": true,
+  "expected_quality_score": 99,
+  "current_quality_score": 80,
+  "delta": 19,
+  "source_loop_state": "reports/agentic-loop/ACU-LOOP-0061_state.json",
+  "continuation_prompt": "Issue #61 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 80\n- Delta: 19\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Continue controlled expansion to full recognised-university universe and manually verify uncertain recruitment endpoints."
+}
