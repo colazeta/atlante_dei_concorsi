@@ -1,0 +1,49 @@
+{
+  "loop_id": "ACU-LOOP-0080",
+  "issue_number": 80,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T16:10:00+00:00",
+  "updated_at_utc": "2026-05-17T16:20:00+00:00",
+  "allowed_actions": [
+    "Implement approved mapping UX controls for manual confidence review",
+    "Preserve uncertainty and human-review signalling",
+    "Run required validators"
+  ],
+  "prohibited_actions": [
+    "Golden dataset modification without explicit authorization",
+    "Raw document/snapshot commits",
+    "Unapproved scope expansion beyond issue text"
+  ],
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "human_review_required": true,
+  "next_action": "Open draft PR and request review of manual confidence focus controls.",
+  "files_touched": [
+    "site/index.html",
+    "docs/executions/ACU-LOOP-0080_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0080_state.json"
+  ],
+  "notes": [
+    "Manual-focus buttons only alter table filters and do not alter source data.",
+    "Uncertainty and attention indicators remain visible in table output."
+  ],
+  "quality_score": 92,
+  "blocking_issues": []
+}

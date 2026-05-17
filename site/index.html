@@ -27,6 +27,8 @@
     .ok { color:var(--ok); font-weight:600; }
     .placeholder { margin-top:1.2rem; background:#fff; border:1px dashed #9ca3af; padding:.9rem; border-radius:.4rem; }
     .small { color:var(--muted); font-size:.87rem; }
+    .actions { display:flex; gap:.4rem; flex-wrap:wrap; }
+    button { border:1px solid #cbd5e1; background:#fff; border-radius:.35rem; padding:.35rem .5rem; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -45,6 +47,18 @@
     <ul id="progress-events"></ul>
     <h3>Future public competition/procedure source mapping</h3>
     <p id="competition-placeholder" class="small">No competition/procedure source history published yet.</p>
+  </section>
+
+  <section class="tracker">
+    <h2>Manual confidence review actions</h2>
+    <p class="small">These controls prioritize manual review work for low-confidence, uncertain, and attention-flagged registry entries.</p>
+    <div class="actions">
+      <button id="focus-low-confidence" type="button">Show low confidence</button>
+      <button id="focus-review-needed" type="button">Show needs human review</button>
+      <button id="focus-attention" type="button">Show attention flagged</button>
+      <button id="clear-manual-focus" type="button">Clear manual focus</button>
+    </div>
+    <p id="manual-focus-status" class="small">Manual focus: none (showing all entries).</p>
   </section>
 
   <section class="filters">
@@ -85,12 +99,24 @@ function renderTracker(historyData){
   document.getElementById('competition-placeholder').textContent=`Competition source classification progress: ${comp.competition_sources_classified}/${comp.competition_sources_total}.`;
 }
 function renderRows(){const t=document.getElementById('rows');t.innerHTML=state.filtered.map(e=>`<tr><td>${e.university_name}</td><td>${e.university_type||'—'}</td><td>${fmt(e.official_homepage_url)}</td><td>${fmt(e.recruitment_page_url)}</td><td>${badge(e.confidence_level)}</td><td>${badge(e.verification_status)}</td><td>${e.notes||'—'}</td><td>${e.needs_attention?'<span class="attn">Needs attention</span>':'—'}</td></tr>`).join('');}
-function applyFilters(){const q=document.getElementById('search').value.toLowerCase().trim();const v=document.getElementById('verification').value;const c=document.getElementById('confidence').value;const r=document.getElementById('recruitment').value;state.filtered=state.entries.filter(e=>{if(q&&!e.university_name.toLowerCase().includes(q))return false;if(v&&e.verification_status!==v)return false;if(c&&e.confidence_level!==c)return false;if(r==='with'&&!e.has_recruitment_url)return false;if(r==='without'&&e.has_recruitment_url)return false;return true;});renderRows();}
+function setManualFocusStatus(message){document.getElementById('manual-focus-status').textContent=message;}
+function applyManualFocus(type){
+  if(type==='low-confidence'){document.getElementById('confidence').value='low'; setManualFocusStatus('Manual focus: low confidence entries.');}
+  if(type==='review-needed'){document.getElementById('verification').value='needs_human_review'; setManualFocusStatus('Manual focus: needs_human_review entries.');}
+  if(type==='attention'){setManualFocusStatus('Manual focus: entries flagged as needing attention.');}
+  if(type==='clear'){document.getElementById('confidence').value='';document.getElementById('verification').value='';setManualFocusStatus('Manual focus: none (showing all entries).');}
+  applyFilters(type);
+}
+function applyFilters(focusType){const q=document.getElementById('search').value.toLowerCase().trim();const v=document.getElementById('verification').value;const c=document.getElementById('confidence').value;const r=document.getElementById('recruitment').value;state.filtered=state.entries.filter(e=>{if(q&&!e.university_name.toLowerCase().includes(q))return false;if(v&&e.verification_status!==v)return false;if(c&&e.confidence_level!==c)return false;if(r==='with'&&!e.has_recruitment_url)return false;if(r==='without'&&e.has_recruitment_url)return false;if(focusType==='attention'&&!e.needs_attention)return false;return true;});renderRows();}
 Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/mapping_progress_history.json').then(r=>r.json())]).then(([data,history])=>{
   renderSummary(data.summary);renderTracker(history);state.entries=data.entries;state.filtered=data.entries.slice();
   const v=document.getElementById('verification'); data.filters.verification_status.forEach(s=>v.insertAdjacentHTML('beforeend',`<option>${s}</option>`));
   const c=document.getElementById('confidence'); data.filters.confidence_level.forEach(s=>c.insertAdjacentHTML('beforeend',`<option>${s}</option>`));
   ['search','verification','confidence','recruitment'].forEach(id=>document.getElementById(id).addEventListener('input',applyFilters));
+  document.getElementById('focus-low-confidence').addEventListener('click',()=>applyManualFocus('low-confidence'));
+  document.getElementById('focus-review-needed').addEventListener('click',()=>applyManualFocus('review-needed'));
+  document.getElementById('focus-attention').addEventListener('click',()=>applyManualFocus('attention'));
+  document.getElementById('clear-manual-focus').addEventListener('click',()=>applyManualFocus('clear'));
   renderRows();
 });
 </script>
