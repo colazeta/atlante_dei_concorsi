@@ -18,6 +18,8 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "reports" / "agentic-dispatcher" / "post_run_evaluator_state.json"
+QUEUE_DIR = ROOT / "reports" / "codex-handoff-queue"
+LOOP_STATE_DIR = ROOT / "reports" / "agentic-loop"
 REQUIRED_RUN_LABEL = "agent-running"
 
 
@@ -32,6 +34,68 @@ def parse_utc(value: str | None) -> datetime | None:
         return datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:
         return None
+
+
+def load_loop_state(issue_number: int) -> dict[str, Any] | None:
+    path = LOOP_STATE_DIR / f"ACU-LOOP-{issue_number:04d}_state.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def build_continuation_prompt(
+    issue_number: int,
+    expected_quality_score: int,
+    current_quality_score: int,
+    delta: int,
+    loop_state: dict[str, Any] | None,
+) -> str:
+    next_action = (loop_state or {}).get("next_action") or "Review the latest loop artefacts and continue from the documented next step."
+    return (
+        f"Issue #{issue_number} requires continuation before review.\n\n"
+        f"- Expected quality score: {expected_quality_score}\n"
+        f"- Current quality score: {current_quality_score}\n"
+        f"- Delta: {delta}\n"
+        f"- Loop status: {(loop_state or {}).get('status')}\n"
+        f"- Loop mode: {(loop_state or {}).get('mode')}\n\n"
+        "Continue the issue using governed workflow, preserve uncertainty markers and review notes, "
+        "run required validators, and report blockers explicitly.\n\n"
+        f"Documented next action: {next_action}"
+    )
+
+
+def maybe_build_continuation(issue_number: int, expected_quality_score: int, current_quality_score_override: int | None = None) -> dict[str, Any]:
+    loop_state = load_loop_state(issue_number)
+    if current_quality_score_override is None and not loop_state:
+        return {"continuation_needed": False, "reason": "No local loop state found for this issue."}
+    current_score = current_quality_score_override if current_quality_score_override is not None else loop_state.get("quality_score")
+    if not isinstance(current_score, int):
+        return {"continuation_needed": False, "reason": "Loop state has no integer quality_score."}
+    delta = expected_quality_score - current_score
+    if delta <= 0:
+        return {
+            "continuation_needed": False,
+            "expected_quality_score": expected_quality_score,
+            "current_quality_score": current_score,
+            "delta": delta,
+            "reason": "Quality score meets or exceeds expected threshold.",
+        }
+    prompt = build_continuation_prompt(issue_number, expected_quality_score, current_score, delta, loop_state)
+    continuation = {
+        "issue_number": issue_number,
+        "created_at_utc": utc_now(),
+        "continuation_needed": True,
+        "expected_quality_score": expected_quality_score,
+        "current_quality_score": current_score,
+        "delta": delta,
+        "source_loop_state": f"reports/agentic-loop/ACU-LOOP-{issue_number:04d}_state.json" if loop_state else None,
+        "continuation_prompt": prompt,
+    }
+    QUEUE_DIR.mkdir(parents=True, exist_ok=True)
+    queue_path = QUEUE_DIR / f"{issue_number}_continuation.json"
+    queue_path.write_text(json.dumps(continuation, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    continuation["queue_path"] = str(queue_path.relative_to(ROOT))
+    return continuation
 
 
 def gh_request(method: str, url: str, token: str | None, payload: dict[str, Any] | None = None) -> Any:
@@ -151,6 +215,8 @@ def main() -> int:
     p.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY", ""))
     p.add_argument("--issue-number", type=int, required=True)
     p.add_argument("--apply", action="store_true", help="Apply recommended label transition from agent-running")
+    p.add_argument("--expected-quality-score", type=int, default=99)
+    p.add_argument("--current-quality-score", type=int, default=None, help="Optional override for regression testing.")
     args = p.parse_args()
 
     if not args.repo:
@@ -158,8 +224,22 @@ def main() -> int:
 
     token = os.environ.get("GITHUB_TOKEN")
     state = evaluate(args.repo, args.issue_number, token)
+    continuation = maybe_build_continuation(args.issue_number, args.expected_quality_score, args.current_quality_score)
+    state["continuation_needed"] = bool(continuation.get("continuation_needed"))
+    state["continuation"] = continuation
+    if state["continuation_needed"]:
+        state["recommendation"] = {
+            "action": "continuation_required",
+            "next_label": None,
+            "rationale": [
+                f"Expected quality score {continuation.get('expected_quality_score')} is above current {continuation.get('current_quality_score')}.",
+                "Continuation prompt generated; do not advance to agent-review yet.",
+            ],
+        }
     state["label_mutation"] = {"requested": args.apply, "status": "not_requested"}
-    if args.apply and state["recommendation"]["next_label"] in {"agent-review", "agent-blocked"}:
+    if state["continuation_needed"] and args.apply:
+        state["label_mutation"] = {"requested": True, "status": "skipped_continuation_needed"}
+    elif args.apply and state["recommendation"]["next_label"] in {"agent-review", "agent-blocked"}:
         state["label_mutation"] = mutate_labels(args.repo, args.issue_number, "agent-running", state["recommendation"]["next_label"], token)
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
