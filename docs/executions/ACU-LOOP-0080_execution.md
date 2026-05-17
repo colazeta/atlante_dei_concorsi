@@ -7,14 +7,21 @@
 
 ## Implemented scope
 
-1. Updated `site/index.html` with a dedicated **Manual confidence review actions** section.
-2. Added explicit UI actions to focus the registry table on:
-   - low-confidence entries,
-   - `needs_human_review` entries,
-   - `needs_attention` flagged entries,
-   - and reset to default full view.
-3. Added a visible manual-focus status message that preserves transparency about current filtering state.
-4. Kept existing uncertainty-preserving table fields and governance-safe wording unchanged.
+1. Preserved the manual-confidence focus controls in `site/index.html` for low-confidence, `needs_human_review`, and attention-focused review passes.
+2. Added a separate manual decision layer directly in the static table with controlled decision values:
+   - `accepted`
+   - `rejected`
+   - `needs_more_evidence`
+   - `keep_under_review`
+3. Added honest static UX fallback behavior:
+   - client-side editable decisions (per entry),
+   - local browser persistence,
+   - export/download as JSON and CSV,
+   - explicit message that exported decisions must be manually committed to repository files.
+4. Added repository persistence targets:
+   - `data/source-registries/italian-universities/manual_review_decisions.csv` (seeded header),
+   - `site/data/manual_review_decisions.json` (seeded structure).
+5. Updated `site/README.md` to document manual decision flow and governance-safe fallback expectations.
 
 ## Governance checks
 
@@ -22,6 +29,7 @@
 - No raw documents/snapshots committed.
 - No taxonomy/schema changes.
 - No new source domains or scraping behaviour.
+- Automated registry remains unchanged; manual decisions are tracked in separate artifacts.
 
 ## Validation results
 
@@ -31,4 +39,4 @@
 
 ## Next action
 
-Open draft PR for human review of the added manual review UX controls.
+Open continuation PR titled **"Persist manual review decisions for low-confidence mapping UX"** and request human review of fallback export flow plus manual-decision schema.
