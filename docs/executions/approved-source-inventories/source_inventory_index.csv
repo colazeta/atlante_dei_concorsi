@@ -1,81 +1,81 @@
 university_id,university_name,intake_pack_exists,inventory_exists,homepage_url,recruitment_url,fetch_status,candidate_links_count,requires_human_attention,blocking_status,last_updated_utc
-it-unibo,Università di Bologna,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unina,Università degli Studi di Napoli Federico II,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipd,Università degli Studi di Padova,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipa,Università degli Studi di Palermo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipi,Università di Pisa,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimi,Università degli Studi di Milano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unito,Università degli Studi di Torino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unirc,Università degli Studi Mediterranea di Reggio Calabria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unibocconi,Università Commerciale Luigi Bocconi,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-luiss,LUISS Guido Carli,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unifi,Università degli Studi di Firenze,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unisi,Università degli Studi di Siena,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniroma1,Sapienza Università di Roma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniroma2,Università degli Studi di Roma Tor Vergata,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniroma3,Università degli Studi Roma Tre,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unige,Università degli Studi di Genova,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unica,Università degli Studi di Cagliari,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unict,Università degli Studi di Catania,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unive,Università Ca' Foscari Venezia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uninsubria,Università degli Studi dell'Insubria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unibg,Università degli Studi di Bergamo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unibs,Università degli Studi di Brescia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipr,Università di Parma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unibozen,Libera Università di Bolzano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimore,Università degli Studi di Modena e Reggio Emilia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniss,Università degli Studi di Sassari,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-univaq,Università degli Studi dell'Aquila,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimib,Università degli Studi di Milano-Bicocca,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-polimi,Politecnico di Milano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-polito,Politecnico di Torino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-sns,Scuola Normale Superiore,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniba,Università degli Studi di Bari Aldo Moro,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unibas,Università degli Studi della Basilicata,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unical,Università della Calabria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicam,Università degli Studi di Camerino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicas,Università degli Studi di Cassino e del Lazio Meridionale,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unich,Università degli Studi G. d'Annunzio Chieti-Pescara,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicz,Università Magna Graecia di Catanzaro,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unife,Università degli Studi di Ferrara,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unifg,Università di Foggia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimc,Università degli Studi di Macerata,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unime,Università degli Studi di Messina,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimol,Università degli Studi del Molise,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unior,Università degli Studi di Napoli L'Orientale,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniparthenope,Università degli Studi di Napoli Parthenope,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipg,Università degli Studi di Perugia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-univpm,Università Politecnica delle Marche,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unirsm,Università degli Studi della Repubblica di San Marino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unisalento,Università del Salento,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unisa,Università degli Studi di Salerno,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unisannio,Università degli Studi del Sannio,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unistrapg,Università per Stranieri di Perugia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unistrasi,Università per Stranieri di Siena,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unite,Università degli Studi di Teramo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unitn,Università degli Studi di Trento,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-units,Università degli Studi di Trieste,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniud,Università degli Studi di Udine,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uniurb,Università degli Studi di Urbino Carlo Bo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-univda,Università della Valle d'Aosta,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-univr,Università degli Studi di Verona,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unitus,Università degli Studi della Tuscia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uinsubria,Università degli Studi dell'Insubria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipiemonteorientale,Università del Piemonte Orientale,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-iusspavia,IUSS Pavia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-sissa,SISSA Trieste,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-gssi,Gran Sasso Science Institute,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-santanna,Scuola Superiore Sant'Anna,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-imtlucca,Scuola IMT Alti Studi Lucca,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicamillus,Università UniCamillus,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicatt,Università Cattolica del Sacro Cuore,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-lumsa,LUMSA,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-iulm,Libera Università di Lingue e Comunicazione IULM,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unisr,Università Vita-Salute San Raffaele,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicollegio,Università Campus Bio-Medico di Roma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-uninettuno,Università Telematica Internazionale UNINETTUNO,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimarconi,Università degli Studi Guglielmo Marconi,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unipegaso,Università Telematica Pegaso,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unimercatorum,Università Telematica Universitas Mercatorum,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unifortunato,Università Giustino Fortunato,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
-it-unicusano,Università Niccolò Cusano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T19:36:30Z
+it-unibo,Università di Bologna,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unina,Università degli Studi di Napoli Federico II,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipd,Università degli Studi di Padova,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipa,Università degli Studi di Palermo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipi,Università di Pisa,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimi,Università degli Studi di Milano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unito,Università degli Studi di Torino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unirc,Università degli Studi Mediterranea di Reggio Calabria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unibocconi,Università Commerciale Luigi Bocconi,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-luiss,LUISS Guido Carli,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unifi,Università degli Studi di Firenze,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unisi,Università degli Studi di Siena,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniroma1,Sapienza Università di Roma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniroma2,Università degli Studi di Roma Tor Vergata,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniroma3,Università degli Studi Roma Tre,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unige,Università degli Studi di Genova,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unica,Università degli Studi di Cagliari,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unict,Università degli Studi di Catania,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unive,Università Ca' Foscari Venezia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uninsubria,Università degli Studi dell'Insubria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unibg,Università degli Studi di Bergamo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unibs,Università degli Studi di Brescia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipr,Università di Parma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unibozen,Libera Università di Bolzano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimore,Università degli Studi di Modena e Reggio Emilia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniss,Università degli Studi di Sassari,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-univaq,Università degli Studi dell'Aquila,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimib,Università degli Studi di Milano-Bicocca,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-polimi,Politecnico di Milano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-polito,Politecnico di Torino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-sns,Scuola Normale Superiore,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniba,Università degli Studi di Bari Aldo Moro,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unibas,Università degli Studi della Basilicata,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unical,Università della Calabria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicam,Università degli Studi di Camerino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicas,Università degli Studi di Cassino e del Lazio Meridionale,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unich,Università degli Studi G. d'Annunzio Chieti-Pescara,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicz,Università Magna Graecia di Catanzaro,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unife,Università degli Studi di Ferrara,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unifg,Università di Foggia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimc,Università degli Studi di Macerata,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unime,Università degli Studi di Messina,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimol,Università degli Studi del Molise,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unior,Università degli Studi di Napoli L'Orientale,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniparthenope,Università degli Studi di Napoli Parthenope,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipg,Università degli Studi di Perugia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-univpm,Università Politecnica delle Marche,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unirsm,Università degli Studi della Repubblica di San Marino,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unisalento,Università del Salento,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unisa,Università degli Studi di Salerno,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unisannio,Università degli Studi del Sannio,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unistrapg,Università per Stranieri di Perugia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unistrasi,Università per Stranieri di Siena,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unite,Università degli Studi di Teramo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unitn,Università degli Studi di Trento,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-units,Università degli Studi di Trieste,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniud,Università degli Studi di Udine,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uniurb,Università degli Studi di Urbino Carlo Bo,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-univda,Università della Valle d'Aosta,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-univr,Università degli Studi di Verona,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unitus,Università degli Studi della Tuscia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uinsubria,Università degli Studi dell'Insubria,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipiemonteorientale,Università del Piemonte Orientale,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-iusspavia,IUSS Pavia,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-sissa,SISSA Trieste,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-gssi,Gran Sasso Science Institute,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-santanna,Scuola Superiore Sant'Anna,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-imtlucca,Scuola IMT Alti Studi Lucca,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicamillus,Università UniCamillus,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicatt,Università Cattolica del Sacro Cuore,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-lumsa,LUMSA,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-iulm,Libera Università di Lingue e Comunicazione IULM,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unisr,Università Vita-Salute San Raffaele,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicollegio,Università Campus Bio-Medico di Roma,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-uninettuno,Università Telematica Internazionale UNINETTUNO,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimarconi,Università degli Studi Guglielmo Marconi,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unipegaso,Università Telematica Pegaso,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unimercatorum,Università Telematica Universitas Mercatorum,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unifortunato,Università Giustino Fortunato,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z
+it-unicusano,Università Niccolò Cusano,yes,yes,,,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:02:00Z

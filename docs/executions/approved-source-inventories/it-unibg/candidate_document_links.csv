@@ -1,1 +1,1 @@
-university_id,source_url,link_url,link_text,link_type_hint,same_domain,confidence_level,requires_human_attention,blocking_status,notes,observed_at_utc
+university_id,source_url,discovery_depth,parent_url,link_url,link_text,link_type_hint,same_domain,keyword_match,confidence_level,requires_human_attention,blocking_status,notes,observed_at_utc
