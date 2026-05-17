@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       issue_number:
-        description: "Issue number to evaluate; leave empty to auto-read dispatcher state"
+        description: "Issue number to evaluate; leave empty to scan all open agent-running issues"
         required: false
         type: string
       apply:
@@ -38,55 +38,33 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Resolve issue number and apply mode
+      - name: Resolve apply mode
         id: resolve
         env:
-          INPUT_ISSUE: ${{ inputs.issue_number }}
           INPUT_APPLY: ${{ inputs.apply }}
         run: |
-          ISSUE_NUMBER="$INPUT_ISSUE"
-          if [ -z "$ISSUE_NUMBER" ] && [ -f reports/agentic-dispatcher/dispatcher_state.json ]; then
-            ISSUE_NUMBER=$(python - <<'PY'
-import json
-from pathlib import Path
-p = Path('reports/agentic-dispatcher/dispatcher_state.json')
-try:
-    data = json.loads(p.read_text(encoding='utf-8'))
-    issue = data.get('selected_issue', {}).get('number')
-    print(issue or '')
-except Exception:
-    print('')
-PY
-)
-          fi
-
-          if [ -z "$ISSUE_NUMBER" ]; then
-            echo "No issue number found; evaluator run will stop gracefully."
-            echo "issue_number=" >> "$GITHUB_OUTPUT"
-          else
-            echo "issue_number=$ISSUE_NUMBER" >> "$GITHUB_OUTPUT"
-          fi
           echo "apply=${INPUT_APPLY:-true}" >> "$GITHUB_OUTPUT"
 
       - name: Run continuation evaluator
-        if: ${{ steps.resolve.outputs.issue_number != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ steps.resolve.outputs.issue_number }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
           APPLY: ${{ steps.resolve.outputs.apply }}
         run: |
-          ARGS=(--repo "${{ github.repository }}" --issue-number "$ISSUE_NUMBER")
+          ARGS=(--repo "${{ github.repository }}")
+          if [ -n "$ISSUE_NUMBER" ]; then
+            ARGS+=(--issue-number "$ISSUE_NUMBER")
+          fi
           if [ "$APPLY" = "true" ]; then
             ARGS+=(--apply)
           fi
           python scripts/agentic_post_run_evaluator.py "${ARGS[@]}"
 
       - name: Commit evaluator state if changed
-        if: ${{ steps.resolve.outputs.issue_number != '' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/agentic-dispatcher/post_run_evaluator_state.json
+          git add reports/agentic-dispatcher/post_run_evaluator_state.json reports/codex-handoff-queue/
           if git diff --cached --quiet; then
             echo "No evaluator-state changes to commit."
             exit 0

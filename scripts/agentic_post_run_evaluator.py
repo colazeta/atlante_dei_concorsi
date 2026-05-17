@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -116,6 +116,14 @@ def gh_request(method: str, url: str, token: str | None, payload: dict[str, Any]
         return json.loads(text) if text else None
 
 
+def list_agent_running_issues(repo: str, token: str | None) -> list[dict[str, Any]]:
+    params = urlencode({"state": "open", "labels": REQUIRED_RUN_LABEL, "per_page": "100"})
+    issues = gh_request("GET", f"https://api.github.com/repos/{repo}/issues?{params}", token)
+    if not isinstance(issues, list):
+        return []
+    return [item for item in issues if isinstance(item, dict) and "pull_request" not in item]
+
+
 def evaluate(repo: str, issue_number: int, token: str | None) -> dict[str, Any]:
     issue = gh_request("GET", f"https://api.github.com/repos/{repo}/issues/{issue_number}", token)
     comments = gh_request("GET", issue["comments_url"], token) if issue.get("comments", 0) else []
@@ -213,7 +221,7 @@ def mutate_labels(repo: str, issue_number: int, from_label: str, to_label: str, 
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY", ""))
-    p.add_argument("--issue-number", type=int, required=True)
+    p.add_argument("--issue-number", type=int, required=False, default=None)
     p.add_argument("--apply", action="store_true", help="Apply recommended label transition from agent-running")
     p.add_argument("--expected-quality-score", type=int, default=99)
     p.add_argument("--current-quality-score", type=int, default=None, help="Optional override for regression testing.")
@@ -223,28 +231,48 @@ def main() -> int:
         raise SystemExit("--repo or GITHUB_REPOSITORY is required")
 
     token = os.environ.get("GITHUB_TOKEN")
-    state = evaluate(args.repo, args.issue_number, token)
-    continuation = maybe_build_continuation(args.issue_number, args.expected_quality_score, args.current_quality_score)
-    state["continuation_needed"] = bool(continuation.get("continuation_needed"))
-    state["continuation"] = continuation
-    if state["continuation_needed"]:
-        state["recommendation"] = {
-            "action": "continuation_required",
-            "next_label": None,
-            "rationale": [
-                f"Expected quality score {continuation.get('expected_quality_score')} is above current {continuation.get('current_quality_score')}.",
-                "Continuation prompt generated; do not advance to agent-review yet.",
-            ],
-        }
-    state["label_mutation"] = {"requested": args.apply, "status": "not_requested"}
-    if state["continuation_needed"] and args.apply:
-        state["label_mutation"] = {"requested": True, "status": "skipped_continuation_needed"}
-    elif args.apply and state["recommendation"]["next_label"] in {"agent-review", "agent-blocked"}:
-        state["label_mutation"] = mutate_labels(args.repo, args.issue_number, "agent-running", state["recommendation"]["next_label"], token)
+    issue_numbers: list[int] = []
+    if args.issue_number is not None:
+        issue_numbers = [args.issue_number]
+    else:
+        issue_numbers = [int(item["number"]) for item in list_agent_running_issues(args.repo, token)]
 
+    evaluations: list[dict[str, Any]] = []
+    for issue_number in issue_numbers:
+        state = evaluate(args.repo, issue_number, token)
+        continuation = maybe_build_continuation(issue_number, args.expected_quality_score, args.current_quality_score)
+        state["continuation_needed"] = bool(continuation.get("continuation_needed"))
+        state["continuation"] = continuation
+        if state["continuation_needed"]:
+            state["recommendation"] = {
+                "action": "continuation_needed",
+                "next_label": None,
+                "rationale": [
+                    f"Expected quality score {continuation.get('expected_quality_score')} is above current {continuation.get('current_quality_score')}.",
+                    "Continuation prompt generated; do not advance to agent-review yet.",
+                ],
+            }
+        state["label_mutation"] = {"requested": args.apply, "status": "not_requested"}
+        if state["continuation_needed"] and args.apply:
+            state["label_mutation"] = {"requested": True, "status": "skipped_continuation_needed"}
+        elif args.apply and state["recommendation"]["next_label"] in {"agent-review", "agent-blocked"}:
+            state["label_mutation"] = mutate_labels(args.repo, issue_number, "agent-running", state["recommendation"]["next_label"], token)
+        evaluations.append(state)
+
+    result = {
+        "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+        "status": "completed",
+        "created_at_utc": utc_now(),
+        "updated_at_utc": utc_now(),
+        "repo": args.repo,
+        "scanned_issue_count": len(issue_numbers),
+        "scanned_issue_numbers": issue_numbers,
+        "continuation_needed_count": sum(1 for item in evaluations if item.get("continuation_needed")),
+        "evaluations": evaluations,
+    }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(json.dumps(state, indent=2, ensure_ascii=False))
+    OUT_PATH.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0
 
 
