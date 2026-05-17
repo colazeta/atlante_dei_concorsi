@@ -1,12 +1,14 @@
 name: Governed agentic dispatcher
 
 on:
+  schedule:
+    - cron: "17 * * * *"
   workflow_dispatch:
     inputs:
       mode:
         description: "Dispatcher mode"
         required: false
-        default: "dry_run"
+        default: "controlled"
         type: choice
         options:
           - "dry_run"
@@ -19,7 +21,7 @@ on:
       comment:
         description: "Post a handoff comment in controlled mode"
         required: false
-        default: "false"
+        default: "true"
         type: choice
         options:
           - "false"
@@ -27,7 +29,7 @@ on:
       mutate_labels:
         description: "Move selected issue from agent-ready to agent-running in controlled mode"
         required: false
-        default: "false"
+        default: "true"
         type: choice
         options:
           - "false"
@@ -53,15 +55,40 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Resolve dispatcher inputs
+        id: resolve
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_LABEL: ${{ inputs.label }}
+          INPUT_COMMENT: ${{ inputs.comment }}
+          INPUT_MUTATE: ${{ inputs.mutate_labels }}
+        run: |
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            echo "mode=controlled" >> "$GITHUB_OUTPUT"
+            echo "label=agent-ready" >> "$GITHUB_OUTPUT"
+            echo "comment=true" >> "$GITHUB_OUTPUT"
+            echo "mutate=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=${INPUT_MODE:-controlled}" >> "$GITHUB_OUTPUT"
+            echo "label=${INPUT_LABEL:-agent-ready}" >> "$GITHUB_OUTPUT"
+            echo "comment=${INPUT_COMMENT:-true}" >> "$GITHUB_OUTPUT"
+            echo "mutate=${INPUT_MUTATE:-true}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run dispatcher
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODE: ${{ steps.resolve.outputs.mode }}
+          LABEL: ${{ steps.resolve.outputs.label }}
+          COMMENT: ${{ steps.resolve.outputs.comment }}
+          MUTATE: ${{ steps.resolve.outputs.mutate }}
         run: |
-          ARGS=(--repo "${{ github.repository }}" --mode "${{ inputs.mode }}" --label "${{ inputs.label }}")
-          if [ "${{ inputs.comment }}" = "true" ]; then
+          ARGS=(--repo "${{ github.repository }}" --mode "$MODE" --label "$LABEL")
+          if [ "$COMMENT" = "true" ]; then
             ARGS+=(--comment)
           fi
-          if [ "${{ inputs.mutate_labels }}" = "true" ]; then
+          if [ "$MUTATE" = "true" ]; then
             ARGS+=(--mutate-labels)
           fi
           python scripts/agentic_dispatcher.py "${ARGS[@]}"
