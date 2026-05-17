@@ -1,12 +1,12 @@
 {
   "evaluator_id": "ACU-POSTRUN-EVAL-0001",
   "status": "completed",
-  "created_at_utc": "2026-05-17T17:09:32+00:00",
-  "updated_at_utc": "2026-05-17T17:09:32+00:00",
+  "created_at_utc": "2026-05-17T18:07:34+00:00",
+  "updated_at_utc": "2026-05-17T18:07:34+00:00",
   "repo": "colazeta/atlante_dei_concorsi",
   "scanned_issue_count": 5,
   "scanned_issue_numbers": [
-    103,
+    108,
     101,
     79,
     78,
@@ -17,23 +17,24 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T17:09:30+00:00",
-      "updated_at_utc": "2026-05-17T17:09:30+00:00",
+      "created_at_utc": "2026-05-17T18:07:31+00:00",
+      "updated_at_utc": "2026-05-17T18:07:31+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
-        "number": 103,
-        "title": "Fix invalid ACU-LOOP-0099 state schema",
-        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/103",
+        "number": 108,
+        "title": "Automate approved source inventory from intake packs with 10-minute web progress updates",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/108",
         "labels": [
-          "bug",
+          "enhancement",
           "governance",
-          "agent-running"
+          "agent-running",
+          "ux"
         ]
       },
       "signals": {
-        "comment_count": 1,
-        "issue_updated_at": "2026-05-17T16:35:03Z",
-        "last_comment_updated_at": "2026-05-17T16:35:03Z",
+        "comment_count": 2,
+        "issue_updated_at": "2026-05-17T17:50:15Z",
+        "last_comment_updated_at": "2026-05-17T17:50:15Z",
         "last_comment_has_summary": false,
         "last_comment_has_testing": false,
         "last_comment_has_blocker": true,
@@ -70,8 +71,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T17:09:31+00:00",
-      "updated_at_utc": "2026-05-17T17:09:31+00:00",
+      "created_at_utc": "2026-05-17T18:07:33+00:00",
+      "updated_at_utc": "2026-05-17T18:07:33+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 101,
@@ -110,7 +111,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 101,
-        "created_at_utc": "2026-05-17T17:09:31+00:00",
+        "created_at_utc": "2026-05-17T18:07:33+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 1,
@@ -127,8 +128,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T17:09:32+00:00",
-      "updated_at_utc": "2026-05-17T17:09:32+00:00",
+      "created_at_utc": "2026-05-17T18:07:33+00:00",
+      "updated_at_utc": "2026-05-17T18:07:33+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 79,
@@ -167,7 +168,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 79,
-        "created_at_utc": "2026-05-17T17:09:32+00:00",
+        "created_at_utc": "2026-05-17T18:07:33+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -184,8 +185,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T17:09:32+00:00",
-      "updated_at_utc": "2026-05-17T17:09:32+00:00",
+      "created_at_utc": "2026-05-17T18:07:33+00:00",
+      "updated_at_utc": "2026-05-17T18:07:33+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 78,
@@ -224,7 +225,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 78,
-        "created_at_utc": "2026-05-17T17:09:32+00:00",
+        "created_at_utc": "2026-05-17T18:07:33+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -241,8 +242,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T17:09:32+00:00",
-      "updated_at_utc": "2026-05-17T17:09:32+00:00",
+      "created_at_utc": "2026-05-17T18:07:34+00:00",
+      "updated_at_utc": "2026-05-17T18:07:34+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 70,
