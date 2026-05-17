@@ -54,7 +54,7 @@ It must not yet:
 - execute Codex itself;
 - fetch external sources;
 - change substantive datasets;
-- mark issues as `agent-review`, `agent-blocked` or `agent-done` without later completion evidence logic.
+- mark issues as `agent-done` automatically without explicit human-reviewed completion evidence.
 
 ## 5. State persistence
 
@@ -122,7 +122,29 @@ The dispatcher must stop or remain idle when:
 - label mutation fails in controlled mode;
 - a previous dispatcher state indicates unresolved human input.
 
-## 10. Later extensions
+## 10. Post-run evaluator extension
+
+A conservative post-run evaluator is now available in:
+
+```text
+scripts/agentic_post_run_evaluator.py
+```
+
+It inspects issue-level completion signals and writes machine-readable output to:
+
+```text
+reports/agentic-dispatcher/post_run_evaluator_state.json
+```
+
+Current evaluator behaviour:
+
+- reads issue labels and latest comment text;
+- recommends `agent-review` when structured output markers are present;
+- recommends `agent-blocked` when blocker language is present;
+- may optionally apply `agent-running -> agent-review|agent-blocked`;
+- never auto-applies `agent-done` and keeps human review mandatory.
+
+## 11. Later extensions
 
 Later PRs may add:
 
