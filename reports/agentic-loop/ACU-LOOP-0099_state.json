@@ -1,0 +1,11 @@
+{
+  "run_id": "ACU-LOOP-0099",
+  "timestamp_utc": "2026-05-17T15:06:43.879Z",
+  "scope": "Persist selected manual review decisions",
+  "status": "completed",
+  "changes": [
+    "data/source-registries/italian-universities/manual_review_decisions.csv"
+  ],
+  "selected_decision_rows": 80,
+  "next_action": "Open PR for review and merge"
+}
