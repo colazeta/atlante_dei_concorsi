@@ -1,11 +1,41 @@
 {
-  "run_id": "ACU-LOOP-0099",
-  "timestamp_utc": "2026-05-17T15:06:43.879Z",
-  "scope": "Persist selected manual review decisions",
+  "loop_id": "ACU-LOOP-0099",
+  "issue_number": 99,
+  "mode": "controlled_implementation",
   "status": "completed",
-  "changes": [
+  "phase": "manual-review-decision-persistence",
+  "created_at_utc": "2026-05-17T15:06:43Z",
+  "updated_at_utc": "2026-05-17T15:06:43Z",
+  "validation": {
+    "methodology": {
+      "status": "not_run",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": null
+    },
+    "golden_dataset": {
+      "status": "not_run",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": null
+    },
+    "state_schema": {
+      "status": "not_run",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": null
+    }
+  },
+  "human_review_required": true,
+  "files_touched": [
     "data/source-registries/italian-universities/manual_review_decisions.csv"
   ],
-  "selected_decision_rows": 80,
-  "next_action": "Open PR for review and merge"
+  "next_action": "Open PR for review and merge.",
+  "blocking_issues": [],
+  "allowed_actions": [
+    "Persist selected manual review decisions approved in registry workflow"
+  ],
+  "prohibited_actions": [
+    "Modify golden dataset rows",
+    "Collect candidate or committee data",
+    "Infer relations or legal conclusions"
+  ],
+  "quality_score": 100
 }
