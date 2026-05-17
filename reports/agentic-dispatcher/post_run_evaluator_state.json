@@ -1,23 +1,196 @@
 {
   "evaluator_id": "ACU-POSTRUN-EVAL-0001",
   "status": "completed",
-  "created_at_utc": "2026-05-17T14:16:37+00:00",
-  "updated_at_utc": "2026-05-17T14:16:37+00:00",
+  "created_at_utc": "2026-05-17T15:09:14+00:00",
+  "updated_at_utc": "2026-05-17T15:09:14+00:00",
   "repo": "colazeta/atlante_dei_concorsi",
-  "scanned_issue_count": 4,
+  "scanned_issue_count": 6,
   "scanned_issue_numbers": [
+    98,
+    96,
+    91,
     79,
     78,
-    72,
     70
   ],
-  "continuation_needed_count": 2,
+  "continuation_needed_count": 5,
   "evaluations": [
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T14:16:34+00:00",
-      "updated_at_utc": "2026-05-17T14:16:34+00:00",
+      "created_at_utc": "2026-05-17T15:09:12+00:00",
+      "updated_at_utc": "2026-05-17T15:09:12+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 98,
+        "title": "Add GitHub submission flow for manual review decisions from Pages UX",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/98",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T15:02:22Z",
+        "last_comment_updated_at": "2026-05-17T15:02:22Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "continuation_needed",
+        "next_label": null,
+        "rationale": [
+          "Expected quality score 99 is above current 1.",
+          "Continuation prompt generated; do not advance to agent-review yet."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": true,
+      "continuation": {
+        "issue_number": 98,
+        "created_at_utc": "2026-05-17T15:09:12+00:00",
+        "continuation_needed": true,
+        "expected_quality_score": 99,
+        "current_quality_score": 1,
+        "delta": 98,
+        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0098_state.json",
+        "continuation_prompt": "Issue #98 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 1\n- Delta: 98\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR titled 'Add GitHub issue submission flow for manual review decisions'.",
+        "queue_path": "reports/codex-handoff-queue/98_continuation.json"
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "skipped_continuation_needed"
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T15:09:12+00:00",
+      "updated_at_utc": "2026-05-17T15:09:12+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 96,
+        "title": "Add bulk approval and commit workflow for low-confidence review UX",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/96",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T14:52:29Z",
+        "last_comment_updated_at": "2026-05-17T14:52:29Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "continuation_needed",
+        "next_label": null,
+        "rationale": [
+          "Expected quality score 99 is above current 1.",
+          "Continuation prompt generated; do not advance to agent-review yet."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": true,
+      "continuation": {
+        "issue_number": 96,
+        "created_at_utc": "2026-05-17T15:09:12+00:00",
+        "continuation_needed": true,
+        "expected_quality_score": 99,
+        "current_quality_score": 1,
+        "delta": 98,
+        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0096_state.json",
+        "continuation_prompt": "Issue #96 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 1\n- Delta: 98\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR titled 'Add bulk approval workflow to low-confidence review UX'.",
+        "queue_path": "reports/codex-handoff-queue/96_continuation.json"
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "skipped_continuation_needed"
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T15:09:13+00:00",
+      "updated_at_utc": "2026-05-17T15:09:13+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 91,
+        "title": "Publish lightweight mapping UX with GitHub Pages",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/91",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T14:31:59Z",
+        "last_comment_updated_at": "2026-05-17T14:31:59Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "continuation_needed",
+        "next_label": null,
+        "rationale": [
+          "Expected quality score 99 is above current 1.",
+          "Continuation prompt generated; do not advance to agent-review yet."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": true,
+      "continuation": {
+        "issue_number": 91,
+        "created_at_utc": "2026-05-17T15:09:13+00:00",
+        "continuation_needed": true,
+        "expected_quality_score": 99,
+        "current_quality_score": 1,
+        "delta": 98,
+        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0091_state.json",
+        "continuation_prompt": "Issue #91 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 1\n- Delta: 98\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR titled 'Publish mapping UX with GitHub Pages'.",
+        "queue_path": "reports/codex-handoff-queue/91_continuation.json"
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "skipped_continuation_needed"
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T15:09:13+00:00",
+      "updated_at_utc": "2026-05-17T15:09:13+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 79,
@@ -44,7 +217,7 @@
         "action": "continuation_needed",
         "next_label": null,
         "rationale": [
-          "Expected quality score 99 is above current 70.",
+          "Expected quality score 99 is above current 91.",
           "Continuation prompt generated; do not advance to agent-review yet."
         ]
       },
@@ -56,13 +229,13 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 79,
-        "created_at_utc": "2026-05-17T14:16:34+00:00",
+        "created_at_utc": "2026-05-17T15:09:13+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
-        "current_quality_score": 70,
-        "delta": 29,
+        "current_quality_score": 91,
+        "delta": 8,
         "source_loop_state": "reports/agentic-loop/ACU-LOOP-0079_state.json",
-        "continuation_prompt": "Issue #79 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 70\n- Delta: 29\n- Loop status: blocked\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Post blocker on issue #79 requesting access to full issue body/comments (or pasted scope), then resume implementation.",
+        "continuation_prompt": "Issue #79 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 91\n- Delta: 8\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR and request review of milestone labels/timeline wording.",
         "queue_path": "reports/codex-handoff-queue/79_continuation.json"
       },
       "label_mutation": {
@@ -73,8 +246,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T14:16:35+00:00",
-      "updated_at_utc": "2026-05-17T14:16:35+00:00",
+      "created_at_utc": "2026-05-17T15:09:14+00:00",
+      "updated_at_utc": "2026-05-17T15:09:14+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 78,
@@ -113,7 +286,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 78,
-        "created_at_utc": "2026-05-17T14:16:35+00:00",
+        "created_at_utc": "2026-05-17T15:09:14+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -130,61 +303,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T14:16:35+00:00",
-      "updated_at_utc": "2026-05-17T14:16:35+00:00",
-      "repo": "colazeta/atlante_dei_concorsi",
-      "issue": {
-        "number": 72,
-        "title": "Increase autonomy with scheduled dispatcher and continuation evaluator",
-        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/72",
-        "labels": [
-          "enhancement",
-          "governance",
-          "agent-running"
-        ]
-      },
-      "signals": {
-        "comment_count": 1,
-        "issue_updated_at": "2026-05-17T11:52:42Z",
-        "last_comment_updated_at": "2026-05-17T11:52:42Z",
-        "last_comment_has_summary": false,
-        "last_comment_has_testing": false,
-        "last_comment_has_blocker": true,
-        "last_comment_has_completion_signal": false,
-        "stale_state_detected": false
-      },
-      "recommendation": {
-        "action": "set_blocked",
-        "next_label": "agent-blocked",
-        "rationale": [
-          "Latest comment contains blocker language."
-        ]
-      },
-      "warnings": [],
-      "notes": [
-        "Evaluator does not infer substantive correctness.",
-        "Human review remains required before agent-done."
-      ],
-      "continuation_needed": false,
-      "continuation": {
-        "continuation_needed": false,
-        "reason": "No local loop state found for this issue."
-      },
-      "label_mutation": {
-        "status": "completed",
-        "added": [
-          "agent-blocked"
-        ],
-        "removed": [
-          "agent-running"
-        ]
-      }
-    },
-    {
-      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
-      "status": "completed",
-      "created_at_utc": "2026-05-17T14:16:37+00:00",
-      "updated_at_utc": "2026-05-17T14:16:37+00:00",
+      "created_at_utc": "2026-05-17T15:09:14+00:00",
+      "updated_at_utc": "2026-05-17T15:09:14+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 70,

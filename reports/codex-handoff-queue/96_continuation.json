@@ -1,0 +1,10 @@
+{
+  "issue_number": 96,
+  "created_at_utc": "2026-05-17T15:09:12+00:00",
+  "continuation_needed": true,
+  "expected_quality_score": 99,
+  "current_quality_score": 1,
+  "delta": 98,
+  "source_loop_state": "reports/agentic-loop/ACU-LOOP-0096_state.json",
+  "continuation_prompt": "Issue #96 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 1\n- Delta: 98\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR titled 'Add bulk approval workflow to low-confidence review UX'."
+}
