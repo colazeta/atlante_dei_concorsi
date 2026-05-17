@@ -19,10 +19,10 @@ Generate governed source-intake packs from the university registry without scrap
 ## Validation
 - `python3 scripts/validate_atlante_methodology.py` → passed.
 - `python3 scripts/validate_golden_dataset.py` → passed with existing non-blocking warnings.
-- `python3 scripts/validate_agentic_loop_state.py` → failed due to pre-existing schema issues in `reports/agentic-loop/ACU-LOOP-0099_state.json`.
+- `python3 scripts/validate_agentic_loop_state.py` → passed.
 
 ## Blockers
-- Repository has a pre-existing agentic-loop state schema failure in `ACU-LOOP-0099_state.json` unrelated to this issue; this blocks full green validation for the state validator.
+- None.
 
 ## Next action
-Open draft PR for human review; decide whether to repair legacy `ACU-LOOP-0099_state.json` in a separate remediation issue/PR.
+Open draft PR for human review and merge.
