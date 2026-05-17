@@ -1,13 +1,13 @@
 {
   "evaluator_id": "ACU-POSTRUN-EVAL-0001",
   "status": "completed",
-  "created_at_utc": "2026-05-17T15:09:14+00:00",
-  "updated_at_utc": "2026-05-17T15:09:14+00:00",
+  "created_at_utc": "2026-05-17T16:07:40+00:00",
+  "updated_at_utc": "2026-05-17T16:07:40+00:00",
   "repo": "colazeta/atlante_dei_concorsi",
   "scanned_issue_count": 6,
   "scanned_issue_numbers": [
+    101,
     98,
-    96,
     91,
     79,
     78,
@@ -18,8 +18,65 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T15:09:12+00:00",
-      "updated_at_utc": "2026-05-17T15:09:12+00:00",
+      "created_at_utc": "2026-05-17T16:07:37+00:00",
+      "updated_at_utc": "2026-05-17T16:07:37+00:00",
+      "repo": "colazeta/atlante_dei_concorsi",
+      "issue": {
+        "number": 101,
+        "title": "Fix UX display of manual verification decisions and homepage URLs",
+        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/101",
+        "labels": [
+          "enhancement",
+          "governance",
+          "agent-running",
+          "ux"
+        ]
+      },
+      "signals": {
+        "comment_count": 1,
+        "issue_updated_at": "2026-05-17T16:02:35Z",
+        "last_comment_updated_at": "2026-05-17T16:02:35Z",
+        "last_comment_has_summary": false,
+        "last_comment_has_testing": false,
+        "last_comment_has_blocker": true,
+        "last_comment_has_completion_signal": false,
+        "stale_state_detected": false
+      },
+      "recommendation": {
+        "action": "continuation_needed",
+        "next_label": null,
+        "rationale": [
+          "Expected quality score 99 is above current 1.",
+          "Continuation prompt generated; do not advance to agent-review yet."
+        ]
+      },
+      "warnings": [],
+      "notes": [
+        "Evaluator does not infer substantive correctness.",
+        "Human review remains required before agent-done."
+      ],
+      "continuation_needed": true,
+      "continuation": {
+        "issue_number": 101,
+        "created_at_utc": "2026-05-17T16:07:37+00:00",
+        "continuation_needed": true,
+        "expected_quality_score": 99,
+        "current_quality_score": 1,
+        "delta": 98,
+        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0101_state.json",
+        "continuation_prompt": "Issue #101 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 1\n- Delta: 98\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR for human review and decide whether to separately repair pre-existing ACU-LOOP-0099 state schema errors.",
+        "queue_path": "reports/codex-handoff-queue/101_continuation.json"
+      },
+      "label_mutation": {
+        "requested": true,
+        "status": "skipped_continuation_needed"
+      }
+    },
+    {
+      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
+      "status": "completed",
+      "created_at_utc": "2026-05-17T16:07:37+00:00",
+      "updated_at_utc": "2026-05-17T16:07:37+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 98,
@@ -58,7 +115,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 98,
-        "created_at_utc": "2026-05-17T15:09:12+00:00",
+        "created_at_utc": "2026-05-17T16:07:37+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 1,
@@ -75,65 +132,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T15:09:12+00:00",
-      "updated_at_utc": "2026-05-17T15:09:12+00:00",
-      "repo": "colazeta/atlante_dei_concorsi",
-      "issue": {
-        "number": 96,
-        "title": "Add bulk approval and commit workflow for low-confidence review UX",
-        "url": "https://github.com/colazeta/atlante_dei_concorsi/issues/96",
-        "labels": [
-          "enhancement",
-          "governance",
-          "agent-running",
-          "ux"
-        ]
-      },
-      "signals": {
-        "comment_count": 1,
-        "issue_updated_at": "2026-05-17T14:52:29Z",
-        "last_comment_updated_at": "2026-05-17T14:52:29Z",
-        "last_comment_has_summary": false,
-        "last_comment_has_testing": false,
-        "last_comment_has_blocker": true,
-        "last_comment_has_completion_signal": false,
-        "stale_state_detected": false
-      },
-      "recommendation": {
-        "action": "continuation_needed",
-        "next_label": null,
-        "rationale": [
-          "Expected quality score 99 is above current 1.",
-          "Continuation prompt generated; do not advance to agent-review yet."
-        ]
-      },
-      "warnings": [],
-      "notes": [
-        "Evaluator does not infer substantive correctness.",
-        "Human review remains required before agent-done."
-      ],
-      "continuation_needed": true,
-      "continuation": {
-        "issue_number": 96,
-        "created_at_utc": "2026-05-17T15:09:12+00:00",
-        "continuation_needed": true,
-        "expected_quality_score": 99,
-        "current_quality_score": 1,
-        "delta": 98,
-        "source_loop_state": "reports/agentic-loop/ACU-LOOP-0096_state.json",
-        "continuation_prompt": "Issue #96 requires continuation before review.\n\n- Expected quality score: 99\n- Current quality score: 1\n- Delta: 98\n- Loop status: completed\n- Loop mode: controlled_implementation\n\nContinue the issue using governed workflow, preserve uncertainty markers and review notes, run required validators, and report blockers explicitly.\n\nDocumented next action: Open draft PR titled 'Add bulk approval workflow to low-confidence review UX'.",
-        "queue_path": "reports/codex-handoff-queue/96_continuation.json"
-      },
-      "label_mutation": {
-        "requested": true,
-        "status": "skipped_continuation_needed"
-      }
-    },
-    {
-      "evaluator_id": "ACU-POSTRUN-EVAL-0001",
-      "status": "completed",
-      "created_at_utc": "2026-05-17T15:09:13+00:00",
-      "updated_at_utc": "2026-05-17T15:09:13+00:00",
+      "created_at_utc": "2026-05-17T16:07:38+00:00",
+      "updated_at_utc": "2026-05-17T16:07:38+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 91,
@@ -172,7 +172,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 91,
-        "created_at_utc": "2026-05-17T15:09:13+00:00",
+        "created_at_utc": "2026-05-17T16:07:38+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 1,
@@ -189,8 +189,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T15:09:13+00:00",
-      "updated_at_utc": "2026-05-17T15:09:13+00:00",
+      "created_at_utc": "2026-05-17T16:07:39+00:00",
+      "updated_at_utc": "2026-05-17T16:07:39+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 79,
@@ -229,7 +229,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 79,
-        "created_at_utc": "2026-05-17T15:09:13+00:00",
+        "created_at_utc": "2026-05-17T16:07:39+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -246,8 +246,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T15:09:14+00:00",
-      "updated_at_utc": "2026-05-17T15:09:14+00:00",
+      "created_at_utc": "2026-05-17T16:07:39+00:00",
+      "updated_at_utc": "2026-05-17T16:07:39+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 78,
@@ -286,7 +286,7 @@
       "continuation_needed": true,
       "continuation": {
         "issue_number": 78,
-        "created_at_utc": "2026-05-17T15:09:14+00:00",
+        "created_at_utc": "2026-05-17T16:07:39+00:00",
         "continuation_needed": true,
         "expected_quality_score": 99,
         "current_quality_score": 91,
@@ -303,8 +303,8 @@
     {
       "evaluator_id": "ACU-POSTRUN-EVAL-0001",
       "status": "completed",
-      "created_at_utc": "2026-05-17T15:09:14+00:00",
-      "updated_at_utc": "2026-05-17T15:09:14+00:00",
+      "created_at_utc": "2026-05-17T16:07:40+00:00",
+      "updated_at_utc": "2026-05-17T16:07:40+00:00",
       "repo": "colazeta/atlante_dei_concorsi",
       "issue": {
         "number": 70,
