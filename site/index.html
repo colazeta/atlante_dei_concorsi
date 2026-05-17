@@ -58,7 +58,12 @@
       <button id="download-selected-csv" type="button">Export selected decisions (CSV)</button>
       <button id="download-all-csv" type="button">Export all decisions (CSV)</button>
       <button id="download-decisions-json" type="button">Export all decisions (JSON)</button>
+      <button id="submit-selected-github" type="button">Submit selected decisions to GitHub</button>
+      <button id="submit-all-github" type="button">Submit all decisions to GitHub</button>
     </div>
+    <p class="small">Submitting creates a prefilled GitHub issue for persistence review; it does not directly commit repository files.</p>
+    <p id="github-submit-status" class="small">GitHub submission: ready.</p>
+    <textarea id="github-submit-fallback" rows="8" readonly style="display:none" aria-label="GitHub issue fallback payload"></textarea>
   </section>
 
   <section class="filters">
@@ -90,6 +95,51 @@ function applyFilters(focus){const q=document.getElementById('search').value.toL
 function buildRows(selectedOnly=false){return Object.entries(state.decisions).filter(([k])=>!selectedOnly||state.selected.has(k)).map(([k,v])=>{const e=state.entries.find(x=>decisionKey(x)===k)||{};return {record_id:btoa(unescape(encodeURIComponent(k))).replace(/=+$/,''),record_type:'university_registry_mapping',source_file:'site/data/university_registry.json',university_id:e.university_id||'',field_under_review:'recruitment_page_url',automated_value:e.recruitment_page_url||'',automated_confidence_level:e.confidence_level||'',automated_verification_status:e.verification_status||'',manual_decision:v.manual_decision||'',manual_decision_reason:v.notes||'',reviewer:v.reviewer||'',review_date:v.review_date||'',notes:v.notes||''};}).filter(r=>r.manual_decision||r.notes||r.reviewer);}
 function toCsv(rows){const h=['record_id','record_type','source_file','university_id','field_under_review','automated_value','automated_confidence_level','automated_verification_status','manual_decision','manual_decision_reason','reviewer','review_date','notes'];const esc=x=>`"${String(x??'').replaceAll('"','""')}"`;return [h.join(','),...rows.map(r=>h.map(k=>esc(r[k])).join(','))].join('\n');}
 function download(name,content,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href);}
+function buildGithubIssueBody(rows,scopeLabel){
+  const payload=JSON.stringify(rows,null,2);
+  return [
+    'Persist these manual review decisions into manual_review_decisions.csv.',
+    'Do not overwrite automated registry data.',
+    'Preserve provenance fields.',
+    'Open a PR with the decision update.',
+    '',
+    `Selection scope: ${scopeLabel}`,
+    `Selected decision rows: ${rows.length}`,
+    `Submitted at UTC: ${new Date().toISOString()}`,
+    '',
+    'Decision payload (JSON):',
+    '```json',
+    payload,
+    '```'
+  ].join('\n');
+}
+function submitGithubIssue(selectedOnly){
+  const rows=buildRows(selectedOnly);
+  const status=document.getElementById('github-submit-status');
+  const fallback=document.getElementById('github-submit-fallback');
+  if(!rows.length){
+    status.textContent='GitHub submission blocked: no decisions available for the requested scope.';
+    fallback.style.display='none';
+    fallback.value='';
+    return;
+  }
+  const scopeLabel=selectedOnly?'selected decisions':'all decisions';
+  const title=`Persist manual review decisions from Pages UX (${rows.length} rows)`;
+  const body=buildGithubIssueBody(rows,scopeLabel);
+  const issueUrl=`https://github.com/colazeta/atlante_dei_concorsi/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent('manual-review,governance')}`;
+  if(issueUrl.length<7500){
+    window.open(issueUrl,'_blank','noopener,noreferrer');
+    status.textContent=`Opened prefilled GitHub issue for ${scopeLabel} (${rows.length} rows).`;
+    fallback.style.display='none';
+    fallback.value='';
+    return;
+  }
+  fallback.style.display='block';
+  fallback.value=body;
+  fallback.focus();
+  fallback.select();
+  status.textContent=`Prefilled URL was too long for ${scopeLabel} (${rows.length} rows). Copy payload from the fallback box and paste into a new GitHub issue.`;
+}
 Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]}))]).then(([data,manual])=>{
  state.entries=data.entries;state.filtered=data.entries.slice();
  data.filters.verification_status.forEach(s=>document.getElementById('verification').insertAdjacentHTML('beforeend',`<option>${s}</option>`));
@@ -108,6 +158,8 @@ Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('.
  document.getElementById('download-selected-csv').addEventListener('click',()=>download('manual_review_decisions_selected.csv',toCsv(buildRows(true)),'text/csv'));
  document.getElementById('download-all-csv').addEventListener('click',()=>download('manual_review_decisions.csv',toCsv(buildRows(false)),'text/csv'));
  document.getElementById('download-decisions-json').addEventListener('click',()=>download('manual_review_decisions.json',JSON.stringify({metadata:{exported_at_utc:new Date().toISOString(),persistence_note:'Commit/export through governed repository workflow required.'},decisions:buildRows(false)},null,2),'application/json'));
+ document.getElementById('submit-selected-github').addEventListener('click',()=>submitGithubIssue(true));
+ document.getElementById('submit-all-github').addEventListener('click',()=>submitGithubIssue(false));
  document.getElementById('clear-decisions').addEventListener('click',()=>{state.decisions={};saveDecisions();renderRows();});
 });
 </script>
