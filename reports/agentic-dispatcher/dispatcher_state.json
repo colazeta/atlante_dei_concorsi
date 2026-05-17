@@ -2,8 +2,8 @@
   "dispatcher_id": "ACU-DISPATCHER-0001",
   "mode": "controlled",
   "status": "selected",
-  "created_at_utc": "2026-05-17T17:13:25+00:00",
-  "updated_at_utc": "2026-05-17T17:13:25+00:00",
+  "created_at_utc": "2026-05-17T17:27:54+00:00",
+  "updated_at_utc": "2026-05-17T17:27:54+00:00",
   "eligible_label": "agent-ready",
   "selected_issue": {
     "number": 105,
@@ -12,13 +12,14 @@
     "labels": [
       "enhancement",
       "governance",
-      "agent-ready"
+      "agent-ready",
+      "agent-running"
     ]
   },
   "handoff_prompt": "Execute GitHub issue #105 in `colazeta/atlante_dei_concorsi`: Generate source-intake packs from university registry\n\nOperational instructions:\n\n1. Read the full issue body and all comments before editing files.\n2. Follow `AGENTS.md` and all repository governance rules.\n3. Create a dedicated branch from `main`.\n4. Implement only the scope requested by the issue.\n5. Preserve uncertainty, caveats, source references and review notes.\n6. Do not modify the golden dataset unless the issue explicitly authorises it.\n7. Do not commit raw documents or snapshots unless policy explicitly allows it.\n8. Run the relevant validators:\n   - `python3 scripts/validate_atlante_methodology.py`\n   - `python3 scripts/validate_golden_dataset.py`\n   - `python3 scripts/validate_agentic_loop_state.py`\n9. Open a draft PR when done.\n10. In the PR body, report scope, files changed, validation results, blockers and next action.\n11. If blocked, do not guess. Comment on the issue with the blocker and stop.\n",
   "blocking_issues": [],
   "next_action": "Issue moved to agent-running. Start Codex/agent execution using the generated handoff prompt.",
-  "candidate_count": 1,
+  "candidate_count": 2,
   "label_mutation": {
     "requested": true,
     "added": [
