@@ -1,0 +1,51 @@
+{
+  "loop_id": "ACU-LOOP-0091",
+  "issue_number": 91,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "deployment-workflow",
+  "created_at_utc": "2026-05-17T00:00:00+00:00",
+  "updated_at_utc": "2026-05-17T00:00:00+00:00",
+  "allowed_actions": [
+    "Publish static mapping UX via controlled GitHub Pages workflow",
+    "Run deterministic build scripts and repository validators",
+    "Record execution evidence and loop state"
+  ],
+  "prohibited_actions": [
+    "Publish golden-dataset rows",
+    "Expose raw documents, PDFs, or snapshots",
+    "Expose candidate or committee data",
+    "Infer relations or assign risk scores",
+    "Imply wrongdoing or legal conclusions"
+  ],
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "human_review_required": false,
+  "next_action": "Open draft PR titled 'Publish mapping UX with GitHub Pages'.",
+  "files_touched": [
+    ".github/workflows/deploy-pages.yml",
+    "docs/executions/ACU-LOOP-0091_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0091_state.json"
+  ],
+  "notes": [
+    "Workflow uses official GitHub Pages actions with pages/id-token permissions.",
+    "Workflow runs on workflow_dispatch and push to main for mapping UX and source-registry changes."
+  ],
+  "quality_score": 1,
+  "blocking_issues": []
+}
