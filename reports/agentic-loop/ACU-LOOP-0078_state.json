@@ -1,0 +1,51 @@
+{
+  "loop_id": "ACU-LOOP-0078",
+  "issue_number": 78,
+  "mode": "controlled_implementation",
+  "status": "blocked",
+  "phase": "intake",
+  "created_at_utc": "2026-05-17T13:56:56+00:00",
+  "updated_at_utc": "2026-05-17T13:58:00+00:00",
+  "allowed_actions": [
+    "Read issue body and comments",
+    "Implement approved scoped UX changes",
+    "Run required validators"
+  ],
+  "prohibited_actions": [
+    "Guess issue scope without reading issue context",
+    "Dataset expansion outside approved scope",
+    "Legal or reputational judgement automation"
+  ],
+  "quality_score": 35,
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    }
+  },
+  "blocking_issues": [
+    "Cannot access GitHub issue #78 body/comments from this environment (GitHub API returned HTTP 404 for repository/issue endpoint).",
+    "Per handoff rule, implementation cannot start before full issue body and comments are read."
+  ],
+  "human_review_required": true,
+  "next_action": "Provide issue #78 body and comments (or repository access credentials) so controlled implementation can proceed.",
+  "files_touched": [
+    "reports/agentic-loop/ACU-LOOP-0078_state.json",
+    "docs/executions/ACU-LOOP-0078_execution.md"
+  ],
+  "notes": [
+    "Blocked early to avoid ungoverned scope guessing.",
+    "No dataset or source-registry files were modified."
+  ]
+}
