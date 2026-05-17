@@ -1,0 +1,56 @@
+{
+  "loop_id": "ACU-LOOP-0114",
+  "issue_number": 118,
+  "phase": "implementation",
+  "status": "blocked",
+  "mode": "controlled_implementation",
+  "created_at_utc": "2026-05-17T20:05:00Z",
+  "updated_at_utc": "2026-05-17T20:05:00Z",
+  "next_action": "Human review required: resolve pre-existing agentic-loop state schema failures (e.g., ACU-LOOP-0113_state.json) so global validator can pass, then open/merge PR.",
+  "human_review_required": true,
+  "quality_score": 88,
+  "allowed_actions": [
+    "documentation_updates",
+    "status_panel_ui_update",
+    "generated_status_file_build",
+    "workflow_refresh_updates",
+    "validator_execution"
+  ],
+  "prohibited_actions": [
+    "golden_dataset_modification",
+    "raw_document_publication",
+    "legal_or_reputational_judgement"
+  ],
+  "blocking_issues": [
+    "scripts/validate_agentic_loop_state.py fails due pre-existing invalid file reports/agentic-loop/ACU-LOOP-0113_state.json outside issue-118 scope."
+  ],
+  "files_touched": [
+    "site/index.html",
+    "scripts/build_automation_status.py",
+    "site/data/automation_status.json",
+    ".github/workflows/deploy-pages.yml",
+    ".github/workflows/source-inventory-progress.yml",
+    "reports/agentic-loop/ACU-LOOP-0114_state.json",
+    "docs/executions/ACU-LOOP-0114_execution.md"
+  ],
+  "validation": {
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    },
+    "state_schema": {
+      "status": "failed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 1
+    }
+  },
+  "notes": [
+    "Implemented issue #118 scope only; validator failure includes pre-existing ACU-LOOP-0113 schema errors and this run is marked blocked for human review."
+  ]
+}
