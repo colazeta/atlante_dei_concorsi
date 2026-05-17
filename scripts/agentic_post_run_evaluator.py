@@ -18,10 +18,20 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "reports" / "agentic-dispatcher" / "post_run_evaluator_state.json"
+REQUIRED_RUN_LABEL = "agent-running"
 
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def parse_utc(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
 
 
 def gh_request(method: str, url: str, token: str | None, payload: dict[str, Any] | None = None) -> Any:
@@ -46,26 +56,47 @@ def evaluate(repo: str, issue_number: int, token: str | None) -> dict[str, Any]:
     issue = gh_request("GET", f"https://api.github.com/repos/{repo}/issues/{issue_number}", token)
     comments = gh_request("GET", issue["comments_url"], token) if issue.get("comments", 0) else []
     labels = [x.get("name") for x in issue.get("labels", []) if x.get("name")]
+    issue_updated_at = issue.get("updated_at")
+    last_comment_at = comments[-1].get("updated_at") if comments else None
 
     last_comment = comments[-1]["body"] if comments else ""
     has_summary = "summary" in last_comment.lower()
     has_testing = "testing" in last_comment.lower()
     has_blocker = any(k in last_comment.lower() for k in ["blocker", "blocked", "cannot proceed"]) 
+    has_completion_signal = any(
+        token in last_comment.lower()
+        for token in ["status: completed", "status=`completed`", "status `completed`", "status completed"]
+    )
 
     recommendation = "no_change"
     next_label = None
     rationale: list[str] = []
+    warnings: list[str] = []
+    stale_state = False
 
-    if has_blocker:
+    if REQUIRED_RUN_LABEL not in labels:
+        stale_state = True
+        warnings.append("Issue does not have agent-running label; evaluator transition skipped.")
+
+    issue_updated = parse_utc(issue_updated_at)
+    last_comment_updated = parse_utc(last_comment_at)
+    if issue_updated and last_comment_updated and issue_updated > last_comment_updated:
+        stale_state = True
+        warnings.append("Issue has newer activity after the latest comment; completion signal may be stale.")
+
+    if stale_state:
+        recommendation = "manual_review"
+        rationale.append("Stale-state safeguards triggered; label transition requires human review.")
+    elif has_blocker:
         recommendation = "set_blocked"
         next_label = "agent-blocked"
         rationale.append("Latest comment contains blocker language.")
-    elif has_summary and has_testing:
+    elif has_summary and has_testing and has_completion_signal:
         recommendation = "set_review"
         next_label = "agent-review"
-        rationale.append("Latest comment includes summary and testing sections.")
+        rationale.append("Latest comment includes summary/testing sections and an explicit completion signal.")
     else:
-        rationale.append("No completion marker detected in latest issue comment.")
+        rationale.append("No reliable completion marker detected in latest issue comment.")
 
     return {
         "evaluator_id": "ACU-POSTRUN-EVAL-0001",
@@ -81,15 +112,20 @@ def evaluate(repo: str, issue_number: int, token: str | None) -> dict[str, Any]:
         },
         "signals": {
             "comment_count": len(comments),
+            "issue_updated_at": issue_updated_at,
+            "last_comment_updated_at": last_comment_at,
             "last_comment_has_summary": has_summary,
             "last_comment_has_testing": has_testing,
             "last_comment_has_blocker": has_blocker,
+            "last_comment_has_completion_signal": has_completion_signal,
+            "stale_state_detected": stale_state,
         },
         "recommendation": {
             "action": recommendation,
             "next_label": next_label,
             "rationale": rationale,
         },
+        "warnings": warnings,
         "notes": [
             "Evaluator does not infer substantive correctness.",
             "Human review remains required before agent-done.",
