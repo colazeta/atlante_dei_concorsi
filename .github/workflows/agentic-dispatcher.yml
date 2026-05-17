@@ -1,0 +1,79 @@
+name: Governed agentic dispatcher
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Dispatcher mode"
+        required: false
+        default: "dry_run"
+        type: choice
+        options:
+          - "dry_run"
+          - "controlled"
+      label:
+        description: "Issue label used to select eligible work"
+        required: false
+        default: "agent-ready"
+        type: string
+      comment:
+        description: "Post a handoff comment in controlled mode"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      mutate_labels:
+        description: "Move selected issue from agent-ready to agent-running in controlled mode"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run dispatcher
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS=(--repo "${{ github.repository }}" --mode "${{ inputs.mode }}" --label "${{ inputs.label }}")
+          if [ "${{ inputs.comment }}" = "true" ]; then
+            ARGS+=(--comment)
+          fi
+          if [ "${{ inputs.mutate_labels }}" = "true" ]; then
+            ARGS+=(--mutate-labels)
+          fi
+          python scripts/agentic_dispatcher.py "${ARGS[@]}"
+
+      - name: Commit dispatcher state if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/agentic-dispatcher
+          if git diff --cached --quiet; then
+            echo "No dispatcher-state changes to commit."
+            exit 0
+          fi
+          git commit -m "Record governed agentic dispatcher state"
+          git push
