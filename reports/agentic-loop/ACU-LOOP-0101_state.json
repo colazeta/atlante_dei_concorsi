@@ -1,0 +1,48 @@
+{
+  "loop_id": "ACU-LOOP-0101",
+  "issue_number": 101,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "ux-manual-review-overlay",
+  "created_at_utc": "2026-05-17T00:00:00+00:00",
+  "updated_at_utc": "2026-05-17T00:00:00+00:00",
+  "validation": {
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    },
+    "state_schema": {
+      "status": "failed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 1,
+      "notes": "Failure is due to pre-existing invalid file reports/agentic-loop/ACU-LOOP-0099_state.json plus this run before schema alignment."
+    }
+  },
+  "human_review_required": true,
+  "files_touched": [
+    "site/index.html",
+    "docs/executions/ACU-LOOP-0101_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0101_state.json"
+  ],
+  "next_action": "Open draft PR for human review and decide whether to separately repair pre-existing ACU-LOOP-0099 state schema errors.",
+  "blocking_issues": [
+    "validate_agentic_loop_state.py currently fails due to pre-existing ACU-LOOP-0099_state.json schema violations."
+  ],
+  "allowed_actions": [
+    "Implement issue #101 UX display changes in static viewer",
+    "Keep automated verification and manual decisions distinct",
+    "Run required validators and record outcomes"
+  ],
+  "prohibited_actions": [
+    "Modify golden dataset rows",
+    "Add raw documents or snapshots",
+    "Infer legal wrongdoing"
+  ],
+  "quality_score": 1
+}
