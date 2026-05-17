@@ -66,6 +66,16 @@
       "type": "integer",
       "minimum": 0
     },
+    "label_mutation": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "requested": {"type": "boolean"},
+        "status": {"type": "string"},
+        "added": {"type": "array", "items": {"type": "string"}},
+        "removed": {"type": "array", "items": {"type": "string"}}
+      }
+    },
     "notes": {
       "type": "array",
       "items": {"type": "string"}

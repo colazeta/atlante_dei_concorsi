@@ -36,9 +36,9 @@ Label meanings:
 - `agent-done`: completion evidence exists and the issue can be closed or archived.
 - `agent-needs-human`: the next step requires explicit human input or judgement.
 
-## 4. First implementation scope
+## 4. Current implementation scope
 
-The first dispatcher implementation is deliberately conservative.
+The dispatcher is deliberately conservative.
 
 It can:
 
@@ -46,15 +46,15 @@ It can:
 - select one issue per run;
 - write a machine-readable dispatcher state file;
 - produce a Codex handoff prompt;
-- optionally post a status comment in controlled mode.
+- optionally post a status comment in controlled mode;
+- optionally move the selected issue from `agent-ready` to `agent-running` in controlled mode, but only when label mutation is explicitly requested.
 
 It must not yet:
 
-- mutate labels automatically;
 - execute Codex itself;
 - fetch external sources;
 - change substantive datasets;
-- mark issues as done without completion evidence.
+- mark issues as `agent-review`, `agent-blocked` or `agent-done` without later completion evidence logic.
 
 ## 5. State persistence
 
@@ -95,7 +95,23 @@ The generated handoff prompt should instruct Codex/agent to:
 - open a draft PR;
 - report blockers instead of guessing.
 
-## 8. Stop conditions
+## 8. Label mutation
+
+Label mutation is opt-in.
+
+Dry-run mode must never mutate labels.
+
+Controlled mode may mutate labels only when the `mutate_labels` workflow input or `--mutate-labels` CLI flag is set.
+
+The first supported mutation is intentionally narrow:
+
+```text
+agent-ready → agent-running
+```
+
+The dispatcher may create missing workflow labels if the GitHub token has permission. If label creation or mutation fails, the dispatcher records the blocker in state and must not silently proceed.
+
+## 9. Stop conditions
 
 The dispatcher must stop or remain idle when:
 
@@ -103,15 +119,16 @@ The dispatcher must stop or remain idle when:
 - GitHub API access is unavailable;
 - more context is required to safely select an issue;
 - selected issue content conflicts with `AGENTS.md`;
+- label mutation fails in controlled mode;
 - a previous dispatcher state indicates unresolved human input.
 
-## 9. Later extensions
+## 10. Later extensions
 
-After the dry-run dispatcher is validated, later PRs may add:
+Later PRs may add:
 
-- safe label mutation;
 - scheduled execution;
 - detection of linked PRs;
 - CI status monitoring;
 - automatic transition from `agent-running` to `agent-review` or `agent-blocked`;
-- issue comment summaries after each run.
+- issue comment summaries after each run;
+- safe completion detection before applying `agent-done`.

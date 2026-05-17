@@ -24,6 +24,14 @@ on:
         options:
           - "false"
           - "true"
+      mutate_labels:
+        description: "Move selected issue from agent-ready to agent-running in controlled mode"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
@@ -52,6 +60,9 @@ jobs:
           ARGS=(--repo "${{ github.repository }}" --mode "${{ inputs.mode }}" --label "${{ inputs.label }}")
           if [ "${{ inputs.comment }}" = "true" ]; then
             ARGS+=(--comment)
+          fi
+          if [ "${{ inputs.mutate_labels }}" = "true" ]; then
+            ARGS+=(--mutate-labels)
           fi
           python scripts/agentic_dispatcher.py "${ARGS[@]}"
 

@@ -4,10 +4,10 @@
 The dispatcher does not execute Codex directly. It selects an explicitly
 approved issue and writes a machine-readable state plus a handoff prompt.
 
-First implementation scope:
+Current implementation scope:
 - dry-run selection of one issue labelled agent-ready;
 - optional controlled issue comment;
-- no label mutation;
+- optional safe label mutation from agent-ready to agent-running;
 - no dataset changes;
 - no external content collection.
 """
@@ -21,14 +21,21 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote, urlencode
+from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REPORT_DIR = ROOT / "reports" / "agentic-dispatcher"
-STATE_PATH = DEFAULT_REPORT_DIR / "dispatcher_state.json"
 ALLOWED_MODES = {"dry_run", "controlled"}
+REQUIRED_LABELS = {
+    "agent-ready": "0E8A16",
+    "agent-running": "FBCA04",
+    "agent-review": "1D76DB",
+    "agent-blocked": "D73A4A",
+    "agent-done": "5319E7",
+    "agent-needs-human": "BFDADC",
+}
 
 
 def utc_now() -> str:
@@ -69,6 +76,41 @@ def labels_of(issue: dict[str, Any]) -> list[str]:
     return [label.get("name", "") for label in issue.get("labels", []) if label.get("name")]
 
 
+def ensure_label(repo: str, label: str, token: str | None) -> str:
+    if not token:
+        return "skipped_no_token"
+    encoded = quote(label, safe="")
+    get_url = f"https://api.github.com/repos/{repo}/labels/{encoded}"
+    try:
+        github_request("GET", get_url, token)
+        return "exists"
+    except HTTPError as exc:
+        if exc.code != 404:
+            raise
+    create_url = f"https://api.github.com/repos/{repo}/labels"
+    github_request("POST", create_url, token, {"name": label, "color": REQUIRED_LABELS.get(label, "EDEDED")})
+    return "created"
+
+
+def add_issue_labels(repo: str, issue_number: int, labels: list[str], token: str | None) -> None:
+    if not token:
+        raise RuntimeError("GITHUB_TOKEN is required for label mutation")
+    url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/labels"
+    github_request("POST", url, token, {"labels": labels})
+
+
+def remove_issue_label(repo: str, issue_number: int, label: str, token: str | None) -> None:
+    if not token:
+        raise RuntimeError("GITHUB_TOKEN is required for label mutation")
+    encoded = quote(label, safe="")
+    url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/labels/{encoded}"
+    try:
+        github_request("DELETE", url, token)
+    except HTTPError as exc:
+        if exc.code != 404:
+            raise
+
+
 def build_handoff_prompt(repo: str, issue: dict[str, Any]) -> str:
     number = issue["number"]
     title = issue["title"]
@@ -107,12 +149,38 @@ def post_issue_comment(repo: str, issue_number: int, token: str | None, body: st
     github_request("POST", url, token, {"body": body})
 
 
-def build_state(repo: str, mode: str, label: str, report_dir: Path, token: str | None) -> dict[str, Any]:
+def mutate_selected_issue_labels(repo: str, issue_number: int, eligible_label: str, token: str | None) -> dict[str, Any]:
+    result: dict[str, Any] = {
+        "requested": True,
+        "added": [],
+        "removed": [],
+        "ensured_labels": {},
+        "status": "not_started",
+    }
+    for label in REQUIRED_LABELS:
+        result["ensured_labels"][label] = ensure_label(repo, label, token)
+    add_issue_labels(repo, issue_number, ["agent-running"], token)
+    result["added"].append("agent-running")
+    remove_issue_label(repo, issue_number, eligible_label, token)
+    result["removed"].append(eligible_label)
+    result["status"] = "completed"
+    return result
+
+
+def build_state(
+    repo: str,
+    mode: str,
+    label: str,
+    report_dir: Path,
+    token: str | None,
+    mutate_labels: bool,
+) -> dict[str, Any]:
     now = utc_now()
     blocking_issues: list[str] = []
     selected_issue: dict[str, Any] | None = None
     handoff_prompt: str | None = None
     candidate_count = 0
+    label_mutation: dict[str, Any] = {"requested": mutate_labels, "status": "not_requested", "added": [], "removed": [], "ensured_labels": {}}
 
     try:
         candidates = list_ready_issues(repo, label, token)
@@ -131,15 +199,27 @@ def build_state(repo: str, mode: str, label: str, report_dir: Path, token: str |
         }
         handoff_prompt = build_handoff_prompt(repo, issue)
 
+    if mutate_labels and mode != "controlled":
+        blocking_issues.append("Label mutation is allowed only in controlled mode.")
+    elif mutate_labels and selected_issue and not blocking_issues:
+        try:
+            label_mutation = mutate_selected_issue_labels(repo, int(selected_issue["number"]), label, token)
+        except (HTTPError, URLError, TimeoutError, RuntimeError) as exc:
+            label_mutation["status"] = "failed"
+            blocking_issues.append(f"Could not mutate issue labels: {exc}")
+
     if blocking_issues:
         status = "blocked"
-        next_action = "Fix dispatcher access or configuration, then re-run."
+        next_action = "Fix dispatcher access, permissions or configuration, then re-run."
     elif not selected_issue:
         status = "idle"
         next_action = f"No open issue with label `{label}` found. Add `{label}` to an approved issue."
     else:
         status = "selected"
-        next_action = "Use the generated handoff prompt to start Codex/agent execution."
+        if mutate_labels:
+            next_action = "Issue moved to agent-running. Start Codex/agent execution using the generated handoff prompt."
+        else:
+            next_action = "Use the generated handoff prompt to start Codex/agent execution."
 
     state = {
         "dispatcher_id": "ACU-DISPATCHER-0001",
@@ -153,9 +233,10 @@ def build_state(repo: str, mode: str, label: str, report_dir: Path, token: str |
         "blocking_issues": blocking_issues,
         "next_action": next_action,
         "candidate_count": candidate_count,
+        "label_mutation": label_mutation,
         "notes": [
-            "Dispatcher does not execute Codex directly in this foundation phase.",
-            "Dispatcher does not mutate labels in this foundation phase.",
+            "Dispatcher does not execute Codex directly in this phase.",
+            "Dispatcher mutates labels only when explicitly requested in controlled mode.",
             "Dispatcher must only select issues explicitly labelled agent-ready.",
         ],
     }
@@ -168,11 +249,17 @@ def maybe_comment(repo: str, state: dict[str, Any], token: str | None) -> None:
     if not selected:
         return
     issue_number = int(selected["number"])
-    body = f"""## Agentic dispatcher dry handoff
+    mutation = state.get("label_mutation", {})
+    mutation_text = "not requested"
+    if mutation.get("requested"):
+        mutation_text = f"status={mutation.get('status')}; added={mutation.get('added')}; removed={mutation.get('removed')}"
+    body = f"""## Agentic dispatcher handoff
 
 The dispatcher selected this issue because it is labelled `{state['eligible_label']}`.
 
 Current dispatcher mode: `{state['mode']}`
+
+Label mutation: `{mutation_text}`
 
 Next action:
 
@@ -186,7 +273,7 @@ Codex/agent handoff prompt:
 {state['handoff_prompt']}
 ```
 
-No labels were changed by this dispatcher run. No dataset files were changed by the dispatcher.
+No dataset files were changed by the dispatcher.
 """
     post_issue_comment(repo, issue_number, token, body)
 
@@ -198,6 +285,7 @@ def main() -> int:
     parser.add_argument("--label", default="agent-ready")
     parser.add_argument("--report-dir", type=Path, default=DEFAULT_REPORT_DIR)
     parser.add_argument("--comment", action="store_true", help="In controlled mode, post handoff comment to selected issue")
+    parser.add_argument("--mutate-labels", action="store_true", help="In controlled mode, move selected issue from agent-ready to agent-running")
     args = parser.parse_args()
 
     if not args.repo:
@@ -205,7 +293,7 @@ def main() -> int:
         return 1
 
     token = os.environ.get("GITHUB_TOKEN")
-    state = build_state(args.repo, args.mode, args.label, args.report_dir, token)
+    state = build_state(args.repo, args.mode, args.label, args.report_dir, token, args.mutate_labels)
 
     if args.comment and args.mode == "controlled" and state["status"] == "selected":
         try:
