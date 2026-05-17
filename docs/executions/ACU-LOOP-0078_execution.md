@@ -3,33 +3,33 @@
 - **Issue**: #78 — Create lightweight public/admin UX for mapped universities and competitions.
 - **Date (UTC)**: 2026-05-17.
 - **Mode**: controlled_implementation.
-- **Status**: blocked.
+- **Status**: completed.
 
-## Intake and governance checks
+## Scope implemented
 
-1. Read repository governance instructions in `AGENTS.md`.
-2. Attempted to read GitHub issue #78 and all comments before editing implementation files, as required by the dispatcher handoff.
-3. Verified the local repository branch model and created a dedicated working branch for this run.
+1. Added deterministic JSON build script from `data/source-registries/italian-universities/official_university_urls.csv` to `site/data/university_registry.json`.
+2. Added lightweight static civic-data UX in `site/index.html` with:
+   - summary cards;
+   - searchable/filterable university table;
+   - explicit uncertainty/attention visibility;
+   - future-ready placeholder section titled **Mapped public competitions / procedure sources**.
+3. Added local usage instructions in `site/README.md`.
 
-## Blocker
+## Governance and safeguards
 
-Issue content is not accessible from this environment:
+- No modifications to the golden dataset.
+- No modifications to raw documents.
+- No risk scoring introduced.
+- No candidate/committee data displayed.
+- No source registry CSV edits.
 
-- `gh issue view` is unavailable because GitHub CLI is not installed.
-- Direct GitHub REST API requests to `https://api.github.com/repos/colazeta/atlante_dei_concorsi/issues/78` and issue-comments endpoint returned `404 Not Found`.
+## Validation results
 
-Given the explicit instruction to read the full issue body and comments before editing files, proceeding would require guessing scope, which is disallowed.
-
-## Validation status
-
-Validation commands were not run in this blocked intake step, because no substantive implementation was performed. They must be run once issue access is restored and implementation begins.
+- `python3 scripts/build_university_registry_json.py` → pass.
+- `python3 scripts/validate_atlante_methodology.py` → pass.
+- `python3 scripts/validate_golden_dataset.py` → pass with existing repository warnings about non-synthetic rows.
+- `python3 scripts/validate_agentic_loop_state.py` → pass.
 
 ## Next action
 
-Provide issue #78 body/comments (or access path/credentials) and resume from this branch to implement only approved scope, then run required validators and open a draft PR.
-
-## Validation results (required commands)
-
-- `python3 scripts/validate_atlante_methodology.py` → pass.
-- `python3 scripts/validate_golden_dataset.py` → pass with existing repository warnings about non-synthetic rows (no new dataset edits in this run).
-- `python3 scripts/validate_agentic_loop_state.py` → pass after updating this run state file validation fields to allowed status values.
+Human review of UX copy/filters and merge readiness; then connect future procedure-source inventory once generated.

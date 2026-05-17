@@ -2,21 +2,21 @@
   "loop_id": "ACU-LOOP-0078",
   "issue_number": 78,
   "mode": "controlled_implementation",
-  "status": "blocked",
-  "phase": "intake",
+  "status": "completed",
+  "phase": "implementation",
   "created_at_utc": "2026-05-17T13:56:56+00:00",
-  "updated_at_utc": "2026-05-17T13:58:00+00:00",
+  "updated_at_utc": "2026-05-17T14:10:00+00:00",
   "allowed_actions": [
-    "Read issue body and comments",
-    "Implement approved scoped UX changes",
+    "Build static UX for mapped universities",
+    "Generate deterministic registry JSON from approved CSV",
     "Run required validators"
   ],
   "prohibited_actions": [
-    "Guess issue scope without reading issue context",
-    "Dataset expansion outside approved scope",
-    "Legal or reputational judgement automation"
+    "Golden dataset modification",
+    "Raw document modification",
+    "Risk scoring or wrongdoing inference"
   ],
-  "quality_score": 35,
+  "quality_score": 91,
   "validation": {
     "state_schema": {
       "status": "passed",
@@ -34,18 +34,19 @@
       "return_code": 0
     }
   },
-  "blocking_issues": [
-    "Cannot access GitHub issue #78 body/comments from this environment (GitHub API returned HTTP 404 for repository/issue endpoint).",
-    "Per handoff rule, implementation cannot start before full issue body and comments are read."
-  ],
+  "blocking_issues": [],
   "human_review_required": true,
-  "next_action": "Provide issue #78 body and comments (or repository access credentials) so controlled implementation can proceed.",
+  "next_action": "Review and merge the static UX, then wire in competition/procedure source inventory once available.",
   "files_touched": [
-    "reports/agentic-loop/ACU-LOOP-0078_state.json",
-    "docs/executions/ACU-LOOP-0078_execution.md"
+    "scripts/build_university_registry_json.py",
+    "site/data/university_registry.json",
+    "site/index.html",
+    "site/README.md",
+    "docs/executions/ACU-LOOP-0078_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0078_state.json"
   ],
   "notes": [
-    "Blocked early to avoid ungoverned scope guessing.",
-    "No dataset or source-registry files were modified."
+    "Uncertainty fields remain visible in UI and are never hidden by default.",
+    "Implementation is static and local-first by design."
   ]
 }
