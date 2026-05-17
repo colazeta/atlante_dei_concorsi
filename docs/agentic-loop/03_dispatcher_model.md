@@ -148,9 +148,17 @@ Current evaluator behaviour:
 
 Later PRs may add:
 
-- scheduled execution;
 - detection of linked PRs;
 - CI status monitoring;
-- automatic transition from `agent-running` to `agent-review` or `agent-blocked`;
 - issue comment summaries after each run;
 - safe completion detection before applying `agent-done`.
+
+## 12. Scheduled autonomy profile
+
+The repository now includes an hourly, conservative autonomy cadence:
+
+1. **Dispatcher schedule** (`.github/workflows/agentic-dispatcher.yml`) runs at minute `17` each hour and defaults to controlled mode with comment posting and `agent-ready -> agent-running` mutation enabled.
+2. **Continuation evaluator schedule** (`.github/workflows/agentic-continuation-evaluator.yml`) runs at minute `47` each hour and evaluates the currently selected issue from `reports/agentic-dispatcher/dispatcher_state.json` unless an explicit issue number is provided.
+3. The evaluator may apply only `agent-running -> agent-review|agent-blocked`, preserving mandatory human review before any `agent-done` outcome.
+
+This staggered schedule keeps the system governed: selection and continuation checks are automated, while substantive acceptance remains human-controlled.
