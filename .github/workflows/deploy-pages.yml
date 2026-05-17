@@ -2,6 +2,8 @@ name: Deploy mapping UX to GitHub Pages
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
   push:
     branches:
       - main
@@ -44,6 +46,14 @@ jobs:
         run: |
           python3 scripts/build_university_registry_json.py
           python3 scripts/build_mapping_progress_history.py
+          if [ -f scripts/build_source_inventory_progress.py ]; then
+            python3 scripts/build_source_inventory_progress.py
+          else
+            echo "scripts/build_source_inventory_progress.py not found; skipping source-inventory progress build."
+          fi
+
+      - name: Note scheduled-run cadence
+        run: echo "GitHub Actions scheduled workflows are best-effort and may not execute exactly every 10 minutes."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

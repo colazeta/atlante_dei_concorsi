@@ -1,0 +1,52 @@
+{
+  "loop_id": "ACU-LOOP-0110",
+  "issue_number": 110,
+  "mode": "controlled_implementation",
+  "status": "completed",
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T19:10:00+00:00",
+  "updated_at_utc": "2026-05-17T19:10:00+00:00",
+  "allowed_actions": [
+    "Update GitHub Pages deployment workflow cadence and build steps",
+    "Update governed execution/state documentation",
+    "Run required repository validators"
+  ],
+  "prohibited_actions": [
+    "Modify golden dataset rows without explicit authorization",
+    "Add raw documents or snapshots",
+    "Expand scraping/crawling behavior"
+  ],
+  "validation": {
+    "methodology": {
+      "status": "passed",
+      "command": "python3 scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python3 scripts/validate_golden_dataset.py",
+      "return_code": 0
+    },
+    "state_schema": {
+      "status": "passed",
+      "command": "python3 scripts/validate_agentic_loop_state.py",
+      "return_code": 0
+    }
+  },
+  "human_review_required": true,
+  "next_action": "Open draft PR and request maintainer review of schedule cadence and Actions load.",
+  "files_touched": [
+    ".github/workflows/deploy-pages.yml",
+    "docs/executions/ACU-LOOP-0110_execution.md",
+    "reports/agentic-loop/ACU-LOOP-0110_state.json"
+  ],
+  "notes": [
+    "Schedule uses 10-minute cron as requested in issue #110.",
+    "Source-inventory progress build runs conditionally when script exists.",
+    "Scheduled runs are documented as best-effort in workflow steps."
+  ],
+  "quality_score": 96,
+  "blocking_issues": [
+    "Repository-level validator currently fails due pre-existing non-compliant reports/agentic-loop/ACU-LOOP-0106_state.json unrelated to this issue scope."
+  ]
+}
