@@ -1,235 +1,138 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atlante — University Mapping Status</title>
+  <title>Atlante dei concorsi — Console di validazione</title>
   <style>
-    :root { --bg:#f5f7fa; --text:#1f2937; --muted:#4b5563; --card:#ffffff; --accent:#0b4f7d; --warn:#b45309; --danger:#991b1b; --ok:#166534; }
-    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--text); }
-    header { background:#083b5c; color:#fff; padding:1.1rem 1.2rem; }
-    main { padding:1rem 1.2rem 2rem; max-width:1200px; margin:auto; }
-    .cards,.filters { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:.7rem; }
-    .tracker { margin:1rem 0; background:#fff; border:1px solid #dbe3eb; padding:.9rem; border-radius:.4rem; }
-    label { font-size:.9rem; color:var(--muted); display:block; }
-    input,select,textarea { width:100%; padding:.45rem; margin-top:.2rem; border:1px solid #cbd5e1; border-radius:.35rem; background:#fff; }
-    table { width:100%; border-collapse:collapse; background:#fff; }
-    th,td { border:1px solid #dbe3eb; padding:.45rem; font-size:.9rem; vertical-align:top; }
-    th { background:#edf2f7; text-align:left; }
-    .tag{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.8rem;background:#e5e7eb;}
-    .uncertain{color:var(--warn);font-weight:600;}.ok{color:var(--ok);font-weight:600;}.attn{color:var(--danger);font-weight:600;}
-    .small{color:var(--muted);font-size:.87rem;}.actions{display:flex;gap:.4rem;flex-wrap:wrap;align-items:end}
-    button { border:1px solid #cbd5e1; background:#fff; border-radius:.35rem; padding:.35rem .5rem; cursor:pointer; }
+    :root{
+      --bg:#f4f1ea;--panel:#fffdf8;--panel2:#f9f4ea;--ink:#18212f;--muted:#687386;
+      --line:#ddd4c5;--blue:#123d5a;--blue2:#0b5d83;--ok:#166534;--warn:#b45309;--bad:#991b1b;
+      --violet:#5b4b8a;--shadow:0 18px 45px rgba(22,31,44,.10)
+    }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    header{background:linear-gradient(120deg,#071f34,#0d4f73 55%,#b9822b);color:white;padding:2rem 1.3rem}
+    header .wrap,main{max-width:1380px;margin:auto} h1{font-size:clamp(2rem,5vw,4.4rem);line-height:.96;margin:.2rem 0 .8rem;letter-spacing:-.06em}
+    h2{margin:.1rem 0 .45rem;font-size:1.25rem} h3{margin:.1rem 0 .35rem;font-size:1rem}.lede{max-width:820px;font-size:1.05rem;color:#e6eef5}
+    main{padding:1rem 1.2rem 2.5rem}.grid{display:grid;gap:.85rem}.cards{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+    .panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.panel{padding:1rem;margin:1rem 0}.card{padding:.85rem}.metric{font-size:1.7rem;font-weight:800;letter-spacing:-.04em}.small{font-size:.86rem;color:var(--muted)}
+    .toolbar{display:flex;gap:.55rem;flex-wrap:wrap;align-items:end}.toolbar>*{min-width:150px}label{font-size:.78rem;color:var(--muted);display:block;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+    input,select,textarea{width:100%;padding:.55rem;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink)}button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.58rem .78rem;cursor:pointer;font-weight:700}button.primary{background:var(--blue);color:white;border-color:var(--blue)}
+    .tag{display:inline-flex;align-items:center;gap:.25rem;padding:.18rem .55rem;border-radius:999px;font-size:.75rem;font-weight:800;background:#ece7dc;color:#293244}.tag.ok{background:#dcfce7;color:#166534}.tag.warn{background:#fef3c7;color:#92400e}.tag.bad{background:#fee2e2;color:#991b1b}.tag.info{background:#dbeafe;color:#1e3a8a}.tag.violet{background:#ede9fe;color:#4c1d95}
+    table{width:100%;border-collapse:separate;border-spacing:0;background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden}th,td{border-bottom:1px solid var(--line);padding:.58rem;vertical-align:top;font-size:.86rem}th{background:#efe7d8;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:#4b5563}tr:last-child td{border-bottom:none}.url{max-width:360px;word-break:break-word}.queue{display:grid;grid-template-columns:1.1fr 1fr;gap:.8rem}.priority-list{display:grid;gap:.45rem}.priority-item{border:1px solid var(--line);border-radius:14px;background:#fff;padding:.65rem;display:grid;grid-template-columns:1fr auto;gap:.5rem}.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem}.hidden{display:none}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem}.sticky-actions{position:sticky;top:0;background:rgba(244,241,234,.94);backdrop-filter:blur(10px);z-index:5;padding:.6rem 0;border-bottom:1px solid var(--line)}
+    @media(max-width:900px){.queue{grid-template-columns:1fr}.toolbar>*{min-width:100%}}
   </style>
 </head>
 <body>
-<header><h1>Mapped Italian Universities — Registry Viewer</h1></header>
+<header><div class="wrap">
+  <div class="small">Atlante dei concorsi · validazione governata</div>
+  <h1>Console di validazione manuale</h1>
+  <p class="lede">Strumento statico per verificare fonti, link candidati, classificazioni e triage senza modificare direttamente il repository. Le decisioni vengono esportate o trasformate in issue GitHub per persistenza governata.</p>
+</div></header>
 <main>
-  <p class="small">This static civic-data view exposes certainty and uncertainty.</p>
-  <section class="cards" id="summary"></section>
-  <section class="tracker">
-    <h2>Automation status</h2>
-    <p id="automation-status-meta" class="small">Loading automation status…</p>
-    <section class="cards" id="automation-status-cards"></section>
+  <section class="panel">
+    <h2>Stato dell’automazione</h2>
+    <p id="automation-status-meta" class="small">Caricamento stato…</p>
+    <div class="grid cards" id="automation-status-cards"></div>
     <ul id="automation-status-warnings" class="small"></ul>
-    <p id="automation-status-next" class="small"></p>
-  </section>
-  <section class="tracker">
-    <h2>Source inventory progress</h2>
-    <p id="source-progress-meta" class="small">Loading source inventory progress…</p>
-    <section class="cards" id="source-progress-cards"></section>
-    <table><thead><tr><th>University</th><th>Inventory</th><th>Fetch status</th><th>Candidate links</th><th>Attention</th></tr></thead><tbody id="source-progress-rows"></tbody></table>
-  </section>
-  <section class="tracker">
-    <h2>Document link classification progress</h2>
-    <p id="classification-progress-meta" class="small">Loading document-link classification progress…</p>
-    <section class="cards" id="classification-progress-cards"></section>
-    <table><thead><tr><th>University</th><th>Candidate links</th><th>Classified</th><th>Unknown</th><th>Attention</th></tr></thead><tbody id="classification-progress-rows"></tbody></table>
   </section>
 
-  <section class="tracker">
-    <h2>Manual confidence review actions</h2>
-    <div class="actions">
-      <button id="focus-low-confidence" type="button">Show low confidence</button>
-      <button id="focus-review-needed" type="button">Show needs human review</button>
-      <button id="focus-attention" type="button">Show attention flagged</button>
-      <button id="clear-manual-focus" type="button">Clear manual focus</button>
+  <section class="panel">
+    <h2>Validazione: cosa guardare prima</h2>
+    <p class="small">La coda ordina i link secondo l’utilità per la scoperta di concorsi. “Escluso” significa solo deprioritizzato dalla coda concorsi, non eliminato.</p>
+    <div class="queue">
+      <div>
+        <h3>Prossimi elementi da validare</h3>
+        <div id="priority-queue" class="priority-list"></div>
+      </div>
+      <div>
+        <h3>Avanzamento manuale</h3>
+        <div class="grid cards" id="review-progress-cards"></div>
+        <div class="toolbar" style="margin-top:.7rem">
+          <button class="primary" id="select-next-20" type="button">Seleziona prossimi 20</button>
+          <button id="clear-link-selection" type="button">Pulisci selezione link</button>
+          <button id="clear-link-decisions" type="button">Cancella decisioni link locali</button>
+        </div>
+      </div>
     </div>
-    <p id="manual-focus-status" class="small">Manual focus: none (showing all entries).</p>
-    <p class="small">This static UX cannot write repository files. Exports must be committed or submitted to become repository state.</p>
-    <button id="clear-decisions" type="button">Clear browser-stored decisions</button>
-    <p id="decision-status" class="small">No manual decisions saved yet.</p>
   </section>
 
-  <section class="tracker">
-    <h2>Review low-confidence mappings</h2>
-    <p class="small">Automated confidence/verification are immutable metadata. Manual decisions support workflow only and do not imply legal validation.</p>
-    <div class="actions">
-      <button id="select-all-visible" type="button">Select all visible</button>
-      <button id="clear-selection" type="button">Clear selection</button>
-      <div><label for="bulk-decision">Bulk decision</label><select id="bulk-decision"><option value="">—</option></select></div>
-      <div><label for="bulk-reviewer">Reviewer (optional)</label><input id="bulk-reviewer" type="text" /></div>
-      <div><label for="bulk-note">Bulk note (optional)</label><input id="bulk-note" type="text" /></div>
-      <button id="apply-selected" type="button">Apply to selected</button>
+  <section class="panel sticky-actions">
+    <h2>Filtri link-level</h2>
+    <div class="toolbar">
+      <div><label for="link-search">Cerca</label><input id="link-search" type="search" placeholder="università, URL, testo link" /></div>
+      <div><label for="triage-filter">Triage</label><select id="triage-filter"><option value="">Tutti</option></select></div>
+      <div><label for="keep-filter">Coda</label><select id="keep-filter"><option value="">Tutti</option><option value="yes">Tenuti per review</option><option value="no">Esclusi/deprioritizzati</option></select></div>
+      <div><label for="attention-filter">Attenzione</label><select id="attention-filter"><option value="">Tutti</option><option value="yes">Richiede review</option><option value="no">Non urgente</option></select></div>
+      <div><label for="classified-filter">Tipo classificato</label><select id="classified-filter"><option value="">Tutti</option></select></div>
+      <div><label for="decision-filter">Decisione manuale</label><select id="decision-filter"><option value="">Tutte</option></select></div>
     </div>
-    <p id="selection-status" class="small">Selected rows: 0.</p>
-    <div class="actions">
-      <button id="download-selected-csv" type="button">Export selected decisions (CSV)</button>
-      <button id="download-all-csv" type="button">Export all decisions (CSV)</button>
-      <button id="download-decisions-json" type="button">Export all decisions (JSON)</button>
-      <button id="submit-selected-github" type="button">Submit selected decisions to GitHub</button>
-      <button id="submit-all-github" type="button">Submit all decisions to GitHub</button>
+    <div class="toolbar" style="margin-top:.6rem">
+      <button id="focus-likely" type="button">Focus: likely/possible</button>
+      <button id="focus-unknown" type="button">Focus: unknown</button>
+      <button id="focus-excluded" type="button">Audit esclusi</button>
+      <button id="clear-link-filters" type="button">Pulisci filtri</button>
     </div>
-    <p class="small">Submitting creates a prefilled GitHub issue for persistence review; it does not directly commit repository files.</p>
-    <p id="github-submit-status" class="small">GitHub submission: ready.</p>
-    <textarea id="github-submit-fallback" rows="8" readonly style="display:none" aria-label="GitHub issue fallback payload"></textarea>
   </section>
 
-  <section class="filters">
-    <div><label>Search<input id="search" type="search" /></label></div>
-    <div><label>Verification<select id="verification"><option value="">All</option></select></label></div>
-    <div><label>Confidence<select id="confidence"><option value="">All</option></select></label></div>
-    <div><label>Manual decision<select id="manual-decision-filter"><option value="">All</option></select></label></div>
-    <div><label>Homepage URL<select id="has-homepage"><option value="">All</option><option value="yes">Has homepage URL</option><option value="no">No homepage URL</option></select></label></div>
-    <div><label>Recruitment URL<select id="has-recruitment"><option value="">All</option><option value="yes">Has recruitment URL</option><option value="no">No recruitment URL</option></select></label></div>
+  <section class="panel">
+    <h2>Decisioni manuali link-level</h2>
+    <p id="link-selection-status" class="small">Link selezionati: 0.</p>
+    <div class="toolbar">
+      <div><label for="bulk-link-decision">Decisione</label><select id="bulk-link-decision"><option value="">—</option></select></div>
+      <div><label for="bulk-link-reviewer">Revisore</label><input id="bulk-link-reviewer" type="text" /></div>
+      <div><label for="bulk-link-note">Nota</label><input id="bulk-link-note" type="text" /></div>
+      <button class="primary" id="apply-link-decision" type="button">Applica ai selezionati</button>
+      <button id="download-link-decisions-csv" type="button">Esporta decisioni CSV</button>
+      <button id="download-link-decisions-json" type="button">Esporta decisioni JSON</button>
+      <button id="submit-link-decisions-github" type="button">Apri issue GitHub</button>
+    </div>
+    <p id="link-submit-status" class="small">Submission link-level: pronta.</p>
+    <textarea id="link-submit-fallback" rows="8" readonly class="hidden" aria-label="Payload fallback GitHub"></textarea>
   </section>
 
-  <table><thead><tr><th>Select</th><th>University</th><th>Homepage</th><th>Recruitment/concorsi</th><th>Automated confidence</th><th>Automated verification</th><th>Attention</th><th>Manual review</th></tr></thead><tbody id="rows"></tbody></table>
+  <section class="panel">
+    <h2>Link da validare</h2>
+    <p id="link-table-status" class="small">Caricamento link…</p>
+    <table><thead><tr><th>Sel.</th><th>Priorità</th><th>Università</th><th>Link</th><th>Classificazione</th><th>Triage</th><th>Segnali</th><th>Decisione manuale</th></tr></thead><tbody id="triage-rows"></tbody></table>
+  </section>
+
+  <section class="panel">
+    <h2>Registry università</h2>
+    <p class="small">Sezione secondaria per validare homepage/recruitment URL a livello di università.</p>
+    <div class="toolbar">
+      <div><label for="registry-search">Cerca università</label><input id="registry-search" type="search" /></div>
+      <div><label for="registry-verification">Verifica</label><select id="registry-verification"><option value="">Tutte</option></select></div>
+      <div><label for="registry-confidence">Confidenza</label><select id="registry-confidence"><option value="">Tutte</option></select></div>
+    </div>
+    <table style="margin-top:.7rem"><thead><tr><th>Università</th><th>Homepage</th><th>Recruitment/concorsi</th><th>Confidenza</th><th>Verifica</th></tr></thead><tbody id="registry-rows"></tbody></table>
+  </section>
 </main>
 <script>
-const MANUAL_DECISION_VALUES=['accepted','rejected','needs_more_evidence','keep_under_review'];
-const DECISION_STORAGE_KEY='acu_manual_review_decisions_v2';
-const state={entries:[],filtered:[],decisions:{},selected:new Set()};
-const decisionKey=(e)=>`${e.university_name}||${e.official_homepage_url||''}||${e.recruitment_page_url||''}`;
-const badge=(s)=>s==='verified'?`<span class="tag ok">${s}</span>`:((s==='needs_human_review'||s==='not_determinable')?`<span class="tag uncertain">${s}</span>`:`<span class="tag">${s||'—'}</span>`);
-function updateDecisionStatus(){const c=Object.keys(state.decisions).length;document.getElementById('decision-status').textContent=c?`${c} manual decisions saved locally.`:'No manual decisions saved yet.';}
-function updateSelectionStatus(){document.getElementById('selection-status').textContent=`Selected rows: ${state.selected.size}.`;}
-function saveDecisions(){localStorage.setItem(DECISION_STORAGE_KEY,JSON.stringify(state.decisions));updateDecisionStatus();}
-function loadDecisions(){try{return JSON.parse(localStorage.getItem(DECISION_STORAGE_KEY)||'{}')}catch{return {};}}
-function renderRows(){const t=document.getElementById('rows');t.innerHTML=state.filtered.map((e,i)=>{const k=decisionKey(e),d=state.decisions[k]||{};const homepage=e.official_homepage_url?`<a href="${e.official_homepage_url}" target="_blank" rel="noopener noreferrer">${e.official_homepage_url}</a>`:'—';const recruitment=e.recruitment_page_url?`<a href="${e.recruitment_page_url}" target="_blank" rel="noopener noreferrer">${e.recruitment_page_url}</a>`:'—';const manualMeta=[d.reviewer?`Reviewer: ${d.reviewer}`:'',d.review_date?`Date: ${d.review_date}`:''].filter(Boolean).join(' · ');return `<tr><td><input type="checkbox" class="row-select" data-key="${k}" ${state.selected.has(k)?'checked':''}></td><td>${e.university_name}</td><td>${homepage}</td><td>${recruitment}</td><td>${badge(e.confidence_level)}</td><td>${badge(e.verification_status)}</td><td>${e.needs_attention?'<span class="attn">Needs attention</span>':'—'}</td><td><div class="small">Manual review: ${d.manual_decision||'—'}</div>${manualMeta?`<div class="small">${manualMeta}</div>`:''}<select id="d-${i}" data-key="${k}" class="manual-decision"><option value="">—</option>${MANUAL_DECISION_VALUES.map(v=>`<option value="${v}" ${d.manual_decision===v?'selected':''}>${v}</option>`).join('')}</select><textarea data-key="${k}" class="manual-note" rows="2" placeholder="Reason / notes">${d.notes||''}</textarea></td></tr>`;}).join('');
- document.querySelectorAll('.row-select').forEach(el=>el.addEventListener('change',e=>{e.target.checked?state.selected.add(e.target.dataset.key):state.selected.delete(e.target.dataset.key);updateSelectionStatus();}));
- document.querySelectorAll('.manual-decision').forEach(el=>el.addEventListener('change',e=>upsertDecision(e.target.dataset.key,{manual_decision:e.target.value})));
- document.querySelectorAll('.manual-note').forEach(el=>el.addEventListener('change',e=>upsertDecision(e.target.dataset.key,{notes:e.target.value})));
- updateSelectionStatus();
-}
-function upsertDecision(key,patch){const prev=state.decisions[key]||{};const next={...prev,...patch,review_date:new Date().toISOString().slice(0,10)};if(!next.manual_decision&&!next.notes&&!next.reviewer){delete state.decisions[key];}else{state.decisions[key]=next;}saveDecisions();}
-function applyFilters(focus){const q=document.getElementById('search').value.toLowerCase().trim(),v=document.getElementById('verification').value,c=document.getElementById('confidence').value,m=document.getElementById('manual-decision-filter').value,h=document.getElementById('has-homepage').value,r=document.getElementById('has-recruitment').value;state.filtered=state.entries.filter(e=>{const d=state.decisions[decisionKey(e)]||{};if(q&&!e.university_name.toLowerCase().includes(q))return false;if(v&&e.verification_status!==v)return false;if(c&&e.confidence_level!==c)return false;if(m&&(d.manual_decision||'')!==m)return false;if(h==='yes'&&!e.official_homepage_url)return false;if(h==='no'&&e.official_homepage_url)return false;if(r==='yes'&&!e.recruitment_page_url)return false;if(r==='no'&&e.recruitment_page_url)return false;if(focus==='attention'&&!e.needs_attention)return false;return true;});renderRows();}
-function buildRows(selectedOnly=false){return Object.entries(state.decisions).filter(([k])=>!selectedOnly||state.selected.has(k)).map(([k,v])=>{const e=state.entries.find(x=>decisionKey(x)===k)||{};return {record_id:btoa(unescape(encodeURIComponent(k))).replace(/=+$/,''),record_type:'university_registry_mapping',source_file:'site/data/university_registry.json',university_id:e.university_id||'',field_under_review:'recruitment_page_url',automated_value:e.recruitment_page_url||'',automated_confidence_level:e.confidence_level||'',automated_verification_status:e.verification_status||'',manual_decision:v.manual_decision||'',manual_decision_reason:v.notes||'',reviewer:v.reviewer||'',review_date:v.review_date||'',notes:v.notes||''};}).filter(r=>r.manual_decision||r.notes||r.reviewer);}
-function toCsv(rows){const h=['record_id','record_type','source_file','university_id','field_under_review','automated_value','automated_confidence_level','automated_verification_status','manual_decision','manual_decision_reason','reviewer','review_date','notes'];const esc=x=>`"${String(x??'').replaceAll('"','""')}"`;return [h.join(','),...rows.map(r=>h.map(k=>esc(r[k])).join(','))].join('\n');}
-function download(name,content,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href);}
-function buildGithubIssueBody(rows,scopeLabel){
-  const payload=JSON.stringify(rows,null,2);
-  return [
-    'Persist these manual review decisions into manual_review_decisions.csv.',
-    'Do not overwrite automated registry data.',
-    'Preserve provenance fields.',
-    'Open a PR with the decision update.',
-    '',
-    `Selection scope: ${scopeLabel}`,
-    `Selected decision rows: ${rows.length}`,
-    `Submitted at UTC: ${new Date().toISOString()}`,
-    '',
-    'Decision payload (JSON):',
-    '```json',
-    payload,
-    '```'
-  ].join('\n');
-}
-
-
-function renderAutomationStatus(status){
- const meta=document.getElementById('automation-status-meta');
- const cards=document.getElementById('automation-status-cards');
- const warnings=document.getElementById('automation-status-warnings');
- const next=document.getElementById('automation-status-next');
- if(!status){meta.textContent='Automation status unavailable.';cards.innerHTML='';warnings.innerHTML='';next.textContent='';return;}
- const freshness=status.freshness_status||'unknown';
- const freshLabel=freshness==='fresh'?'<span class="ok">fresh</span>':(freshness==='stale'?'<span class="attn">stale</span>':'<span class="uncertain">unknown</span>');
- meta.innerHTML=`Last status update: ${status.updated_at_utc||'—'} · Freshness: ${freshLabel}`;
- const c=status.latest_counts||{};
- const items=[['Last Pages deployment status',status.pages_deploy_status],['Source progress updated',status.source_inventory_last_updated_utc],['Classification updated',status.document_classification_last_updated_utc],['Source freshness (min)',status.source_inventory_freshness_minutes],['Classification freshness (min)',status.document_classification_freshness_minutes],['Expected cadence (min)',status.expected_refresh_cadence_minutes],['Total intake packs',c.total_intake_packs],['Source inventories created',c.source_inventories_created],['Candidate links observed',c.candidate_links_observed],['Document links classified',c.document_links_classified],['Fetch errors',c.source_fetch_errors],['Latest fetch run status',c.source_run_status||'—'],['No progress reason',c.source_no_progress_reason||'—'],['Records needing attention',((c.source_records_needing_attention||0)+(c.classification_records_needing_attention||0))]];
- cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
- const ws=status.warnings||[];
- warnings.innerHTML=ws.length?ws.map(w=>`<li>${w}</li>`).join(''):'<li>No warnings reported by the automation summary.</li>';
- next.textContent=`Next expected step: ${status.next_expected_step||'—'}`;
-}
-
-function renderSourceInventoryProgress(progress){
- const meta=document.getElementById('source-progress-meta');
- const cards=document.getElementById('source-progress-cards');
- const rows=document.getElementById('source-progress-rows');
- if(!progress){meta.textContent='Source inventory progress unavailable.';return;}
- meta.textContent=`Last update: ${progress.updated_at_utc||'—'}`;
- const items=[['Total intake packs',progress.total_intake_packs],['Inventories created',progress.inventories_created],['Pending inventories',progress.inventories_pending],['With candidate links',progress.inventories_with_candidate_links],['Fetch errors',progress.fetch_errors],['Run status',progress.run_status||'—'],['No progress reason',progress.no_progress_reason||'—'],['Universities selected',progress.universities_selected||0],['Universities fetched',progress.universities_fetched||0],['Seed URLs attempted',progress.seed_urls_attempted||0],['Depth-1 pages followed',progress.depth_1_pages_followed||0],['Candidate links found (latest run)',progress.candidate_links_found||0],['Output files changed',progress.output_files_changed||0],['Need attention',progress.inventories_needing_attention]];
- cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
- rows.innerHTML=(progress.by_university||[]).slice(0,50).map(e=>`<tr><td>${e.university_name||e.university_id}</td><td>${e.inventory_exists}</td><td>${e.fetch_status||'—'}</td><td>${e.candidate_links_count||0}</td><td>${e.requires_human_attention==='yes'?'<span class="attn">yes</span>':'no'}</td></tr>`).join('');
-}
-function renderClassificationProgress(progress){
- const meta=document.getElementById('classification-progress-meta');
- const cards=document.getElementById('classification-progress-cards');
- const rows=document.getElementById('classification-progress-rows');
- if(!progress){meta.textContent='Document-link classification progress unavailable.';return;}
- meta.textContent=`Last update: ${progress.updated_at_utc||'—'}`;
- const items=[['Total candidate links',progress.total_candidate_links],['Total classified links',progress.total_classified_links],['Unknown links',progress.unknown_links],['Links requiring attention',progress.links_requiring_attention],['Universities with candidate links',progress.universities_with_candidate_links]];
- cards.innerHTML=items.map(([k,v])=>`<article class="tracker"><h3>${k}</h3><div>${v??'—'}</div></article>`).join('');
- rows.innerHTML=(progress.by_university||[]).slice(0,50).map(e=>`<tr><td>${e.university_name||e.university_id}</td><td>${e.candidate_links_count||0}</td><td>${e.classified_links_count||0}</td><td>${e.unknown_links_count||0}</td><td>${(e.requires_attention_count||0)>0?'<span class="attn">yes</span>':'no'}</td></tr>`).join('');
-}
-
-function submitGithubIssue(selectedOnly){
-  const rows=buildRows(selectedOnly);
-  const status=document.getElementById('github-submit-status');
-  const fallback=document.getElementById('github-submit-fallback');
-  if(!rows.length){
-    status.textContent='GitHub submission blocked: no decisions available for the requested scope.';
-    fallback.style.display='none';
-    fallback.value='';
-    return;
-  }
-  const scopeLabel=selectedOnly?'selected decisions':'all decisions';
-  const title=`Persist manual review decisions from Pages UX (${rows.length} rows)`;
-  const body=buildGithubIssueBody(rows,scopeLabel);
-  const issueUrl=`https://github.com/colazeta/atlante_dei_concorsi/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent('manual-review,governance')}`;
-  if(issueUrl.length<7500){
-    window.open(issueUrl,'_blank','noopener,noreferrer');
-    status.textContent=`Opened prefilled GitHub issue for ${scopeLabel} (${rows.length} rows).`;
-    fallback.style.display='none';
-    fallback.value='';
-    return;
-  }
-  fallback.style.display='block';
-  fallback.value=body;
-  fallback.focus();
-  fallback.select();
-  status.textContent=`Prefilled URL was too long for ${scopeLabel} (${rows.length} rows). Copy payload from the fallback box and paste into a new GitHub issue.`;
-}
-Promise.all([fetch('./data/university_registry.json').then(r=>r.json()),fetch('./data/manual_review_decisions.json').then(r=>r.json()).catch(()=>({decisions:[]})),fetch('./data/source_inventory_progress.json').then(r=>r.json()).catch(()=>null),fetch('./data/document_link_classification_progress.json').then(r=>r.json()).catch(()=>null),fetch('./data/automation_status.json').then(r=>r.json()).catch(()=>null)]).then(([data,manual,sourceProgress,classificationProgress,automationStatus])=>{
- renderAutomationStatus(automationStatus);
- renderSourceInventoryProgress(sourceProgress);
- renderClassificationProgress(classificationProgress);
- state.entries=data.entries;state.filtered=data.entries.slice();
- data.filters.verification_status.forEach(s=>document.getElementById('verification').insertAdjacentHTML('beforeend',`<option>${s}</option>`));
- data.filters.confidence_level.forEach(s=>document.getElementById('confidence').insertAdjacentHTML('beforeend',`<option>${s}</option>`));
- (manual.decisions||[]).forEach(d=>{const k=`${d.university_name}||${d.official_homepage_url||''}||${d.recruitment_page_url||''}`;state.decisions[k]={manual_decision:d.decision||'',notes:d.review_notes||'',reviewer:d.reviewed_by||'',review_date:(d.reviewed_at_utc||'').slice(0,10)}});
- const localDecisions=loadDecisions();
- state.decisions={...state.decisions,...localDecisions};
- updateDecisionStatus();
- renderRows();
- MANUAL_DECISION_VALUES.forEach(v=>document.getElementById('bulk-decision').insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`));
- MANUAL_DECISION_VALUES.forEach(v=>document.getElementById('manual-decision-filter').insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`));
- ['search','verification','confidence','manual-decision-filter','has-homepage','has-recruitment'].forEach(id=>document.getElementById(id).addEventListener('input',()=>applyFilters('')));
- document.getElementById('focus-low-confidence').addEventListener('click',()=>{document.getElementById('confidence').value='low';applyFilters('');});
- document.getElementById('focus-review-needed').addEventListener('click',()=>{document.getElementById('verification').value='needs_human_review';applyFilters('');});
- document.getElementById('focus-attention').addEventListener('click',()=>applyFilters('attention'));
- document.getElementById('clear-manual-focus').addEventListener('click',()=>{document.getElementById('confidence').value='';document.getElementById('verification').value='';applyFilters('');});
- document.getElementById('select-all-visible').addEventListener('click',()=>{state.filtered.forEach(e=>state.selected.add(decisionKey(e)));renderRows();});
- document.getElementById('clear-selection').addEventListener('click',()=>{state.selected.clear();renderRows();});
- document.getElementById('apply-selected').addEventListener('click',()=>{const decision=document.getElementById('bulk-decision').value;if(!decision)return;const reviewer=document.getElementById('bulk-reviewer').value.trim();const notes=document.getElementById('bulk-note').value.trim();state.selected.forEach(k=>upsertDecision(k,{manual_decision:decision,reviewer,notes}));renderRows();});
- document.getElementById('download-selected-csv').addEventListener('click',()=>download('manual_review_decisions_selected.csv',toCsv(buildRows(true)),'text/csv'));
- document.getElementById('download-all-csv').addEventListener('click',()=>download('manual_review_decisions.csv',toCsv(buildRows(false)),'text/csv'));
- document.getElementById('download-decisions-json').addEventListener('click',()=>download('manual_review_decisions.json',JSON.stringify({metadata:{exported_at_utc:new Date().toISOString(),persistence_note:'Commit/export through governed repository workflow required.'},decisions:buildRows(false)},null,2),'application/json'));
- document.getElementById('submit-selected-github').addEventListener('click',()=>submitGithubIssue(true));
- document.getElementById('submit-all-github').addEventListener('click',()=>submitGithubIssue(false));
- document.getElementById('clear-decisions').addEventListener('click',()=>{state.decisions={};saveDecisions();renderRows();});
-});
+const LINK_DECISIONS=['confirm_relevant_competition_source','confirm_not_relevant','needs_more_evidence','wrongly_excluded','wrongly_kept','requires_source_url_fix'];
+const LINK_STORAGE='acu_link_validation_decisions_v1';
+const app={registry:[],triage:[],filtered:[],linkSelected:new Set(),linkDecisions:{}};
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const tag=(txt,kind='')=>`<span class="tag ${kind}">${esc(txt||'—')}</span>`;
+const linkKey=r=>r.triage_id||`${r.university_id}|${r.link_url}`;
+const priorityRank=s=>({likely_competition_source:1,possible_competition_source:2,unknown_requires_review:3,generic_institutional_page:4,likely_not_relevant:5}[s]||9);
+function loadJSON(path,fallback){return fetch(path).then(r=>r.ok?r.json():fallback).catch(()=>fallback)}
+function saveLinkDecisions(){localStorage.setItem(LINK_STORAGE,JSON.stringify(app.linkDecisions));renderReviewProgress()}
+function loadLinkDecisions(){try{return JSON.parse(localStorage.getItem(LINK_STORAGE)||'{}')}catch{return {}}}
+function signalList(s){return (s||'').split(';').filter(Boolean).slice(0,8).map(x=>tag(x,'info')).join(' ')}
+function renderAutomationStatus(status){const meta=document.getElementById('automation-status-meta'),cards=document.getElementById('automation-status-cards'),warnings=document.getElementById('automation-status-warnings');if(!status){meta.textContent='Stato non disponibile.';return}const c=status.latest_counts||{};meta.innerHTML=`Aggiornato: ${esc(status.updated_at_utc)} · Freshness: ${tag(status.freshness_status,status.freshness_status==='fresh'?'ok':'warn')}`;const items=[['Candidate links',c.candidate_links_observed],['Triaged links',c.triaged_links],['Tenuti per review',c.triage_kept_for_review],['Esclusi/deprioritizzati',c.triage_excluded_from_competition_queue],['Likely competition',c.triage_likely_competition_sources],['Possible competition',c.triage_possible_competition_sources],['Unknown review',c.triage_unknown_requires_review],['Fetch errors',c.source_fetch_errors],['Run status',c.source_run_status]];cards.innerHTML=items.map(([k,v])=>`<article class="card"><div class="small">${esc(k)}</div><div class="metric">${esc(v??'—')}</div></article>`).join('');warnings.innerHTML=(status.warnings||[]).map(w=>`<li>${esc(w)}</li>`).join('')||'<li>Nessun warning.</li>'}
+function populateFilters(){const tri=[...new Set(app.triage.map(r=>r.triage_status).filter(Boolean))].sort();const cls=[...new Set(app.triage.map(r=>r.classified_type).filter(Boolean))].sort();tri.forEach(v=>document.getElementById('triage-filter').insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v)}</option>`));cls.forEach(v=>document.getElementById('classified-filter').insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v)}</option>`));LINK_DECISIONS.forEach(v=>{document.getElementById('decision-filter').insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`);document.getElementById('bulk-link-decision').insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`)});[...new Set(app.registry.map(r=>r.verification_status).filter(Boolean))].sort().forEach(v=>document.getElementById('registry-verification').insertAdjacentHTML('beforeend',`<option>${esc(v)}</option>`));[...new Set(app.registry.map(r=>r.confidence_level).filter(Boolean))].sort().forEach(v=>document.getElementById('registry-confidence').insertAdjacentHTML('beforeend',`<option>${esc(v)}</option>`))}
+function applyLinkFilters(){const q=document.getElementById('link-search').value.toLowerCase().trim(),tri=document.getElementById('triage-filter').value,keep=document.getElementById('keep-filter').value,att=document.getElementById('attention-filter').value,cls=document.getElementById('classified-filter').value,dec=document.getElementById('decision-filter').value;app.filtered=app.triage.filter(r=>{const d=app.linkDecisions[linkKey(r)]||{};const hay=`${r.university_id} ${r.link_url} ${r.link_text} ${r.positive_signals} ${r.negative_signals}`.toLowerCase();if(q&&!hay.includes(q))return false;if(tri&&r.triage_status!==tri)return false;if(keep&&r.keep_for_review!==keep)return false;if(att&&r.requires_human_attention!==att)return false;if(cls&&r.classified_type!==cls)return false;if(dec&&(d.manual_decision||'')!==dec)return false;return true}).sort((a,b)=>priorityRank(a.triage_status)-priorityRank(b.triage_status));renderPriorityQueue();renderTriageRows();renderReviewProgress()}
+function renderPriorityQueue(){const box=document.getElementById('priority-queue');const next=app.filtered.filter(r=>r.keep_for_review==='yes').slice(0,20);box.innerHTML=next.map(r=>`<div class="priority-item"><div><strong>${esc(r.university_id)}</strong><div class="small">${esc(r.link_text||r.link_url)}</div>${tag(r.triage_status,r.triage_status.includes('competition')?'ok':r.triage_status.includes('unknown')?'warn':'')}</div><button data-key="${esc(linkKey(r))}" class="select-one">Seleziona</button></div>`).join('')||'<p class="small">Nessun elemento nella coda filtrata.</p>';document.querySelectorAll('.select-one').forEach(b=>b.addEventListener('click',e=>{app.linkSelected.add(e.target.dataset.key);renderTriageRows();renderReviewProgress()}))}
+function renderTriageRows(){const body=document.getElementById('triage-rows');document.getElementById('link-table-status').textContent=`Mostrati ${app.filtered.length} link su ${app.triage.length}.`;body.innerHTML=app.filtered.slice(0,250).map(r=>{const k=linkKey(r),d=app.linkDecisions[k]||{};const pri=priorityRank(r.triage_status);return `<tr><td><input type="checkbox" class="link-select" data-key="${esc(k)}" ${app.linkSelected.has(k)?'checked':''}></td><td>${pri}</td><td>${esc(r.university_id)}</td><td class="url"><a href="${esc(r.link_url)}" target="_blank" rel="noopener noreferrer">${esc(r.link_text||r.link_url)}</a><div class="small mono">${esc(r.link_url)}</div></td><td>${tag(r.classified_type,'violet')}</td><td>${tag(r.triage_status,r.triage_status.includes('competition')?'ok':r.triage_status.includes('not_relevant')?'bad':r.triage_status.includes('unknown')?'warn':'')}<div class="small">${r.exclude_from_competition_queue==='yes'?'Escluso/deprioritizzato':'Tenuto per review'}</div>${r.exclusion_reason?`<div class="small">${esc(r.exclusion_reason)}</div>`:''}</td><td><div>${signalList(r.positive_signals)}</div><div>${signalList(r.negative_signals)}</div></td><td><select class="link-decision" data-key="${esc(k)}"><option value="">—</option>${LINK_DECISIONS.map(v=>`<option value="${v}" ${d.manual_decision===v?'selected':''}>${v}</option>`).join('')}</select><textarea class="link-note" data-key="${esc(k)}" rows="2" placeholder="Motivo/nota">${esc(d.notes||'')}</textarea></td></tr>`}).join('');document.querySelectorAll('.link-select').forEach(x=>x.addEventListener('change',e=>{e.target.checked?app.linkSelected.add(e.target.dataset.key):app.linkSelected.delete(e.target.dataset.key);renderReviewProgress()}));document.querySelectorAll('.link-decision').forEach(x=>x.addEventListener('change',e=>upsertLinkDecision(e.target.dataset.key,{manual_decision:e.target.value})));document.querySelectorAll('.link-note').forEach(x=>x.addEventListener('change',e=>upsertLinkDecision(e.target.dataset.key,{notes:e.target.value})))}
+function upsertLinkDecision(k,patch){const prev=app.linkDecisions[k]||{};const next={...prev,...patch,review_date:new Date().toISOString().slice(0,10)};if(!next.manual_decision&&!next.notes&&!next.reviewer)delete app.linkDecisions[k];else app.linkDecisions[k]=next;saveLinkDecisions();renderReviewProgress()}
+function renderReviewProgress(){const reviewed=Object.keys(app.linkDecisions).length,selected=app.linkSelected.size,kept=app.triage.filter(r=>r.keep_for_review==='yes').length,excluded=app.triage.filter(r=>r.exclude_from_competition_queue==='yes').length;document.getElementById('link-selection-status').textContent=`Link selezionati: ${selected}. Decisioni locali: ${reviewed}.`;document.getElementById('review-progress-cards').innerHTML=[['Totale link',app.triage.length],['Da review',kept],['Esclusi auditabili',excluded],['Decisioni locali',reviewed],['Filtrati ora',app.filtered.length]].map(([k,v])=>`<article class="card"><div class="small">${esc(k)}</div><div class="metric">${esc(v)}</div></article>`).join('')}
+function decisionRows(){return Object.entries(app.linkDecisions).map(([k,d])=>{const r=app.triage.find(x=>linkKey(x)===k)||{};return {record_id:k,record_type:'document_link_triage',source_file:'site/data/document_link_triage_index.json',university_id:r.university_id||'',link_url:r.link_url||'',triage_status:r.triage_status||'',classified_type:r.classified_type||'',automated_keep_for_review:r.keep_for_review||'',automated_exclude_from_competition_queue:r.exclude_from_competition_queue||'',manual_decision:d.manual_decision||'',manual_decision_reason:d.notes||'',reviewer:d.reviewer||'',review_date:d.review_date||'',notes:d.notes||''}}).filter(r=>r.manual_decision||r.notes||r.reviewer)}
+function toCsv(rows){const h=Object.keys(rows[0]||{record_id:'',record_type:'',source_file:'',university_id:'',link_url:'',triage_status:'',classified_type:'',automated_keep_for_review:'',automated_exclude_from_competition_queue:'',manual_decision:'',manual_decision_reason:'',reviewer:'',review_date:'',notes:''});const e=x=>`"${String(x??'').replaceAll('"','""')}"`;return [h.join(','),...rows.map(r=>h.map(k=>e(r[k])).join(','))].join('\n')}
+function download(name,content,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function submitIssue(){const rows=decisionRows();const status=document.getElementById('link-submit-status'),fallback=document.getElementById('link-submit-fallback');if(!rows.length){status.textContent='Nessuna decisione da inviare.';return}const body=['Persist link-level manual validation decisions.','Do not overwrite automated triage fields.','Create a governed PR for persistence.','',`Rows: ${rows.length}`,'```json',JSON.stringify(rows,null,2),'```'].join('\n');const url=`https://github.com/colazeta/atlante_dei_concorsi/issues/new?title=${encodeURIComponent('Persist link-level validation decisions')}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent('manual-review,governance')}`;if(url.length<7500){window.open(url,'_blank','noopener,noreferrer');status.textContent='Issue GitHub precompilata aperta.';fallback.classList.add('hidden')}else{fallback.value=body;fallback.classList.remove('hidden');status.textContent='Payload troppo lungo: copiare dalla textarea.'}}
+function renderRegistry(){const q=document.getElementById('registry-search').value.toLowerCase().trim(),v=document.getElementById('registry-verification').value,c=document.getElementById('registry-confidence').value;const rows=app.registry.filter(e=>(!q||e.university_name.toLowerCase().includes(q))&&(!v||e.verification_status===v)&&(!c||e.confidence_level===c));document.getElementById('registry-rows').innerHTML=rows.slice(0,150).map(e=>`<tr><td>${esc(e.university_name)}</td><td class="url">${e.official_homepage_url?`<a href="${esc(e.official_homepage_url)}">${esc(e.official_homepage_url)}</a>`:'—'}</td><td class="url">${e.recruitment_page_url?`<a href="${esc(e.recruitment_page_url)}">${esc(e.recruitment_page_url)}</a>`:'—'}</td><td>${tag(e.confidence_level,e.confidence_level==='high'?'ok':'warn')}</td><td>${tag(e.verification_status,e.verification_status==='verified'?'ok':'warn')}</td></tr>`).join('')}
+Promise.all([loadJSON('./data/automation_status.json',null),loadJSON('./data/university_registry.json',{entries:[]}),loadJSON('./data/document_link_triage_index.json',{entries:[]})]).then(([automation,registry,triage])=>{renderAutomationStatus(automation);app.registry=registry.entries||[];app.triage=triage.entries||[];app.filtered=app.triage.slice().sort((a,b)=>priorityRank(a.triage_status)-priorityRank(b.triage_status));app.linkDecisions=loadLinkDecisions();populateFilters();applyLinkFilters();renderRegistry();['link-search','triage-filter','keep-filter','attention-filter','classified-filter','decision-filter'].forEach(id=>document.getElementById(id).addEventListener('input',applyLinkFilters));['registry-search','registry-verification','registry-confidence'].forEach(id=>document.getElementById(id).addEventListener('input',renderRegistry));document.getElementById('focus-likely').onclick=()=>{document.getElementById('triage-filter').value='possible_competition_source';applyLinkFilters()};document.getElementById('focus-unknown').onclick=()=>{document.getElementById('triage-filter').value='unknown_requires_review';applyLinkFilters()};document.getElementById('focus-excluded').onclick=()=>{document.getElementById('keep-filter').value='no';applyLinkFilters()};document.getElementById('clear-link-filters').onclick=()=>{['link-search','triage-filter','keep-filter','attention-filter','classified-filter','decision-filter'].forEach(id=>document.getElementById(id).value='');applyLinkFilters()};document.getElementById('select-next-20').onclick=()=>{app.filtered.filter(r=>r.keep_for_review==='yes').slice(0,20).forEach(r=>app.linkSelected.add(linkKey(r)));renderTriageRows();renderReviewProgress()};document.getElementById('clear-link-selection').onclick=()=>{app.linkSelected.clear();renderTriageRows();renderReviewProgress()};document.getElementById('clear-link-decisions').onclick=()=>{app.linkDecisions={};saveLinkDecisions();renderTriageRows();renderReviewProgress()};document.getElementById('apply-link-decision').onclick=()=>{const manual_decision=document.getElementById('bulk-link-decision').value;if(!manual_decision)return;const reviewer=document.getElementById('bulk-link-reviewer').value.trim();const notes=document.getElementById('bulk-link-note').value.trim();app.linkSelected.forEach(k=>upsertLinkDecision(k,{manual_decision,reviewer,notes}));renderTriageRows()};document.getElementById('download-link-decisions-csv').onclick=()=>download('link_manual_validation_decisions.csv',toCsv(decisionRows()),'text/csv');document.getElementById('download-link-decisions-json').onclick=()=>download('link_manual_validation_decisions.json',JSON.stringify({metadata:{exported_at_utc:new Date().toISOString()},decisions:decisionRows()},null,2),'application/json');document.getElementById('submit-link-decisions-github').onclick=submitIssue});
 </script>
-</body></html>
+</body>
+</html>
