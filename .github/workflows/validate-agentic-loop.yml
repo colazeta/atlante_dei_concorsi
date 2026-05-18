@@ -9,15 +9,18 @@ on:
       - "reports/agentic-loop/**"
       - "reports/agentic-dispatcher/**"
       - "schemas/agentic-loop/**"
+      - "site/**"
       - "scripts/agentic_loop.py"
       - "scripts/agentic_dispatcher.py"
       - "scripts/fetch_approved_source_pages.py"
       - "scripts/build_document_link_triage.py"
+      - "scripts/build_document_link_triage_json.py"
       - "scripts/build_automation_status.py"
       - "scripts/validate_agentic_loop_state.py"
       - ".github/workflows/agentic-loop.yml"
       - ".github/workflows/agentic-dispatcher.yml"
       - ".github/workflows/source-inventory-progress.yml"
+      - ".github/workflows/deploy-pages.yml"
       - ".github/workflows/validate-agentic-loop.yml"
       - "scripts/validate_atlante_methodology.py"
       - "scripts/validate_golden_dataset.py"
@@ -61,10 +64,12 @@ jobs:
         run: |
           python -m py_compile scripts/fetch_approved_source_pages.py
           python -m py_compile scripts/build_document_link_triage.py
+          python -m py_compile scripts/build_document_link_triage_json.py
           python scripts/fetch_approved_source_pages.py --batch-size 1 --depth 0
           python scripts/build_source_inventory_progress.py
           python scripts/build_document_link_classification_progress.py
           python scripts/build_document_link_triage.py
+          python scripts/build_document_link_triage_json.py
           python scripts/build_automation_status.py
           python - <<'PY'
           import csv
@@ -74,6 +79,7 @@ jobs:
           source_status = json.loads(Path('site/data/source_inventory_progress.json').read_text())
           triage_status = json.loads(Path('site/data/document_link_triage_progress.json').read_text())
           automation_status = json.loads(Path('site/data/automation_status.json').read_text())
+          triage_json = json.loads(Path('site/data/document_link_triage_index.json').read_text())
 
           assert source_status.get('universities_selected', 0) >= 1, source_status
           assert source_status.get('seed_urls_attempted', 0) >= 1, source_status
@@ -93,10 +99,24 @@ jobs:
           }
           assert len(triage_rows) == candidate_total, (len(triage_rows), candidate_total)
           assert triage_status.get('total_triaged_links') == candidate_total, triage_status
+          assert triage_json.get('metadata', {}).get('row_count') == candidate_total, triage_json.get('metadata')
+          assert len(triage_json.get('entries', [])) == candidate_total, triage_json.get('metadata')
           assert all(row.get('triage_status') in allowed for row in triage_rows), triage_rows[:5]
           assert all(row.get('exclusion_reason') for row in triage_rows if row.get('exclude_from_competition_queue') == 'yes'), triage_rows[:5]
           assert all(row.get('requires_human_attention') == 'yes' for row in triage_rows if row.get('triage_status') == 'unknown_requires_review'), triage_rows[:5]
           assert 'triaged_links' in automation_status.get('latest_counts', {}), automation_status
+
+          html = Path('site/index.html').read_text(encoding='utf-8')
+          required_dom = [
+              'priority-queue',
+              'triage-rows',
+              'document_link_triage_index.json',
+              'bulk-link-decision',
+              'download-link-decisions-csv',
+              'submit-link-decisions-github',
+          ]
+          missing = [marker for marker in required_dom if marker not in html]
+          assert not missing, missing
 
           print(json.dumps({
               'source_run_status': source_status.get('run_status'),
