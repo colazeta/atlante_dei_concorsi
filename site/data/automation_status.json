@@ -1,8 +1,8 @@
 {
-  "updated_at_utc": "2026-05-18T14:09:17Z",
+  "updated_at_utc": "2026-05-18T14:20:23Z",
   "pages_deploy_status": "generated_predeploy",
-  "source_inventory_last_updated_utc": "2026-05-18T14:09:17Z",
-  "document_classification_last_updated_utc": "2026-05-18T14:09:17Z",
+  "source_inventory_last_updated_utc": "2026-05-18T14:20:23Z",
+  "document_classification_last_updated_utc": "2026-05-18T14:20:23Z",
   "source_inventory_freshness_minutes": 0,
   "document_classification_freshness_minutes": 0,
   "expected_refresh_cadence_minutes": 10,
@@ -12,11 +12,11 @@
     "source_no_progress_reason": "",
     "total_intake_packs": 80,
     "source_inventories_created": 80,
-    "candidate_links_observed": 188,
-    "source_fetch_errors": 1,
+    "candidate_links_observed": 300,
+    "source_fetch_errors": 3,
     "source_records_needing_attention": 80,
-    "document_links_classified": 188,
-    "classification_records_needing_attention": 188
+    "document_links_classified": 300,
+    "classification_records_needing_attention": 300
   },
   "warnings": [],
   "next_expected_step": "Continue scheduled source-inventory and document-classification refresh cycle."

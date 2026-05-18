@@ -1,22 +1,22 @@
 {
-  "updated_at_utc": "2026-05-18T14:09:17Z",
+  "updated_at_utc": "2026-05-18T14:20:23Z",
   "total_intake_packs": 80,
   "inventories_created": 80,
-  "inventories_pending": 76,
+  "inventories_pending": 74,
   "inventories_with_recruitment_url": 28,
-  "inventories_with_candidate_links": 4,
+  "inventories_with_candidate_links": 6,
   "inventories_needing_attention": 80,
-  "fetch_errors": 1,
-  "candidate_links_total": 188,
+  "fetch_errors": 3,
+  "candidate_links_total": 300,
   "progress_events": [
     "Rebuilt source-inventory rollup from approved-source inventory index."
   ],
   "run_mode": "bounded_approved_source_fetch",
   "universities_selected": 5,
-  "universities_fetched": 4,
+  "universities_fetched": 2,
   "seed_urls_attempted": 5,
-  "depth_1_pages_followed": 6,
-  "candidate_links_found": 188,
+  "depth_1_pages_followed": 2,
+  "candidate_links_found": 112,
   "output_files_changed": 2,
   "run_status": "productive",
   "no_progress_reason": "",
@@ -45,7 +45,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-05-18T14:08:59Z"
+      "last_updated_utc": "2026-05-18T14:20:17Z"
     },
     {
       "university_id": "it-unipd",
@@ -96,8 +96,8 @@
       "fetch_status": "pending_fetch",
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
-      "blocking_status": "awaiting_bounded_fetch",
-      "last_updated_utc": "2026-05-17T20:03:24Z"
+      "blocking_status": "fetch_failed",
+      "last_updated_utc": "2026-05-18T14:20:17Z"
     },
     {
       "university_id": "it-unito",
@@ -109,8 +109,8 @@
       "fetch_status": "pending_fetch",
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
-      "blocking_status": "awaiting_bounded_fetch",
-      "last_updated_utc": "2026-05-17T20:03:24Z"
+      "blocking_status": "fetch_failed",
+      "last_updated_utc": "2026-05-18T14:20:17Z"
     },
     {
       "university_id": "it-unirc",
@@ -119,11 +119,11 @@
       "inventory_exists": "yes",
       "homepage_url": "https://www.unirc.it/",
       "recruitment_url": "",
-      "fetch_status": "pending_fetch",
-      "candidate_links_count": 0,
+      "fetch_status": "fetched",
+      "candidate_links_count": 40,
       "requires_human_attention": "yes",
-      "blocking_status": "awaiting_bounded_fetch",
-      "last_updated_utc": "2026-05-17T20:03:24Z"
+      "blocking_status": "needs_human_review",
+      "last_updated_utc": "2026-05-18T14:20:17Z"
     },
     {
       "university_id": "it-unibocconi",
@@ -132,11 +132,11 @@
       "inventory_exists": "yes",
       "homepage_url": "https://www.unibocconi.it/",
       "recruitment_url": "https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi",
-      "fetch_status": "pending_fetch",
-      "candidate_links_count": 0,
+      "fetch_status": "fetched",
+      "candidate_links_count": 72,
       "requires_human_attention": "yes",
-      "blocking_status": "awaiting_bounded_fetch",
-      "last_updated_utc": "2026-05-17T20:03:24Z"
+      "blocking_status": "needs_human_review",
+      "last_updated_utc": "2026-05-18T14:20:17Z"
     },
     {
       "university_id": "it-luiss",

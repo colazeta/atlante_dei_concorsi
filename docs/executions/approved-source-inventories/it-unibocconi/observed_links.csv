@@ -1,1 +1,4 @@
-university_id,source_url,http_status,content_type,page_title,observed_at_utc
+university_id,source_url,http_status,content_type,page_title,observed_at_utc,error
+it-unibocconi,https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi,200,text/html; charset=UTF-8,Concorsi - Università Bocconi,2026-05-18T14:20:17Z,
+it-unibocconi,https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi#main-content,200,text/html; charset=UTF-8,Concorsi - Università Bocconi,2026-05-18T14:20:17Z,
+it-unibocconi,https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi,200,text/html; charset=UTF-8,Concorsi - Università Bocconi,2026-05-18T14:20:17Z,
