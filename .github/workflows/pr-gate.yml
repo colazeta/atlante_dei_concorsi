@@ -1,0 +1,58 @@
+name: PR gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        required: true
+        type: string
+      apply:
+        required: false
+        default: 'true'
+        type: choice
+        options: ['false','true']
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+  statuses: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Resolve inputs
+        id: r
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PR: ${{ inputs.pr_number }}
+          INPUT_APPLY: ${{ inputs.apply }}
+          EVENT_PR: ${{ github.event.pull_request.number }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "pr=$INPUT_PR" >> "$GITHUB_OUTPUT"
+            echo "apply=${INPUT_APPLY:-true}" >> "$GITHUB_OUTPUT"
+          else
+            echo "pr=$EVENT_PR" >> "$GITHUB_OUTPUT"
+            echo "apply=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Run gate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS=(--pr "${{ steps.r.outputs.pr }}")
+          if [ "${{ steps.r.outputs.apply }}" = "true" ]; then ARGS+=(--apply); fi
+          python3 scripts/governed_auto_merge_gate.py "${ARGS[@]}"
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f reports/auto-merge-gate/latest_state.json ]; then
+            cat reports/auto-merge-gate/latest_state.json >> "$GITHUB_STEP_SUMMARY"
+          fi
