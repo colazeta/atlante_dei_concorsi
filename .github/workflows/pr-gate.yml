@@ -1,12 +1,14 @@
 name: PR gate
 
 on:
+  schedule:
+    - cron: '*/30 * * * *'
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
   workflow_dispatch:
     inputs:
       pr_number:
-        required: true
+        required: false
         type: string
       apply:
         required: false
@@ -36,10 +38,20 @@ jobs:
           INPUT_APPLY: ${{ inputs.apply }}
           EVENT_PR: ${{ github.event.pull_request.number }}
         run: |
-          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "pr=" >> "$GITHUB_OUTPUT"
+            echo "apply=true" >> "$GITHUB_OUTPUT"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ] && [ -z "$INPUT_PR" ]; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "pr=" >> "$GITHUB_OUTPUT"
+            echo "apply=${INPUT_APPLY:-true}" >> "$GITHUB_OUTPUT"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "mode=one" >> "$GITHUB_OUTPUT"
             echo "pr=$INPUT_PR" >> "$GITHUB_OUTPUT"
             echo "apply=${INPUT_APPLY:-true}" >> "$GITHUB_OUTPUT"
           else
+            echo "mode=one" >> "$GITHUB_OUTPUT"
             echo "pr=$EVENT_PR" >> "$GITHUB_OUTPUT"
             echo "apply=true" >> "$GITHUB_OUTPUT"
           fi
@@ -47,9 +59,18 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ARGS=(--pr "${{ steps.r.outputs.pr }}")
-          if [ "${{ steps.r.outputs.apply }}" = "true" ]; then ARGS+=(--apply); fi
-          python3 scripts/governed_auto_merge_gate.py "${ARGS[@]}"
+          if [ "${{ steps.r.outputs.mode }}" = "all" ]; then
+            gh pr list --state open --json number --jq '.[].number' | while read PR; do
+              [ -z "$PR" ] && continue
+              ARGS=(--pr "$PR")
+              if [ "${{ steps.r.outputs.apply }}" = "true" ]; then ARGS+=(--apply); fi
+              python3 scripts/governed_auto_merge_gate.py "${ARGS[@]}"
+            done
+          else
+            ARGS=(--pr "${{ steps.r.outputs.pr }}")
+            if [ "${{ steps.r.outputs.apply }}" = "true" ]; then ARGS+=(--apply); fi
+            python3 scripts/governed_auto_merge_gate.py "${ARGS[@]}"
+          fi
       - name: Summary
         if: always()
         run: |
