@@ -19,12 +19,13 @@ jobs:
           python3 scripts/build_source_inventory_progress.py
           python3 scripts/build_document_link_classification_progress.py
           python3 scripts/build_document_link_triage.py
+          python3 scripts/build_document_link_triage_json.py
           python3 scripts/build_automation_status.py
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/executions/approved-source-inventories docs/executions/document-link-classification docs/executions/document-link-triage site/data/source_inventory_progress.json site/data/document_link_classification_progress.json site/data/document_link_triage_progress.json site/data/automation_status.json
+          git add docs/executions/approved-source-inventories docs/executions/document-link-classification docs/executions/document-link-triage site/data/source_inventory_progress.json site/data/document_link_classification_progress.json site/data/document_link_triage_progress.json site/data/document_link_triage_index.json site/data/automation_status.json
           git diff --cached --quiet && exit 0
           git commit -m "chore: refresh source inventory progress"
           git push
