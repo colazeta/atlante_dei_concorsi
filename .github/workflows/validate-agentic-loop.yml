@@ -12,6 +12,8 @@ on:
       - "scripts/agentic_loop.py"
       - "scripts/agentic_dispatcher.py"
       - "scripts/fetch_approved_source_pages.py"
+      - "scripts/build_document_link_triage.py"
+      - "scripts/build_automation_status.py"
       - "scripts/validate_agentic_loop_state.py"
       - ".github/workflows/agentic-loop.yml"
       - ".github/workflows/agentic-dispatcher.yml"
@@ -55,27 +57,57 @@ jobs:
         run: |
           python scripts/validate_golden_dataset.py
 
-      - name: Validate source-inventory fetch cycle
+      - name: Validate source-inventory fetch, classification and triage cycle
         run: |
           python -m py_compile scripts/fetch_approved_source_pages.py
+          python -m py_compile scripts/build_document_link_triage.py
           python scripts/fetch_approved_source_pages.py --batch-size 1 --depth 0
           python scripts/build_source_inventory_progress.py
           python scripts/build_document_link_classification_progress.py
+          python scripts/build_document_link_triage.py
           python scripts/build_automation_status.py
           python - <<'PY'
+          import csv
           import json
           from pathlib import Path
-          status = json.loads(Path('site/data/source_inventory_progress.json').read_text())
-          assert status.get('universities_selected', 0) >= 1, status
-          assert status.get('seed_urls_attempted', 0) >= 1, status
-          assert status.get('run_status') != 'skipped_no_eligible_urls', status
+
+          source_status = json.loads(Path('site/data/source_inventory_progress.json').read_text())
+          triage_status = json.loads(Path('site/data/document_link_triage_progress.json').read_text())
+          automation_status = json.loads(Path('site/data/automation_status.json').read_text())
+
+          assert source_status.get('universities_selected', 0) >= 1, source_status
+          assert source_status.get('seed_urls_attempted', 0) >= 1, source_status
+          assert source_status.get('run_status') != 'skipped_no_eligible_urls', source_status
+
+          triage_rows = list(csv.DictReader(Path('docs/executions/document-link-triage/document_link_triage_index.csv').open(encoding='utf-8')))
+          candidate_total = 0
+          for path in Path('docs/executions/approved-source-inventories').glob('*/candidate_document_links.csv'):
+              candidate_total += sum(1 for _ in csv.DictReader(path.open(encoding='utf-8')))
+
+          allowed = {
+              'likely_competition_source',
+              'possible_competition_source',
+              'generic_institutional_page',
+              'likely_not_relevant',
+              'unknown_requires_review',
+          }
+          assert len(triage_rows) == candidate_total, (len(triage_rows), candidate_total)
+          assert triage_status.get('total_triaged_links') == candidate_total, triage_status
+          assert all(row.get('triage_status') in allowed for row in triage_rows), triage_rows[:5]
+          assert all(row.get('exclusion_reason') for row in triage_rows if row.get('exclude_from_competition_queue') == 'yes'), triage_rows[:5]
+          assert all(row.get('requires_human_attention') == 'yes' for row in triage_rows if row.get('triage_status') == 'unknown_requires_review'), triage_rows[:5]
+          assert 'triaged_links' in automation_status.get('latest_counts', {}), automation_status
+
           print(json.dumps({
-              'run_status': status.get('run_status'),
-              'universities_selected': status.get('universities_selected'),
-              'universities_fetched': status.get('universities_fetched'),
-              'seed_urls_attempted': status.get('seed_urls_attempted'),
-              'candidate_links_found': status.get('candidate_links_found'),
-              'fetch_errors': status.get('fetch_errors'),
+              'source_run_status': source_status.get('run_status'),
+              'universities_selected': source_status.get('universities_selected'),
+              'candidate_links_found': source_status.get('candidate_links_found'),
+              'triaged_links': triage_status.get('total_triaged_links'),
+              'kept_for_review': triage_status.get('kept_for_review'),
+              'excluded_from_competition_queue': triage_status.get('excluded_from_competition_queue'),
+              'likely_competition_sources': triage_status.get('likely_competition_sources'),
+              'possible_competition_sources': triage_status.get('possible_competition_sources'),
+              'unknown_requires_review': triage_status.get('unknown_requires_review'),
           }, indent=2))
           PY
 
