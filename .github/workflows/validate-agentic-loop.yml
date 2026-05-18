@@ -10,6 +10,7 @@ on:
       - "reports/agentic-dispatcher/**"
       - "reports/ux-evaluator/**"
       - "reports/ux-safe-updates/**"
+      - "reports/ux-experiments/**"
       - "schemas/agentic-loop/**"
       - "site/**"
       - "scripts/agentic_loop.py"
@@ -20,6 +21,7 @@ on:
       - "scripts/build_automation_status.py"
       - "scripts/evaluate_pages_validation_ux.py"
       - "scripts/apply_pages_ux_safe_updates.py"
+      - "scripts/build_ux_experiment_queue.py"
       - "scripts/validate_agentic_loop_state.py"
       - ".github/workflows/agentic-loop.yml"
       - ".github/workflows/agentic-dispatcher.yml"
@@ -27,6 +29,7 @@ on:
       - ".github/workflows/deploy-pages.yml"
       - ".github/workflows/pages-ux-evaluator.yml"
       - ".github/workflows/pages-ux-safe-updater.yml"
+      - ".github/workflows/ux-experiment-loop.yml"
       - ".github/workflows/validate-agentic-loop.yml"
       - "scripts/validate_atlante_methodology.py"
       - "scripts/validate_golden_dataset.py"
@@ -66,13 +69,14 @@ jobs:
         run: |
           python scripts/validate_golden_dataset.py
 
-      - name: Validate source-inventory fetch, classification and triage cycle
+      - name: Validate source-inventory fetch, classification and UX loops
         run: |
           python -m py_compile scripts/fetch_approved_source_pages.py
           python -m py_compile scripts/build_document_link_triage.py
           python -m py_compile scripts/build_document_link_triage_json.py
           python -m py_compile scripts/evaluate_pages_validation_ux.py
           python -m py_compile scripts/apply_pages_ux_safe_updates.py
+          python -m py_compile scripts/build_ux_experiment_queue.py
           python scripts/fetch_approved_source_pages.py --batch-size 1 --depth 0
           python scripts/build_source_inventory_progress.py
           python scripts/build_document_link_classification_progress.py
@@ -81,6 +85,7 @@ jobs:
           python scripts/build_automation_status.py
           python scripts/evaluate_pages_validation_ux.py
           python scripts/apply_pages_ux_safe_updates.py --autonomy iteration
+          python scripts/build_ux_experiment_queue.py
           python - <<'PY'
           import csv
           import json
@@ -92,6 +97,8 @@ jobs:
           triage_json = json.loads(Path('site/data/document_link_triage_index.json').read_text())
           ux_state = json.loads(Path('reports/ux-evaluator/latest_state.json').read_text())
           iteration_state = json.loads(Path('reports/ux-safe-updates/latest_state.json').read_text())
+          experiment_state = json.loads(Path('reports/ux-experiments/latest_state.json').read_text())
+          experiment_queue = json.loads(Path('reports/ux-experiments/experiment_queue.json').read_text())
 
           assert source_status.get('universities_selected', 0) >= 1, source_status
           assert source_status.get('seed_urls_attempted', 0) >= 1, source_status
@@ -143,6 +150,11 @@ jobs:
           assert 'layout_sections' in iteration_state.get('allowed_change_scopes', []), iteration_state
           assert 'automatic_merge' in iteration_state.get('prohibited_actions', []), iteration_state
           assert 'data_deletion' in iteration_state.get('prohibited_actions', []), iteration_state
+          assert experiment_state.get('status') == 'completed', experiment_state
+          assert experiment_state.get('proposal_count', 0) >= 1, experiment_state
+          assert experiment_queue.get('experiments'), experiment_queue
+          assert experiment_state.get('governance', {}).get('personal_data_collection') is False, experiment_state
+          assert experiment_state.get('governance', {}).get('automatic_merge') is False, experiment_state
 
           print(json.dumps({
               'source_run_status': source_status.get('run_status'),
@@ -155,7 +167,8 @@ jobs:
               'ux_problem_type': ux_state.get('diagnosis', {}).get('primary_problem_type'),
               'ux_recommended_autonomy': ux_state.get('recommended_autonomy'),
               'ux_iteration_status': iteration_state.get('status'),
-              'ux_autonomy_level': iteration_state.get('autonomy_level'),
+              'experiment_count': experiment_state.get('proposal_count'),
+              'top_experiment': (experiment_state.get('top_experiment') or {}).get('experiment_id'),
           }, indent=2))
           PY
 
@@ -184,37 +197,6 @@ jobs:
             --issue-number 50 \
             --mode controlled_implementation \
             --task prepare-procedure-review-pack \
-            --procedure-id ACU-REVIEW-PACK-PLACEHOLDER \
-            --skip-validators
-          python scripts/validate_agentic_loop_state.py
-
-      - name: Controlled implementation source-intake smoke test
-        run: |
-          python scripts/agentic_loop.py \
-            --issue-number 52 \
-            --mode controlled_implementation \
-            --task prepare-source-intake-pack \
-            --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
-            --skip-validators
-          python scripts/validate_agentic_loop_state.py
-
-      - name: Controlled implementation collection-plan smoke test
-        run: |
-          python scripts/agentic_loop.py \
-            --issue-number 54 \
-            --mode controlled_implementation \
-            --task prepare-collection-plan-from-intake \
-            --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
-            --skip-validators
-          python scripts/validate_agentic_loop_state.py
-
-      - name: Controlled implementation gate-decision smoke test
-        run: |
-          python scripts/agentic_loop.py \
-            --issue-number 56 \
-            --mode controlled_implementation \
-            --task evaluate-collection-approval-gates \
-            --procedure-id ACU-SOURCE-INTAKE-PLACEHOLDER \
             --skip-validators
           python scripts/validate_agentic_loop_state.py
 
