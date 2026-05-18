@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import subprocess
 import sys
 from pathlib import Path
@@ -12,21 +11,29 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'reports/auto-merge-gate'
 LATEST = OUT / 'latest_state.json'
 
-TIER4_PATH_PREFIXES = (
-    '.github/workflows/',
+TIER4_EXACT_PATHS = {
+    '.github/workflows/pr-gate.yml',
+    '.github/workflows/validate-agentic-loop.yml',
     'scripts/governed_auto_merge_gate.py',
-    'schemas/',
-)
+}
+TIER4_PREFIXES = ('schemas/',)
+OPERATIONAL_WORKFLOWS = {
+    '.github/workflows/source-inventory-progress.yml',
+    '.github/workflows/link-status-refresh.yml',
+    '.github/workflows/deploy-pages.yml',
+    '.github/workflows/pages-ux-evaluator.yml',
+    '.github/workflows/pages-ux-safe-updater.yml',
+    '.github/workflows/ux-experiment-loop.yml',
+}
 TIER1_PREFIXES = (
     'reports/',
     'site/data/',
     'docs/executions/approved-source-inventories/',
     'docs/executions/document-link-classification/',
     'docs/executions/document-link-triage/',
+    'docs/executions/document-link-confirmation/',
 )
-TIER2_FILES = (
-    'site/index.html',
-)
+TIER2_FILES = ('site/index.html',)
 
 
 def run(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
@@ -39,19 +46,18 @@ def gh_json(args: list[str]) -> dict:
 
 
 def classify(files: list[str]) -> tuple[str, list[str]]:
-    reasons = []
-    if any(path.startswith(TIER4_PATH_PREFIXES) for path in files):
-        return 'tier4', ['Touches workflow/script/schema or merge-gate controlled path.']
+    if any(path in TIER4_EXACT_PATHS or path.startswith(TIER4_PREFIXES) for path in files):
+        return 'tier4', ['Touches merge-gate, validation, schema, or other controlled governance path.']
     if files and all(path.startswith(TIER1_PREFIXES) for path in files):
         return 'tier1', ['Generated reports/data artefacts only.']
     if files and all(path in TIER2_FILES or path.startswith(TIER1_PREFIXES) for path in files):
         return 'tier2', ['Static Pages UI/data-only update.']
-    reasons.append('Mixed application/data change that is not tier4.')
-    return 'tier3', reasons
+    if files and all(path in OPERATIONAL_WORKFLOWS or path.startswith(TIER1_PREFIXES) for path in files):
+        return 'tier3', ['Operational scheduled workflow or generated artefacts; not governance-tier4.']
+    return 'tier3', ['Mixed non-tier4 change.']
 
 
 def all_required_checks_green(pr: dict) -> tuple[bool, list[str]]:
-    # Prefer the mergeable state exposed by GitHub plus statusCheckRollup when available.
     failures = []
     checks = pr.get('statusCheckRollup') or []
     if isinstance(checks, list) and checks:
@@ -60,7 +66,6 @@ def all_required_checks_green(pr: dict) -> tuple[bool, list[str]]:
             name = item.get('name') or item.get('context') or 'unknown'
             if conclusion not in {'SUCCESS', 'NEUTRAL', 'SKIPPED'}:
                 failures.append(f'{name}:{conclusion}')
-    # If GitHub does not expose checks here, rely on mergeable plus branch protection elsewhere.
     return (not failures), failures
 
 
@@ -84,7 +89,6 @@ def main() -> int:
         allowed = False
         reasons.append('Explicit blocking label present.')
     if 'allow-tier3-automerge' not in labels and tier == 'tier3':
-        # Tier 3 can auto-merge, but requires explicit label because it may include mixed app/data changes.
         allowed = False
         reasons.append('Tier3 requires allow-tier3-automerge label.')
 
