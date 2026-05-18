@@ -29,6 +29,7 @@ on:
       - ".github/workflows/agentic-loop.yml"
       - ".github/workflows/agentic-dispatcher.yml"
       - ".github/workflows/source-inventory-progress.yml"
+      - ".github/workflows/link-status-refresh.yml"
       - ".github/workflows/deploy-pages.yml"
       - ".github/workflows/pages-ux-evaluator.yml"
       - ".github/workflows/pages-ux-safe-updater.yml"
