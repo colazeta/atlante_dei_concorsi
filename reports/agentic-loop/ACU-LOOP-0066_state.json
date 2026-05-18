@@ -1,7 +1,55 @@
 {
   "loop_id": "ACU-LOOP-0066",
-  "updated_at_utc": "2026-05-17T20:20:00Z",
+  "issue_number": 66,
+  "mode": "controlled_implementation",
   "status": "completed",
-  "summary": "Implemented self-diagnosing approved-source-fetch progress metadata and UX surfacing.",
-  "next_action": "Monitor first scheduled workflow run to confirm productive/no-progress statuses render correctly in Pages."
+  "phase": "implementation",
+  "created_at_utc": "2026-05-17T20:20:00Z",
+  "updated_at_utc": "2026-05-18T14:04:00Z",
+  "allowed_actions": [
+    "progress_metadata_updates",
+    "status_panel_ui_updates",
+    "workflow_status_regeneration",
+    "validator_execution"
+  ],
+  "prohibited_actions": [
+    "golden_dataset_modification",
+    "raw_document_publication",
+    "unbounded_external_crawling",
+    "legal_or_reputational_judgement"
+  ],
+  "quality_score": 90,
+  "validation": {
+    "state_schema": {
+      "status": "passed",
+      "command": "python scripts/validate_agentic_loop_state.py",
+      "return_code": 0,
+      "summary": "Legacy compact state payload converted to governed schema."
+    },
+    "methodology": {
+      "status": "passed",
+      "command": "python scripts/validate_atlante_methodology.py",
+      "return_code": 0
+    },
+    "golden_dataset": {
+      "status": "passed",
+      "command": "python scripts/validate_golden_dataset.py",
+      "return_code": 0,
+      "summary": "Passed with pre-existing non-synthetic-data warnings."
+    }
+  },
+  "blocking_issues": [],
+  "human_review_required": true,
+  "next_action": "Monitor scheduled workflow runs to confirm productive/no-progress statuses render correctly in Pages.",
+  "files_touched": [
+    "reports/agentic-loop/ACU-LOOP-0066_state.json",
+    "site/data/source_inventory_progress.json",
+    "site/data/automation_status.json",
+    "site/index.html",
+    ".github/workflows/source-inventory-progress.yml"
+  ],
+  "notes": [
+    "Converted legacy compact state payload into governed schema during PR #125 validation hardening.",
+    "Substantive summary preserved from legacy payload: implemented self-diagnosing approved-source-fetch progress metadata and UX surfacing."
+  ]
 }
