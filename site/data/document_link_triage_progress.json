@@ -1,0 +1,27 @@
+{
+  "updated_at_utc": "2026-05-18T15:43:55Z",
+  "total_candidate_links_from_inventories": 300,
+  "total_classified_links_read": 300,
+  "total_triaged_links": 300,
+  "kept_for_review": 194,
+  "excluded_from_competition_queue": 106,
+  "requires_human_attention": 255,
+  "likely_competition_sources": 0,
+  "possible_competition_sources": 80,
+  "generic_institutional_pages": 61,
+  "likely_not_relevant": 45,
+  "unknown_requires_review": 114,
+  "top_exclusion_reasons": [
+    {
+      "reason": "Generic institutional or service-page signal without competition signal.",
+      "count": 61
+    },
+    {
+      "reason": "Negative navigation/legal/external-domain signal without competition signal.",
+      "count": 45
+    }
+  ],
+  "progress_events": [
+    "Built governed deterministic relevance triage from document-link classification output."
+  ]
+}
