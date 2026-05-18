@@ -134,6 +134,9 @@ jobs:
           assert not missing, missing
           assert ux_state.get('status') == 'completed', ux_state
           assert ux_state.get('findings'), ux_state
+          assert ux_state.get('diagnosis', {}).get('primary_problem_type'), ux_state
+          assert ux_state.get('recommended_autonomy') in {'safe', 'iteration', 'broad'}, ux_state
+          assert ux_state.get('improvement_paths'), ux_state
           assert 'has_single_row_approve' in ux_state.get('checks', {}), ux_state
           assert iteration_state.get('status') in {'updates_available', 'no_updates_available'}, iteration_state
           assert iteration_state.get('autonomy_level') == 'iteration', iteration_state
@@ -149,6 +152,8 @@ jobs:
               'kept_for_review': triage_status.get('kept_for_review'),
               'excluded_from_competition_queue': triage_status.get('excluded_from_competition_queue'),
               'ux_focus_area': ux_state.get('focus_area'),
+              'ux_problem_type': ux_state.get('diagnosis', {}).get('primary_problem_type'),
+              'ux_recommended_autonomy': ux_state.get('recommended_autonomy'),
               'ux_iteration_status': iteration_state.get('status'),
               'ux_autonomy_level': iteration_state.get('autonomy_level'),
           }, indent=2))
