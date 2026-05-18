@@ -1,1 +1,7 @@
-university_id,source_url,http_status,content_type,page_title,observed_at_utc
+university_id,source_url,http_status,content_type,page_title,observed_at_utc,error
+it-unipa,https://www.unipa.it/albo.html,200,text/html;charset=UTF-8,Albo Ufficiale | Università degli Studi di Palermo,2026-05-18T14:08:59Z,
+it-unipa,https://www.unipa.it/albo.html#content,200,text/html;charset=UTF-8,Albo Ufficiale | Università degli Studi di Palermo,2026-05-18T14:08:59Z,
+it-unipa,https://www.unipa.it/albo.html#,200,text/html;charset=UTF-8,Albo Ufficiale | Università degli Studi di Palermo,2026-05-18T14:08:59Z,
+it-unipa,https://www.unipa.it/albo.html#,200,text/html;charset=UTF-8,Albo Ufficiale | Università degli Studi di Palermo,2026-05-18T14:08:59Z,
+it-unipa,https://www.unipa.it/albo.html#,200,text/html;charset=UTF-8,Albo Ufficiale | Università degli Studi di Palermo,2026-05-18T14:08:59Z,
+it-unipa,https://www.unipa.it/organigramma/arearicerca/Fare-ricerca-Bandi--Opportunit-00001/,200,text/html;charset=UTF-8,Fare ricerca: Bandi & Opportunità | Area Ricerca e Innovazione | Università degli Studi di Palermo,2026-05-18T14:08:59Z,
