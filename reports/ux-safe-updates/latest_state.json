@@ -1,0 +1,88 @@
+{
+  "safe_updater_id": "PAGES-UX-ITERATION-AGENT-0001",
+  "status": "applied",
+  "created_at_utc": "2026-05-18T20:45:14Z",
+  "updated_at_utc": "2026-05-18T20:45:14Z",
+  "apply_mode": true,
+  "autonomy_level": "iteration",
+  "source_evaluator_fingerprint": "1d34010f12b70040",
+  "source_focus_area": "bulk submission clarity",
+  "updates": [
+    {
+      "id": "add-quick-approve-label",
+      "reason": "Add explanatory title to row-level approve action.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "add-quick-reject-label",
+      "reason": "Add explanatory title to row-level reject action.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "add-submit-one-label",
+      "reason": "Clarify per-row submission behaviour.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "clarify-bulk-submission-label",
+      "reason": "Clarify that mass submission creates a governed GitHub issue.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "clarify-selected-submission-label",
+      "reason": "Clarify selected submission scope.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "add-review-mode-banner",
+      "reason": "Add a guided review-mode banner to make the reviewer workflow explicit.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "add-link-table-shortcuts-copy",
+      "reason": "Add inline guidance above the link validation table.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "add-unreviewed-filter-button",
+      "reason": "Add a one-click control for unreviewed items.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    },
+    {
+      "id": "wire-unreviewed-filter-button",
+      "reason": "Wire the unreviewed-items control in the validation UI.",
+      "file": "site/index.html",
+      "scope": "ui_iteration"
+    }
+  ],
+  "allowed_files": [
+    "site/index.html",
+    "site/data/automation_status.json",
+    "reports/ux-evaluator/latest_state.json",
+    "reports/ux-safe-updates/latest_state.json"
+  ],
+  "allowed_change_scopes": [
+    "microcopy",
+    "workflow_guidance",
+    "review_controls",
+    "layout_sections",
+    "static_js_for_review_flow"
+  ],
+  "prohibited_actions": [
+    "direct_main_mutation",
+    "automatic_merge",
+    "data_deletion",
+    "secret_or_token_handling",
+    "external_network_dependency",
+    "removal_of_audit_visibility"
+  ],
+  "next_action": "Open or update a governed PR for applied UX iteration updates."
+}
