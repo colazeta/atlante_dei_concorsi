@@ -1,8 +1,8 @@
 {
-  "updated_at_utc": "2026-05-17T23:58:37Z",
+  "updated_at_utc": "2026-05-18T01:09:15Z",
   "pages_deploy_status": "generated_predeploy",
-  "source_inventory_last_updated_utc": "2026-05-17T23:58:37Z",
-  "document_classification_last_updated_utc": "2026-05-17T23:58:37Z",
+  "source_inventory_last_updated_utc": "2026-05-18T01:09:15Z",
+  "document_classification_last_updated_utc": "2026-05-18T01:09:15Z",
   "source_inventory_freshness_minutes": 0,
   "document_classification_freshness_minutes": 0,
   "expected_refresh_cadence_minutes": 10,
