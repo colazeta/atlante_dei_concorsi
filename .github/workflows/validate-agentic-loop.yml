@@ -11,6 +11,7 @@ on:
       - "reports/ux-evaluator/**"
       - "reports/ux-safe-updates/**"
       - "reports/ux-experiments/**"
+      - "reports/auto-merge-gate/**"
       - "schemas/agentic-loop/**"
       - "site/**"
       - "scripts/agentic_loop.py"
@@ -22,6 +23,7 @@ on:
       - "scripts/evaluate_pages_validation_ux.py"
       - "scripts/apply_pages_ux_safe_updates.py"
       - "scripts/build_ux_experiment_queue.py"
+      - "scripts/governed_auto_merge_gate.py"
       - "scripts/validate_agentic_loop_state.py"
       - ".github/workflows/agentic-loop.yml"
       - ".github/workflows/agentic-dispatcher.yml"
@@ -30,6 +32,7 @@ on:
       - ".github/workflows/pages-ux-evaluator.yml"
       - ".github/workflows/pages-ux-safe-updater.yml"
       - ".github/workflows/ux-experiment-loop.yml"
+      - ".github/workflows/pr-gate.yml"
       - ".github/workflows/validate-agentic-loop.yml"
       - "scripts/validate_atlante_methodology.py"
       - "scripts/validate_golden_dataset.py"
@@ -77,6 +80,7 @@ jobs:
           python -m py_compile scripts/evaluate_pages_validation_ux.py
           python -m py_compile scripts/apply_pages_ux_safe_updates.py
           python -m py_compile scripts/build_ux_experiment_queue.py
+          python -m py_compile scripts/governed_auto_merge_gate.py
           python scripts/fetch_approved_source_pages.py --batch-size 1 --depth 0
           python scripts/build_source_inventory_progress.py
           python scripts/build_document_link_classification_progress.py
@@ -155,6 +159,11 @@ jobs:
           assert experiment_queue.get('experiments'), experiment_queue
           assert experiment_state.get('governance', {}).get('personal_data_collection') is False, experiment_state
           assert experiment_state.get('governance', {}).get('automatic_merge') is False, experiment_state
+
+          merge_gate = Path('scripts/governed_auto_merge_gate.py').read_text(encoding='utf-8')
+          assert 'tier4' in merge_gate
+          assert 'allow-tier3-automerge' in merge_gate
+          assert 'TIER4_PATH_PREFIXES' in merge_gate
 
           print(json.dumps({
               'source_run_status': source_status.get('run_status'),
