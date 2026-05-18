@@ -229,6 +229,7 @@ def main():
         cand = read_csv(inv / 'candidate_document_links.csv')
         before_count = len(cand)
         log_lines = [f"- {stamp} | uid={uid}"]
+        fetched_success = False
 
         if not source_url:
             obs.append({
@@ -242,6 +243,7 @@ def main():
             try:
                 status, ctype, data = fetch(source_url)
                 universities_fetched += 1
+                fetched_success = True
                 body = data.decode('utf-8', errors='ignore')
                 p = LinkParser()
                 p.feed(body)
@@ -359,7 +361,7 @@ def main():
         if row:
             row['homepage_url'] = homepage_url
             row['recruitment_url'] = recruitment_url
-            row['fetch_status'] = 'fetched' if source_url and universities_fetched else 'pending_fetch'
+            row['fetch_status'] = 'fetched' if source_url and fetched_success else 'pending_fetch'
             row['candidate_links_count'] = str(len(cand))
             row['requires_human_attention'] = 'yes'
             row['blocking_status'] = 'needs_human_review' if len(cand) else ('fetch_failed' if source_url else 'missing_approved_url')
