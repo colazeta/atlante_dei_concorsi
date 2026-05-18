@@ -1,10 +1,10 @@
 {
   "evaluator_id": "PAGES-UX-EVALUATOR-0001",
   "status": "completed",
-  "created_at_utc": "2026-05-18T20:06:29Z",
-  "updated_at_utc": "2026-05-18T20:06:29Z",
-  "focus_area": "single-row validation speed",
-  "fingerprint": "50499ab0a2395aeb",
+  "created_at_utc": "2026-05-18T20:45:13Z",
+  "updated_at_utc": "2026-05-18T20:45:13Z",
+  "focus_area": "bulk submission clarity",
+  "fingerprint": "1d34010f12b70040",
   "checks": {
     "has_single_row_approve": true,
     "has_single_row_reject": true,
@@ -14,18 +14,74 @@
     "has_priority_queue": true,
     "has_triage_filters": true,
     "has_progress_cards": true,
+    "has_unreviewed_filter": false,
+    "has_review_mode_banner": false,
     "triage_metrics_available": true,
     "triage_progress_available": true
   },
   "findings": [
     {
-      "severity": "low",
-      "issue": "No blocking UX gap detected for focus area: single-row validation speed.",
-      "proposed_fix": "Continue monitoring and use manual reviewer feedback to refine microcopy and workflow density.",
-      "files_likely_touched": [],
-      "automatic_patch_safe": false
+      "severity": "medium",
+      "problem_type": "missing_unreviewed_filter",
+      "issue": "Reviewer cannot isolate unreviewed items quickly.",
+      "proposed_fix": "Add one-click unreviewed filter.",
+      "files_likely_touched": [
+        "site/index.html"
+      ],
+      "patch_safe": true
+    },
+    {
+      "severity": "medium",
+      "problem_type": "missing_review_guidance",
+      "issue": "Review journey is not explicit enough.",
+      "proposed_fix": "Add review-mode guidance section.",
+      "files_likely_touched": [
+        "site/index.html"
+      ],
+      "patch_safe": true
     }
   ],
-  "human_review_required": false,
-  "next_action": "Continue monitoring and use manual reviewer feedback to refine microcopy and workflow density."
+  "diagnosis": {
+    "recommended_autonomy": "iteration",
+    "primary_problem_type": "workflow_friction",
+    "improvement_paths": [
+      {
+        "path_id": "unreviewed_queue",
+        "goal": "Expose one-click access to unreviewed items.",
+        "scope": "review_controls",
+        "files": [
+          "site/index.html"
+        ]
+      },
+      {
+        "path_id": "review_guidance",
+        "goal": "Make the end-to-end validation journey explicit.",
+        "scope": "layout_sections",
+        "files": [
+          "site/index.html"
+        ]
+      }
+    ]
+  },
+  "recommended_autonomy": "iteration",
+  "improvement_paths": [
+    {
+      "path_id": "unreviewed_queue",
+      "goal": "Expose one-click access to unreviewed items.",
+      "scope": "review_controls",
+      "files": [
+        "site/index.html"
+      ]
+    },
+    {
+      "path_id": "review_guidance",
+      "goal": "Make the end-to-end validation journey explicit.",
+      "scope": "layout_sections",
+      "files": [
+        "site/index.html"
+      ]
+    }
+  ],
+  "human_review_required": true,
+  "next_action": "Expose one-click access to unreviewed items."
 }
