@@ -1,0 +1,34 @@
+name: Link status refresh
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-link-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rebuild link status layers
+        run: |
+          python3 scripts/build_source_inventory_progress.py
+          python3 scripts/build_document_link_classification_progress.py
+          python3 scripts/build_document_link_triage.py
+          python3 scripts/build_document_link_triage_json.py
+          python3 scripts/build_competition_evidence_confirmation.py
+          python3 scripts/build_automation_status.py
+      - name: Commit refreshed link status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/executions/document-link-classification docs/executions/document-link-triage docs/executions/document-link-confirmation site/data/document_link_classification_progress.json site/data/document_link_triage_progress.json site/data/document_link_triage_index.json site/data/document_link_confirmation_progress.json site/data/automation_status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: refresh link status layers"
+          git push
