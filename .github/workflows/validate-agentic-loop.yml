@@ -9,6 +9,7 @@ on:
       - "reports/agentic-loop/**"
       - "reports/agentic-dispatcher/**"
       - "reports/ux-evaluator/**"
+      - "reports/ux-safe-updates/**"
       - "schemas/agentic-loop/**"
       - "site/**"
       - "scripts/agentic_loop.py"
@@ -18,12 +19,14 @@ on:
       - "scripts/build_document_link_triage_json.py"
       - "scripts/build_automation_status.py"
       - "scripts/evaluate_pages_validation_ux.py"
+      - "scripts/apply_pages_ux_safe_updates.py"
       - "scripts/validate_agentic_loop_state.py"
       - ".github/workflows/agentic-loop.yml"
       - ".github/workflows/agentic-dispatcher.yml"
       - ".github/workflows/source-inventory-progress.yml"
       - ".github/workflows/deploy-pages.yml"
       - ".github/workflows/pages-ux-evaluator.yml"
+      - ".github/workflows/pages-ux-safe-updater.yml"
       - ".github/workflows/validate-agentic-loop.yml"
       - "scripts/validate_atlante_methodology.py"
       - "scripts/validate_golden_dataset.py"
@@ -69,6 +72,7 @@ jobs:
           python -m py_compile scripts/build_document_link_triage.py
           python -m py_compile scripts/build_document_link_triage_json.py
           python -m py_compile scripts/evaluate_pages_validation_ux.py
+          python -m py_compile scripts/apply_pages_ux_safe_updates.py
           python scripts/fetch_approved_source_pages.py --batch-size 1 --depth 0
           python scripts/build_source_inventory_progress.py
           python scripts/build_document_link_classification_progress.py
@@ -76,6 +80,7 @@ jobs:
           python scripts/build_document_link_triage_json.py
           python scripts/build_automation_status.py
           python scripts/evaluate_pages_validation_ux.py
+          python scripts/apply_pages_ux_safe_updates.py
           python - <<'PY'
           import csv
           import json
@@ -86,6 +91,7 @@ jobs:
           automation_status = json.loads(Path('site/data/automation_status.json').read_text())
           triage_json = json.loads(Path('site/data/document_link_triage_index.json').read_text())
           ux_state = json.loads(Path('reports/ux-evaluator/latest_state.json').read_text())
+          safe_state = json.loads(Path('reports/ux-safe-updates/latest_state.json').read_text())
 
           assert source_status.get('universities_selected', 0) >= 1, source_status
           assert source_status.get('seed_urls_attempted', 0) >= 1, source_status
@@ -129,6 +135,9 @@ jobs:
           assert ux_state.get('status') == 'completed', ux_state
           assert ux_state.get('findings'), ux_state
           assert 'has_single_row_approve' in ux_state.get('checks', {}), ux_state
+          assert safe_state.get('status') in {'updates_available', 'no_updates_available'}, safe_state
+          assert safe_state.get('allowed_files') == ['site/index.html'], safe_state
+          assert 'direct_main_mutation' in safe_state.get('prohibited_actions', []), safe_state
 
           print(json.dumps({
               'source_run_status': source_status.get('run_status'),
@@ -138,7 +147,7 @@ jobs:
               'kept_for_review': triage_status.get('kept_for_review'),
               'excluded_from_competition_queue': triage_status.get('excluded_from_competition_queue'),
               'ux_focus_area': ux_state.get('focus_area'),
-              'ux_human_review_required': ux_state.get('human_review_required'),
+              'safe_update_status': safe_state.get('status'),
           }, indent=2))
           PY
 
