@@ -1,0 +1,55 @@
+name: Pages UX safe updater
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  safe-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Refresh UX evaluator state
+        run: python3 scripts/evaluate_pages_validation_ux.py
+      - name: Apply whitelisted safe UX updates
+        run: python3 scripts/apply_pages_ux_safe_updates.py --apply
+      - name: Detect safe update changes
+        id: changes
+        run: |
+          if git diff --quiet -- site/index.html reports/ux-evaluator reports/ux-safe-updates; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Create or update safe-update branch
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          BRANCH: automation/pages-ux-safe-updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add site/index.html reports/ux-evaluator reports/ux-safe-updates
+          git commit -m "Apply safe Pages UX updates"
+          git push --force-with-lease origin "$BRANCH"
+      - name: Open or update pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: automation/pages-ux-safe-updates
+        run: |
+          if gh pr view "$BRANCH" --base main >/dev/null 2>&1; then
+            gh pr edit "$BRANCH" --base main --title "Apply safe Pages UX updates" --body "Automated governed safe-update PR.\n\nThis PR contains only whitelisted microcopy/tooltip updates plus UX evaluator reports.\n\nThe updater is forbidden from direct main mutation, layout rewrites, business-logic changes or data deletion."
+          else
+            gh pr create --base main --head "$BRANCH" --title "Apply safe Pages UX updates" --body "Automated governed safe-update PR.\n\nThis PR contains only whitelisted microcopy/tooltip updates plus UX evaluator reports.\n\nThe updater is forbidden from direct main mutation, layout rewrites, business-logic changes or data deletion."
+          fi
