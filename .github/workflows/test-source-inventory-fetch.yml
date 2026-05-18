@@ -1,6 +1,13 @@
 name: Test source inventory fetch cycle
 
 on:
+  pull_request:
+    paths:
+      - "scripts/fetch_approved_source_pages.py"
+      - ".github/workflows/source-inventory-progress.yml"
+      - ".github/workflows/test-source-inventory-fetch.yml"
+      - "docs/executions/source-intake-packs/source_intake_index.csv"
+      - "docs/executions/approved-source-inventories/source_inventory_index.csv"
   push:
     branches:
       - fix/source-inventory-fetch-cycle
