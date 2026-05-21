@@ -246,3 +246,6 @@
 
 - 2026-05-21T21:53:06Z | uid=it-unifi
   - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 520: <none>
+
+- 2026-05-21T22:26:21Z | uid=it-unifi
+  - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 520: <none>
