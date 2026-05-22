@@ -318,3 +318,6 @@
 
 - 2026-05-22T19:36:13Z | uid=it-unina
   - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=HTTP Error 404: Not Found
+
+- 2026-05-22T20:17:12Z | uid=it-unina
+  - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=HTTP Error 404: Not Found
