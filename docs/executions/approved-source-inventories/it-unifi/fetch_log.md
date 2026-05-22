@@ -270,3 +270,6 @@
 
 - 2026-05-22T04:59:24Z | uid=it-unifi
   - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 520: <none>
+
+- 2026-05-22T06:27:55Z | uid=it-unifi
+  - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 404: Not Found
