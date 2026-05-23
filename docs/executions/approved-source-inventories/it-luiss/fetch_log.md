@@ -402,3 +402,6 @@
 
 - 2026-05-23T17:31:30Z | uid=it-luiss
   - fetched: https://www.luiss.it/ status=200 depth=1 follow_links=0 links_recorded=0
+
+- 2026-05-23T17:59:27Z | uid=it-luiss
+  - fetched: https://www.luiss.it/ status=200 depth=1 follow_links=0 links_recorded=0
