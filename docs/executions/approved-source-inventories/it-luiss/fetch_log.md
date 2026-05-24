@@ -543,3 +543,6 @@
 
 - 2026-05-24T22:33:20Z | uid=it-luiss
   - fetched: https://www.luiss.it/ status=200 depth=1 follow_links=0 links_recorded=0
+
+- 2026-05-24T22:58:46Z | uid=it-luiss
+  - fetched: https://www.luiss.it/ status=200 depth=1 follow_links=0 links_recorded=0
