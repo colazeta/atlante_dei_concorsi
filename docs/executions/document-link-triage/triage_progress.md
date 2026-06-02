@@ -1,6 +1,6 @@
 # Triage progress
 
-- Updated at UTC: 2026-06-01T23:57:16Z
+- Updated at UTC: 2026-06-02T00:16:11Z
 - Triaged links: 300
 - Kept for review: 194
 - Excluded/deprioritised: 106

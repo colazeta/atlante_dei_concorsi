@@ -1149,3 +1149,6 @@
 
 - 2026-06-01T23:46:52Z | uid=it-luiss
   - fetched: https://www.luiss.it/ status=200 depth=1 follow_links=0 links_recorded=0
+
+- 2026-06-02T00:16:05Z | uid=it-luiss
+  - fetched: https://www.luiss.it/ status=200 depth=1 follow_links=0 links_recorded=0
