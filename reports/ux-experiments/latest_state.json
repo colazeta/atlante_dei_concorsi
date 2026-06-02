@@ -1,8 +1,8 @@
 {
   "experiment_loop_id": "UX-EXPERIMENT-LOOP-0001",
   "status": "completed",
-  "created_at_utc": "2026-06-01T23:13:17Z",
-  "updated_at_utc": "2026-06-01T23:13:17Z",
+  "created_at_utc": "2026-06-02T00:01:43Z",
+  "updated_at_utc": "2026-06-02T00:01:43Z",
   "input_files": [
     "site/data/automation_status.json",
     "site/data/document_link_triage_progress.json",
