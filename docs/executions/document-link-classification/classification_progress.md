@@ -1,5 +1,5 @@
 # Classification progress
 
-- Updated at UTC: 2026-06-22T19:44:09Z
+- Updated at UTC: 2026-06-22T19:49:48Z
 - Universities processed: 80
 - Candidate links observed: 300
