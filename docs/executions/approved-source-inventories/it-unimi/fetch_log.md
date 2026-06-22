@@ -2553,3 +2553,6 @@
 
 - 2026-06-22T05:34:04Z | uid=it-unimi
   - error: https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori err=HTTP Error 404: Not Found
+
+- 2026-06-22T07:28:27Z | uid=it-unimi
+  - error: https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori err=HTTP Error 404: Not Found
