@@ -2652,3 +2652,6 @@
 
 - 2026-06-23T22:37:20Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=The read operation timed out
+
+- 2026-06-23T23:32:28Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 520: <none>
