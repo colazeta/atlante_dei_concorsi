@@ -1,25 +1,25 @@
 {
-  "updated_at_utc": "2026-06-23T11:14:30Z",
+  "updated_at_utc": "2026-06-23T12:17:25Z",
   "total_intake_packs": 80,
   "inventories_created": 80,
   "inventories_pending": 73,
   "inventories_with_recruitment_url": 28,
   "inventories_with_candidate_links": 7,
   "inventories_needing_attention": 80,
-  "fetch_errors": 4,
+  "fetch_errors": 5,
   "candidate_links_total": 340,
   "progress_events": [
     "Rebuilt source-inventory rollup from approved-source inventory index."
   ],
   "run_mode": "bounded_approved_source_fetch",
   "universities_selected": 5,
-  "universities_fetched": 1,
+  "universities_fetched": 0,
   "seed_urls_attempted": 5,
   "depth_1_pages_followed": 0,
-  "candidate_links_found": 40,
+  "candidate_links_found": 0,
   "output_files_changed": 2,
-  "run_status": "productive",
-  "no_progress_reason": "",
+  "run_status": "failed_fetch",
+  "no_progress_reason": "All eligible source fetch attempts failed.",
   "by_university": [
     {
       "university_id": "it-unibo",
@@ -45,7 +45,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T11:14:20Z"
+      "last_updated_utc": "2026-06-23T12:17:15Z"
     },
     {
       "university_id": "it-unipd",
@@ -97,7 +97,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T11:14:20Z"
+      "last_updated_utc": "2026-06-23T12:17:15Z"
     },
     {
       "university_id": "it-unito",
@@ -110,7 +110,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T11:14:20Z"
+      "last_updated_utc": "2026-06-23T12:17:15Z"
     },
     {
       "university_id": "it-unirc",
@@ -162,7 +162,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T11:14:20Z"
+      "last_updated_utc": "2026-06-23T12:17:15Z"
     },
     {
       "university_id": "it-unisi",
@@ -174,8 +174,8 @@
       "fetch_status": "pending_fetch",
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
-      "blocking_status": "awaiting_bounded_fetch",
-      "last_updated_utc": "2026-05-17T20:03:24Z"
+      "blocking_status": "fetch_failed",
+      "last_updated_utc": "2026-06-23T12:17:15Z"
     },
     {
       "university_id": "it-uniroma1",

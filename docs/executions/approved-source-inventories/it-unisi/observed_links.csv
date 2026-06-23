@@ -1,1 +1,2 @@
-university_id,source_url,http_status,content_type,page_title,observed_at_utc
+university_id,source_url,http_status,content_type,page_title,observed_at_utc,error
+it-unisi,https://www.unisi.it/ateneo/concorsi,,,,2026-06-23T12:17:15Z,HTTP Error 403: Forbidden
