@@ -2649,3 +2649,6 @@
 
 - 2026-06-23T22:01:29Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 404: Not Found
+
+- 2026-06-23T22:37:20Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=The read operation timed out
