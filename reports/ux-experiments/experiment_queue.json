@@ -1,14 +1,14 @@
 {
-  "updated_at_utc": "2026-06-23T11:13:32Z",
+  "updated_at_utc": "2026-06-23T12:28:57Z",
   "experiments": [
     {
       "experiment_id": "card_review_mode",
       "title": "Introduce card-based one-link review mode",
       "problem_detected": "The review queue is large relative to the total triaged corpus.",
       "aggregate_evidence": {
-        "count": 194,
-        "denominator": 300,
-        "share_pct": 64.67
+        "count": 230,
+        "denominator": 340,
+        "share_pct": 67.65
       },
       "proposed_ui_change": "Add an optional card-based mode showing one candidate link at a time with primary approve/reject/evidence actions.",
       "expected_effect": "Reduce cognitive load and make sequential validation easier than scanning a dense table.",
@@ -25,36 +25,13 @@
       "priority_score": 4
     },
     {
-      "experiment_id": "source_summary_first",
-      "title": "Add source-level summary before link review",
-      "problem_detected": "Many pages are possible competition sources but not high-confidence direct evidence.",
-      "aggregate_evidence": {
-        "count": 80,
-        "denominator": 300,
-        "share_pct": 26.67
-      },
-      "proposed_ui_change": "Add a source-level summary panel grouping links by university/source URL before row-level review.",
-      "expected_effect": "Let reviewers validate or deprioritise whole source clusters before reviewing every individual link.",
-      "risk_level": "medium",
-      "suggested_autonomy": "broad",
-      "files_likely_touched": [
-        "site/index.html",
-        "site/data/document_link_triage_index.json"
-      ],
-      "validation_checks_required": [
-        "source grouping renders",
-        "row-level audit remains visible"
-      ],
-      "priority_score": 3
-    },
-    {
       "experiment_id": "unknown_resolution_queue",
       "title": "Create a dedicated unknown-resolution queue",
       "problem_detected": "A large share of links remains in unknown/review-required state.",
       "aggregate_evidence": {
-        "count": 114,
-        "denominator": 300,
-        "share_pct": 38.0
+        "count": 149,
+        "denominator": 340,
+        "share_pct": 43.82
       },
       "proposed_ui_change": "Add a saved focus queue for unknown items with explanation prompts and needs-evidence defaults.",
       "expected_effect": "Help reviewers resolve uncertain links without mixing them with likely competition pages.",
@@ -74,9 +51,9 @@
       "title": "Strengthen navigation-link suppression",
       "problem_detected": "Navigation-like links are reaching the review queue.",
       "aggregate_evidence": {
-        "count": 11,
-        "denominator": 300,
-        "share_pct": 3.67
+        "count": 12,
+        "denominator": 340,
+        "share_pct": 3.53
       },
       "proposed_ui_change": "Update deterministic triage to mark skip/menu/content anchors as likely_not_relevant unless other strong competition signals exist.",
       "expected_effect": "Reduce false positives before they reach manual validation.",
@@ -88,6 +65,29 @@
       "validation_checks_required": [
         "triage row count consistency",
         "excluded links remain auditable"
+      ],
+      "priority_score": 2
+    },
+    {
+      "experiment_id": "source_summary_first",
+      "title": "Add source-level summary before link review",
+      "problem_detected": "Many pages are possible competition sources but not high-confidence direct evidence.",
+      "aggregate_evidence": {
+        "count": 81,
+        "denominator": 340,
+        "share_pct": 23.82
+      },
+      "proposed_ui_change": "Add a source-level summary panel grouping links by university/source URL before row-level review.",
+      "expected_effect": "Let reviewers validate or deprioritise whole source clusters before reviewing every individual link.",
+      "risk_level": "medium",
+      "suggested_autonomy": "broad",
+      "files_likely_touched": [
+        "site/index.html",
+        "site/data/document_link_triage_index.json"
+      ],
+      "validation_checks_required": [
+        "source grouping renders",
+        "row-level audit remains visible"
       ],
       "priority_score": 2
     }
