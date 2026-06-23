@@ -1,13 +1,13 @@
 {
-  "updated_at_utc": "2026-06-23T10:05:03Z",
+  "updated_at_utc": "2026-06-23T11:14:30Z",
   "total_intake_packs": 80,
   "inventories_created": 80,
   "inventories_pending": 73,
   "inventories_with_recruitment_url": 28,
-  "inventories_with_candidate_links": 6,
+  "inventories_with_candidate_links": 7,
   "inventories_needing_attention": 80,
   "fetch_errors": 4,
-  "candidate_links_total": 300,
+  "candidate_links_total": 340,
   "progress_events": [
     "Rebuilt source-inventory rollup from approved-source inventory index."
   ],
@@ -16,10 +16,10 @@
   "universities_fetched": 1,
   "seed_urls_attempted": 5,
   "depth_1_pages_followed": 0,
-  "candidate_links_found": 0,
+  "candidate_links_found": 40,
   "output_files_changed": 2,
-  "run_status": "completed_no_links",
-  "no_progress_reason": "Fetch completed but no new candidate links were discovered under bounded rules.",
+  "run_status": "productive",
+  "no_progress_reason": "",
   "by_university": [
     {
       "university_id": "it-unibo",
@@ -45,7 +45,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T10:04:51Z"
+      "last_updated_utc": "2026-06-23T11:14:20Z"
     },
     {
       "university_id": "it-unipd",
@@ -97,7 +97,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T10:04:51Z"
+      "last_updated_utc": "2026-06-23T11:14:20Z"
     },
     {
       "university_id": "it-unito",
@@ -110,7 +110,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T10:04:51Z"
+      "last_updated_utc": "2026-06-23T11:14:20Z"
     },
     {
       "university_id": "it-unirc",
@@ -146,10 +146,10 @@
       "homepage_url": "https://www.luiss.it/",
       "recruitment_url": "",
       "fetch_status": "fetched",
-      "candidate_links_count": 0,
+      "candidate_links_count": 40,
       "requires_human_attention": "yes",
-      "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T10:04:51Z"
+      "blocking_status": "needs_human_review",
+      "last_updated_utc": "2026-06-23T11:14:20Z"
     },
     {
       "university_id": "it-unifi",
@@ -162,7 +162,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-06-23T10:04:51Z"
+      "last_updated_utc": "2026-06-23T11:14:20Z"
     },
     {
       "university_id": "it-unisi",
