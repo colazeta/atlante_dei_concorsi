@@ -2661,3 +2661,6 @@
 
 - 2026-06-24T01:03:58Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 520: <none>
+
+- 2026-06-24T01:48:13Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 404: Not Found
