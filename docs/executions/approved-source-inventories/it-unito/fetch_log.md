@@ -2670,3 +2670,6 @@
 
 - 2026-06-24T04:18:14Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 520: <none>
+
+- 2026-06-24T05:46:04Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 520: <none>
