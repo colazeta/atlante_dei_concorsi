@@ -2847,3 +2847,6 @@
 
 - 2026-07-06T21:47:14Z | uid=it-unina
   - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=HTTP Error 503: Service Unavailable
+
+- 2026-07-06T22:48:04Z | uid=it-unina
+  - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=HTTP Error 404: Not Found
