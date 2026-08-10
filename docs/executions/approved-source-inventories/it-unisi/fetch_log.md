@@ -1614,3 +1614,6 @@
 
 - 2026-08-10T06:57:27Z | uid=it-unisi
   - error: https://www.unisi.it/ateneo/concorsi err=HTTP Error 403: Forbidden
+
+- 2026-08-10T08:22:57Z | uid=it-unisi
+  - error: https://www.unisi.it/ateneo/concorsi err=HTTP Error 403: Forbidden
