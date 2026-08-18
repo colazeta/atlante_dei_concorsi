@@ -4914,3 +4914,6 @@
 
 - 2026-08-18T11:03:11Z | uid=it-unifi
   - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 404: Not Found
+
+- 2026-08-18T12:18:33Z | uid=it-unifi
+  - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 404: Not Found
