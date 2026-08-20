@@ -5100,3 +5100,6 @@
 
 - 2026-08-20T05:18:56Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 403: Forbidden
+
+- 2026-08-20T05:48:43Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 404: Not Found
