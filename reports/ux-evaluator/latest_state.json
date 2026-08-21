@@ -1,10 +1,10 @@
 {
   "evaluator_id": "PAGES-UX-EVALUATOR-0001",
   "status": "completed",
-  "created_at_utc": "2026-08-21T18:40:49Z",
-  "updated_at_utc": "2026-08-21T18:40:49Z",
-  "focus_area": "empty and stale states",
-  "fingerprint": "e2093e71c65256e3",
+  "created_at_utc": "2026-08-21T19:24:44Z",
+  "updated_at_utc": "2026-08-21T19:24:44Z",
+  "focus_area": "accessibility and keyboard navigation",
+  "fingerprint": "65b18c045c991e0f",
   "checks": {
     "has_single_row_approve": true,
     "has_single_row_reject": true,
@@ -23,7 +23,7 @@
     {
       "severity": "low",
       "problem_type": "minor_polish",
-      "issue": "No blocking UX gap detected for focus area: empty and stale states.",
+      "issue": "No blocking UX gap detected for focus area: accessibility and keyboard navigation.",
       "proposed_fix": "Continue monitoring.",
       "files_likely_touched": [],
       "patch_safe": false
