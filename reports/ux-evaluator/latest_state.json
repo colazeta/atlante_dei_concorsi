@@ -1,10 +1,10 @@
 {
   "evaluator_id": "PAGES-UX-EVALUATOR-0001",
   "status": "completed",
-  "created_at_utc": "2026-08-22T17:18:56Z",
-  "updated_at_utc": "2026-08-22T17:18:56Z",
-  "focus_area": "triage filter discoverability",
-  "fingerprint": "e6834f2e3d98d3a8",
+  "created_at_utc": "2026-08-22T17:45:23Z",
+  "updated_at_utc": "2026-08-22T17:45:23Z",
+  "focus_area": "review progress visibility",
+  "fingerprint": "48cb43449e262d33",
   "checks": {
     "has_single_row_approve": true,
     "has_single_row_reject": true,
@@ -23,7 +23,7 @@
     {
       "severity": "low",
       "problem_type": "minor_polish",
-      "issue": "No blocking UX gap detected for focus area: triage filter discoverability.",
+      "issue": "No blocking UX gap detected for focus area: review progress visibility.",
       "proposed_fix": "Continue monitoring.",
       "files_likely_touched": [],
       "patch_safe": false
