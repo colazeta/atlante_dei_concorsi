@@ -5580,3 +5580,6 @@
 
 - 2026-08-24T11:23:59Z | uid=it-unifi
   - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 403: Forbidden
+
+- 2026-08-24T11:49:17Z | uid=it-unifi
+  - error: https://www.unifi.it/it/ateneo/lavora-con-noi.html err=HTTP Error 404: Not Found
