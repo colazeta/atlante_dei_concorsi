@@ -1,14 +1,14 @@
 {
-  "updated_at_utc": "2026-08-24T08:05:48Z",
+  "updated_at_utc": "2026-08-24T09:00:51Z",
   "pages_deploy_status": "generated_predeploy",
-  "source_inventory_last_updated_utc": "2026-08-24T08:03:54Z",
-  "document_classification_last_updated_utc": "2026-08-24T08:03:54Z",
-  "document_triage_last_updated_utc": "2026-08-24T08:03:54Z",
-  "document_confirmation_last_updated_utc": "2026-08-24T08:03:54Z",
-  "source_inventory_freshness_minutes": 1,
-  "document_classification_freshness_minutes": 1,
-  "document_triage_freshness_minutes": 1,
-  "document_confirmation_freshness_minutes": 1,
+  "source_inventory_last_updated_utc": "2026-08-24T08:58:33Z",
+  "document_classification_last_updated_utc": "2026-08-24T08:58:34Z",
+  "document_triage_last_updated_utc": "2026-08-24T08:58:34Z",
+  "document_confirmation_last_updated_utc": "2026-08-24T08:58:34Z",
+  "source_inventory_freshness_minutes": 2,
+  "document_classification_freshness_minutes": 2,
+  "document_triage_freshness_minutes": 2,
+  "document_confirmation_freshness_minutes": 2,
   "expected_refresh_cadence_minutes": 10,
   "freshness_status": "fresh",
   "latest_counts": {
@@ -31,8 +31,8 @@
     "triage_likely_not_relevant": 45,
     "triage_unknown_requires_review": 149,
     "confirmation_links_checked": 60,
-    "confirmation_confirmed_links": 22,
-    "confirmation_review_links": 38
+    "confirmation_confirmed_links": 21,
+    "confirmation_review_links": 39
   },
   "top_triage_exclusion_reasons": [
     {
