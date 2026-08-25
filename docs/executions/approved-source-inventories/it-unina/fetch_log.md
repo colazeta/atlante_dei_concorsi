@@ -5703,3 +5703,6 @@
 
 - 2026-08-25T16:04:42Z | uid=it-unina
   - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=HTTP Error 403: Forbidden
+
+- 2026-08-25T17:16:49Z | uid=it-unina
+  - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=HTTP Error 404: Not Found
