@@ -1,10 +1,10 @@
 {
   "evaluator_id": "PAGES-UX-EVALUATOR-0001",
   "status": "completed",
-  "created_at_utc": "2026-08-25T22:25:13Z",
-  "updated_at_utc": "2026-08-25T22:25:13Z",
-  "focus_area": "excluded-link auditability",
-  "fingerprint": "4ffe57cd6025fa7b",
+  "created_at_utc": "2026-08-25T22:55:04Z",
+  "updated_at_utc": "2026-08-25T22:55:04Z",
+  "focus_area": "empty and stale states",
+  "fingerprint": "e2093e71c65256e3",
   "checks": {
     "has_single_row_approve": true,
     "has_single_row_reject": true,
@@ -23,7 +23,7 @@
     {
       "severity": "low",
       "problem_type": "minor_polish",
-      "issue": "No blocking UX gap detected for focus area: excluded-link auditability.",
+      "issue": "No blocking UX gap detected for focus area: empty and stale states.",
       "proposed_fix": "Continue monitoring.",
       "files_likely_touched": [],
       "patch_safe": false
