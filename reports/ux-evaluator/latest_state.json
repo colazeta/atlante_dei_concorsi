@@ -1,10 +1,10 @@
 {
   "evaluator_id": "PAGES-UX-EVALUATOR-0001",
   "status": "completed",
-  "created_at_utc": "2026-08-26T22:22:59Z",
-  "updated_at_utc": "2026-08-26T22:22:59Z",
-  "focus_area": "excluded-link auditability",
-  "fingerprint": "4ffe57cd6025fa7b",
+  "created_at_utc": "2026-08-27T03:26:28Z",
+  "updated_at_utc": "2026-08-27T03:26:28Z",
+  "focus_area": "accessibility and keyboard navigation",
+  "fingerprint": "65b18c045c991e0f",
   "checks": {
     "has_single_row_approve": true,
     "has_single_row_reject": true,
@@ -23,7 +23,7 @@
     {
       "severity": "low",
       "problem_type": "minor_polish",
-      "issue": "No blocking UX gap detected for focus area: excluded-link auditability.",
+      "issue": "No blocking UX gap detected for focus area: accessibility and keyboard navigation.",
       "proposed_fix": "Continue monitoring.",
       "files_likely_touched": [],
       "patch_safe": false
