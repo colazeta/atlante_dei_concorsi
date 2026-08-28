@@ -1,16 +1,16 @@
 university_id,university_name,intake_pack_exists,inventory_exists,homepage_url,recruitment_url,fetch_status,candidate_links_count,requires_human_attention,blocking_status,last_updated_utc
 it-unibo,Università di Bologna,yes,yes,https://www.unibo.it/,https://www.unibo.it/it/ateneo/lavora-con-noi,fetched,40,yes,needs_human_review,2026-05-18T14:08:59Z
-it-unina,Università degli Studi di Napoli Federico II,yes,yes,https://www.unina.it/,https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore,pending_fetch,0,yes,fetch_failed,2026-08-28T04:27:47Z
+it-unina,Università degli Studi di Napoli Federico II,yes,yes,https://www.unina.it/,https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore,pending_fetch,0,yes,fetch_failed,2026-08-28T16:46:55Z
 it-unipd,Università degli Studi di Padova,yes,yes,https://www.unipd.it/,https://www.unipd.it/concorsi-selezioni-personale-docente,fetched,52,yes,needs_human_review,2026-05-18T14:08:59Z
 it-unipa,Università degli Studi di Palermo,yes,yes,https://www.unipa.it/,https://www.unipa.it/albo.html,fetched,56,yes,needs_human_review,2026-05-18T14:08:59Z
 it-unipi,Università di Pisa,yes,yes,https://www.unipi.it/,,fetched,40,yes,needs_human_review,2026-05-18T14:08:59Z
-it-unimi,Università degli Studi di Milano,yes,yes,https://www.unimi.it/,https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori,pending_fetch,0,yes,fetch_failed,2026-08-28T04:27:47Z
-it-unito,Università degli Studi di Torino,yes,yes,https://www.unito.it/,https://www.unito.it/ateneo/lavora-con-noi,pending_fetch,0,yes,fetch_failed,2026-08-28T04:27:47Z
+it-unimi,Università degli Studi di Milano,yes,yes,https://www.unimi.it/,https://www.unimi.it/it/ateneo/lavora-con-noi/reclutamento-professori-e-ricercatori,pending_fetch,0,yes,fetch_failed,2026-08-28T16:46:55Z
+it-unito,Università degli Studi di Torino,yes,yes,https://www.unito.it/,https://www.unito.it/ateneo/lavora-con-noi,pending_fetch,0,yes,fetch_failed,2026-08-28T16:46:55Z
 it-unirc,Università degli Studi Mediterranea di Reggio Calabria,yes,yes,https://www.unirc.it/,,fetched,40,yes,needs_human_review,2026-05-18T14:20:17Z
 it-unibocconi,Università Commerciale Luigi Bocconi,yes,yes,https://www.unibocconi.it/,https://www.unibocconi.it/it/docenti-e-ricerca/docenti/reclutamento-docenti/concorsi,fetched,72,yes,needs_human_review,2026-05-18T14:20:17Z
 it-luiss,LUISS Guido Carli,yes,yes,https://www.luiss.it/,,fetched,40,yes,needs_human_review,2026-06-23T11:14:20Z
-it-unifi,Università degli Studi di Firenze,yes,yes,https://www.unifi.it/,https://www.unifi.it/it/ateneo/lavora-con-noi.html,pending_fetch,0,yes,fetch_failed,2026-08-28T04:27:47Z
-it-unisi,Università degli Studi di Siena,yes,yes,https://www.unisi.it/,https://www.unisi.it/ateneo/concorsi,pending_fetch,0,yes,fetch_failed,2026-08-28T04:27:47Z
+it-unifi,Università degli Studi di Firenze,yes,yes,https://www.unifi.it/,https://www.unifi.it/it/ateneo/lavora-con-noi.html,pending_fetch,0,yes,fetch_failed,2026-08-28T16:46:55Z
+it-unisi,Università degli Studi di Siena,yes,yes,https://www.unisi.it/,https://www.unisi.it/ateneo/concorsi,pending_fetch,0,yes,fetch_failed,2026-08-28T16:46:55Z
 it-uniroma1,Sapienza Università di Roma,yes,yes,https://www.uniroma1.it/,https://www.uniroma1.it/it/pagina/concorsi,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:03:24Z
 it-uniroma2,Università degli Studi di Roma Tor Vergata,yes,yes,https://web.uniroma2.it/,https://web.uniroma2.it/it/contenuto/concorsi,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:03:24Z
 it-uniroma3,Università degli Studi Roma Tre,yes,yes,https://www.uniroma3.it/,https://www.uniroma3.it/ateneo/lavora-con-noi/,pending_fetch,0,yes,awaiting_bounded_fetch,2026-05-17T20:03:24Z
