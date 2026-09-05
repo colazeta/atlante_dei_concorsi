@@ -5949,3 +5949,6 @@
 
 - 2026-09-05T18:20:24Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 404: Not Found
+
+- 2026-09-05T20:30:14Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 404: Not Found
