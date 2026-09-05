@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-09-05T11:03:02Z",
+  "updated_at_utc": "2026-09-05T16:17:33Z",
   "total_intake_packs": 80,
   "inventories_created": 80,
   "inventories_pending": 73,
@@ -45,7 +45,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-09-05T11:02:55Z"
+      "last_updated_utc": "2026-09-05T16:17:22Z"
     },
     {
       "university_id": "it-unipd",
@@ -97,7 +97,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-09-05T11:02:55Z"
+      "last_updated_utc": "2026-09-05T16:17:22Z"
     },
     {
       "university_id": "it-unito",
@@ -110,7 +110,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-09-05T11:02:55Z"
+      "last_updated_utc": "2026-09-05T16:17:22Z"
     },
     {
       "university_id": "it-unirc",
@@ -162,7 +162,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-09-05T11:02:55Z"
+      "last_updated_utc": "2026-09-05T16:17:22Z"
     },
     {
       "university_id": "it-unisi",
@@ -175,7 +175,7 @@
       "candidate_links_count": 0,
       "requires_human_attention": "yes",
       "blocking_status": "fetch_failed",
-      "last_updated_utc": "2026-09-05T11:02:55Z"
+      "last_updated_utc": "2026-09-05T16:17:22Z"
     },
     {
       "university_id": "it-uniroma1",
