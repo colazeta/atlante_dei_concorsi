@@ -1,9 +1,9 @@
 {
-  "updated_at_utc": "2026-09-25T12:53:46Z",
+  "updated_at_utc": "2026-09-25T15:19:15Z",
   "triage_links_read": 340,
   "links_checked": 60,
-  "confirmed_links": 24,
-  "review_links": 36,
+  "confirmed_links": 23,
+  "review_links": 37,
   "progress_events": [
     "Built controlled competition-evidence confirmation layer from fetched candidate links."
   ]
