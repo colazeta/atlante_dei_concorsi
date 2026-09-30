@@ -6408,3 +6408,6 @@
 
 - 2026-09-30T18:23:35Z | uid=it-unito
   - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 404: Not Found
+
+- 2026-09-30T22:24:53Z | uid=it-unito
+  - error: https://www.unito.it/ateneo/lavora-con-noi err=HTTP Error 403: Forbidden
