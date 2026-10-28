@@ -6849,3 +6849,6 @@
 
 - 2026-10-27T22:37:56Z | uid=it-unina
   - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=<urlopen error timed out>
+
+- 2026-10-28T01:38:40Z | uid=it-unina
+  - error: https://www.unina.it/ateneo/concorsi/concorsi-personale-docente-e-ricercatore err=<urlopen error timed out>
